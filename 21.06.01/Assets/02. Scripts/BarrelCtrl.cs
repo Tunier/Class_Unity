@@ -15,15 +15,22 @@ public class BarrelCtrl : MonoBehaviour
     MeshRenderer _renderer; // 텍스처를 적용해줄 메쉬 렌더러.
 
     public float expRadius = 10f; // 폭발 반경.
+
+    public GameObject barrel;
+
+    AudioSource _audio;
+    public AudioClip expSfx;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         meshFilter = GetComponent<MeshFilter>();
         _renderer = GetComponent<MeshRenderer>();
-        
+
         int idx = Random.Range(0, textures.Length);
         _renderer.material.mainTexture = textures[idx];
+
+        _audio = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,7 +49,7 @@ public class BarrelCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void IndirectDamage(Vector3 pos)
@@ -51,7 +58,7 @@ public class BarrelCtrl : MonoBehaviour
         Collider[] colls = Physics.OverlapSphere(pos, // 폭발원점.
                                                  expRadius, // 폭발반경.
                                                  1 << 8); // 영향을 줄 레이어.
-        //검출된 오브젝트를 순차적으로 하나씩 선택되도록 함, 1씩 증가하는 for 문과 동일함.   
+        //검출된 오브젝트를 순차적으로 하나씩 선택되도록 함, 1씩 증가하는 for 문과 동일함. (이번 경우는 coll부터 colls까지)
         foreach (var coll in colls)
         {
             var _rb = coll.GetComponent<Rigidbody>();
@@ -77,5 +84,7 @@ public class BarrelCtrl : MonoBehaviour
         int idx = Random.Range(0, meshes.Length);
         // 뽑은 인덱스에 해당하는 메쉬를 선택해서 메쉬필터에 적용.
         meshFilter.sharedMesh = meshes[idx];
+
+        _audio.PlayOneShot(expSfx, 1f);
     }
 }
