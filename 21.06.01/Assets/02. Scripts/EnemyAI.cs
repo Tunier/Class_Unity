@@ -23,6 +23,13 @@ public class EnemyAI : MonoBehaviour
 
     WaitForSeconds ws; // 시간 지연 변수.
 
+    MoveAgent moveAgent;
+    EnemyFire enemyFire;
+
+    Animator animator;
+    readonly int hashMove = Animator.StringToHash("IsMove");
+    readonly int hashSpeed = Animator.StringToHash("Speed");    
+
     void Awake()
     {
         var player = GameObject.FindGameObjectWithTag("PLAYER");
@@ -31,6 +38,9 @@ public class EnemyAI : MonoBehaviour
             playerTr = player.GetComponent<Transform>();
 
         enemyTr = GetComponent<Transform>();
+        moveAgent = GetComponent<MoveAgent>();
+        animator = GetComponent<Animator>();
+        enemyFire = GetComponent<EnemyFire>();
 
         // 시간 지연 변수를 0.3 값으로 설정.
         // 시간 지연 변수는 코루틴 함수에서 사용됨.
@@ -42,6 +52,8 @@ public class EnemyAI : MonoBehaviour
         // OnEnable은 해당 스크립트가 활성화될 때마다 실행됨.
         // 상태 체크하는 코루틴 함수 호출.
         StartCoroutine(CheckState());
+        // 상태 변화에 따라 행동을 지시하는 코루틴 함수 호출.
+        StartCoroutine(Action());
     }
 
     // 코루틴 = 독자적인 시간축을 가짐.
@@ -70,9 +82,42 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    IEnumerator Action()
+    {
+        while (!isDie)
+        {
+            yield return ws;
+
+            switch (state)
+            {
+                case State.PATROL:
+                    enemyFire.isFire = false;
+                    moveAgent.patrolling = true;
+                    animator.SetBool(hashMove, true);
+                    break;
+                case State.TRACE:
+                    enemyFire.isFire = false;
+                    moveAgent.traceTarget = playerTr.position;
+                    animator.SetBool(hashMove, true);
+                    break;
+                case State.ATTCK:
+                    moveAgent.Stop();
+                    animator.SetBool(hashMove, false);
+                    if (enemyFire.isFire == false)
+                        enemyFire.isFire = true;
+                    break;
+                case State.DIE:
+                    moveAgent.Stop();
+                    break;
+            }
+
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-
+        // 애니메이터 변수의 Set 함수들의 종류는 여러가지가 있음.
+        // SetFloat 해당함수는 (해쉬값 / 파라메터 이름, 전달하고자 하는 값) 형태로 사용됨.
+        animator.SetFloat(hashSpeed, moveAgent.speed);
     }
 }
