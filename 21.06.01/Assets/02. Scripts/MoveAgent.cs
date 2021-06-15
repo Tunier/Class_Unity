@@ -81,6 +81,7 @@ public class MoveAgent : MonoBehaviour
             group.GetComponentsInChildren<Transform>(wayPoints);
             wayPoints.RemoveAt(0); // RemoveAt(i) 리스트에 들어가 있는 요소들 중에서 지정된 인덱스(i)의 오브젝트 삭제.
                                    // 하기 싫으면 랜덤에서 1부터 시작하게 하면됨.
+            nextIdx = Random.Range(0, wayPoints.Count);
         }
 
         // 웨이포인트 변경하는 함수 호출.
@@ -138,14 +139,18 @@ public class MoveAgent : MonoBehaviour
         if (agent.velocity.sqrMagnitude >= 0.2f * 0.2f // sqrMagnitude 가 Magnitude보다 성능이좋음.
             && agent.remainingDistance <= 0.5f)
         {
-            nextIdx++;
+            // nextIdx++;
             // 0 1 2 3 4 5 6 ...... wayPoints를 10이라고 가정
             // 0 % 10 = 0
             // 1 % 10 = 1
             // 10 % 10 = 0
             // 순환구조를 이루기 위하여 나머지 연산을 함.
             // 처음부터 마지막 순찰지 돌고나면 다시 처음으로 돌아가도록 인덱스 변경.
-            nextIdx = nextIdx % wayPoints.Count;
+            // nextIdx = nextIdx % wayPoints.Count;
+            // 위 코드는 순찰 지점을 순차적으로 순환하도록 했으므로 주석처리함.
+
+            nextIdx = Random.Range(0, wayPoints.Count);
+
             // 인덱스 변경후 이동시작 하기 위해 함수 호출.
             MoveWayPoint();
         }

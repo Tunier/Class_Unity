@@ -8,7 +8,6 @@ public class BulletCtrl : MonoBehaviour
     public float speed = 1000f; // ÃÑ¾Ë ¼Óµµ
 
     Rigidbody rb;
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,7 +15,6 @@ public class BulletCtrl : MonoBehaviour
         // GetComponent<Rigidbody>().AddForce(transform.forward * speed);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BULLET
   - PLAYER
+  - ENEMY
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - 
   - BARREL
-  - 
-  - 
+  - BULLET
+  - E_BULLET
   - 
   - 
   - 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFire : MonoBehaviour
 {
-    AudioSource audio;
+    AudioSource _audio;
     Animator animator;
     Transform playerTr;
     Transform enemyTr;
@@ -21,7 +21,7 @@ public class EnemyFire : MonoBehaviour
     public AudioClip fireSfx; // 총알 발사 사운드.
 
     // 재장전 관련 변수
-    readonly float reloadTime = 2f; // 재장전 시간
+    readonly float reloadTime = 1.5f; // 재장전 시간
     readonly int maxBullet = 10; // 탄창 최대 총알 수
     int currBullet = 10; // 현재 총알 수
     bool isReload; // 재장전 여부
@@ -39,7 +39,7 @@ public class EnemyFire : MonoBehaviour
         playerTr = GameObject.FindGameObjectWithTag("PLAYER").GetComponent<Transform>();
         enemyTr = GetComponent<Transform>();
         animator = GetComponent<Animator>();
-        audio = GetComponent<AudioSource>();
+        _audio = GetComponent<AudioSource>();
 
         wsReload = new WaitForSeconds(reloadTime);
 
@@ -71,7 +71,7 @@ public class EnemyFire : MonoBehaviour
     void Fire()
     {
         animator.SetTrigger(hashFire);
-        audio.PlayOneShot(fireSfx, 1f);
+        _audio.PlayOneShot(fireSfx, 1f);
         
         // 총구화염 코루틴 
         StartCoroutine(ShowMuzzleFlash());
@@ -97,7 +97,7 @@ public class EnemyFire : MonoBehaviour
         muzzleFlash.enabled = false;
 
         animator.SetTrigger(hashReload);
-        audio.PlayOneShot(reloadSfx, 1f);
+        _audio.PlayOneShot(reloadSfx, 1f);
         yield return wsReload;
 
         currBullet = maxBullet;

@@ -33,4 +33,15 @@ public class FollowCam : MonoBehaviour
         tr.LookAt(target.position + (target.up * targetOffset));
         // 카메라를 꺾어서 타겟을 보게함.(캐릭터의 발을 향해 보고있는것을 정수리를 향하게 꺾어줌)
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        // DrawWireSphere(위치, 지름)
+        // 선으로 이루어진 구형의 모양을 그림(씬뷰에만 표시됨, 디버그용)
+        Gizmos.DrawWireSphere(target.position + (target.up * targetOffset), 0.1f);
+        // 메인 카메라와 추적 지점 사이에 선을 그림.
+        // 출발과 도착지점 사이에 선을 그림.
+        Gizmos.DrawLine(target.position + (target.up * targetOffset), transform.position);
+    }
 }
