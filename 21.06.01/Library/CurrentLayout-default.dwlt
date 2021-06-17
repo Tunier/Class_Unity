@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 136
+  controlID: 91
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 162
+  controlID: 117
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 19
+  controlID: 39
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 137
+  controlID: 92
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -671,11 +671,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.0019090241, y: 0.9529821, z: -0.30296642, w: 0.006004835}
     speed: 2
-    m_Value: {x: 0.002791305, y: 0.95386285, z: -0.3000986, w: 0.0088721495}
+    m_Value: {x: 0.0019090212, y: 0.95298064, z: -0.30296594, w: 0.0060048257}
   m_Size:
     m_Target: 30.874517
     speed: 2
-    m_Value: 29.544992
+    m_Value: 30.874517
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -728,9 +728,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 72500000
       m_LastClickedID: 0
-      m_ExpandedIDs: 26fbffff
+      m_ExpandedIDs: 7cf0ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -792,22 +792,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/03. Prefabs/EffectExamples
+    - Assets/03. Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/03. Prefabs/EffectExamples
+  - Assets/03. Prefabs
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\admin\source\repos\Tunier\Class_Unity\21.06.01
+  m_LastProjectPath: C:\Users\Yang\source\repos\Class_Unity\21.06.01
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 63}
-    m_SelectedIDs: 34410000
-    m_LastClickedID: 16692
-    m_ExpandedIDs: 000000003241000034410000364100004441000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 50510000
+    m_LastClickedID: 20816
+    m_ExpandedIDs: 000000004451000046510000485100005051000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -835,7 +835,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000324100003441000036410000
+    m_ExpandedIDs: 00000000445100004651000048510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -862,22 +862,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 6a3c0000b6470000ea4a0000bc560000b8560000ba560000644f0000243e00001443000018430000a0500000f43e0000ee3e0000a84e0000cc43000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: EnemyAI
+      m_OriginalName: EnemyAI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 2914
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
