@@ -12,24 +12,26 @@ public class PlayerCtrl : MonoBehaviour
         DIE
     }
 
+    private Camera playerCam;
+
     Ray ray;
+
+    int layerMask;
 
     public State state = State.IDLE;
 
-    public float moveSpeed = 1f; // 이동속도 계수
+    public float moveSpeed = 3f; // 이동속도 계수
     public float rotSpeed = 1f; // 회전속도 계수
     public float AttackingMoveLeagth = 0.5f; // 공격시 이동 거리
 
     Rigidbody rb;
     Transform tr;
-    Collider col;
     Animator ani;
 
     Vector3 movement; // 이동시 백터 받아오는값
     Vector3 AttackMovement; // 공격시 움직이는 백터 받아오는값
 
-    Vector3 mousePos; // 마우스 백터 받아옴
-    Vector3 moveDir; // 도착해야할 지점 백터
+    Vector3 mousePos; // 마우스 백터 받아옴    
 
     readonly int hashMove = Animator.StringToHash("IsMove"); // bool 움직이는중
     readonly int hashAttack = Animator.StringToHash("IsAttack"); // bool 공격중
@@ -42,8 +44,10 @@ public class PlayerCtrl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         tr = GetComponent<Transform>();
-        col = GetComponent<Collider>();
         ani = GetComponent<Animator>();
+        ray = new Ray();
+        layerMask = 1 << LayerMask.NameToLayer("LAYTARGET");
+        playerCam = Camera.main;
     }
 
     IEnumerator CheckState()
@@ -54,7 +58,6 @@ public class PlayerCtrl : MonoBehaviour
                 SetState(State.MOVE);
             else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
                 SetState(State.IDLE);
-
             if (Input.GetButton("Fire1"))
                 SetState(State.ATTACK);
 
@@ -90,17 +93,17 @@ public class PlayerCtrl : MonoBehaviour
 
         mousePos = Input.mousePosition; // 화면의 마우스 포지션 받아옴.
 
-        ray = Camera.main.ScreenPointToRay(mousePos); // 카메라에서 보는 마우스 위치 포지션 받아옴.
+        ray = playerCam.ScreenPointToRay(mousePos); // 카메라에서 보는 마우스 위치 포지션 받아옴.
 
         Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.green); // 레이시각화.
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit)) // 레이케스트에 충돌하는 물체가 있는지 판별.
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 1 << 8)) // 레이케스트에 충돌하는 물체가 있는지 판별.
         {
-            mousePos = raycastHit.point;
-            moveDir = mousePos - transform.position;
+            mousePos = new Vector3(raycastHit.point.x,tr.position.y,raycastHit.point.z) - tr.position;
         }
 
-        transform.rotation = Quaternion.LookRotation(mousePos);
+        tr.forward = mousePos;
+        //tr.LookAt(mousePos);
     }
 
     void EndAttackEvent()
