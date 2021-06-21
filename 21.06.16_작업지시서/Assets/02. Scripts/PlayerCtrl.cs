@@ -9,10 +9,11 @@ public class PlayerCtrl : MonoBehaviour
         IDLE,
         MOVE,
         ATTACK,
+        HIT,
         DIE
     }
 
-    private Camera playerCam;
+    public float hp = 100;
 
     Ray ray;
 
@@ -21,20 +22,21 @@ public class PlayerCtrl : MonoBehaviour
     public State state = State.IDLE;
 
     public float moveSpeed = 3f; // 이동속도 계수
-    public float rotSpeed = 1f; // 회전속도 계수
-    public float AttackingMoveLeagth = 0.5f; // 공격시 이동 거리
+    public float AttackingMoveLeagth = 1f; // 공격시 이동 거리
 
     Rigidbody rb;
     Transform tr;
     Animator ani;
 
-    Vector3 movement; // 이동시 백터 받아오는값
-    Vector3 AttackMovement; // 공격시 움직이는 백터 받아오는값
+    Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
+    Vector3 AttackMovement = Vector3.zero; // 공격시 움직이는 백터 받아오는값
 
     Vector3 mousePos; // 마우스 백터 받아옴    
 
     readonly int hashMove = Animator.StringToHash("IsMove"); // bool 움직이는중
     readonly int hashAttack = Animator.StringToHash("IsAttack"); // bool 공격중
+    readonly int hashHit = Animator.StringToHash("IsHit"); // bool 맞는중
+    readonly int hashDie = Animator.StringToHash("IsDie"); // bool 죽음.
 
     float h; // 세로이동 받아올것.
     float v; // 가로이동 받아올것.
@@ -46,8 +48,7 @@ public class PlayerCtrl : MonoBehaviour
         tr = GetComponent<Transform>();
         ani = GetComponent<Animator>();
         ray = new Ray();
-        layerMask = 1 << LayerMask.NameToLayer("LAYTARGET");
-        playerCam = Camera.main;
+        layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
     }
 
     IEnumerator CheckState()
@@ -58,6 +59,7 @@ public class PlayerCtrl : MonoBehaviour
                 SetState(State.MOVE);
             else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
                 SetState(State.IDLE);
+
             if (Input.GetButton("Fire1"))
                 SetState(State.ATTACK);
 
@@ -68,17 +70,14 @@ public class PlayerCtrl : MonoBehaviour
     void Update()
     {
         StartCoroutine(CheckState());
-
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
-
-        movement = new Vector3(h, 0, v) * moveSpeed;
-        AttackMovement = new Vector3(h, 0, v) * AttackingMoveLeagth;
+        SetPlayerMovement();
+        SetPlayerRotate();
 
         switch (state)
         {
             case State.IDLE:
                 ani.SetBool(hashMove, false);
+                ani.SetBool(hashHit, false);
                 rb.velocity = Vector3.zero;
                 break;
             case State.MOVE:
@@ -89,31 +88,49 @@ public class PlayerCtrl : MonoBehaviour
                 ani.SetBool(hashAttack, true);
                 rb.velocity = AttackMovement;
                 break;
+            case State.HIT:
+                ani.SetBool(hashHit, true);
+                break;
+            case State.DIE:
+
+                break;
         }
+    }
 
-        mousePos = Input.mousePosition; // 화면의 마우스 포지션 받아옴.
+    public void SetState(State s)
+    {
+        state = s;
+    }
+    void EndMotion()
+    {
+        ani.SetBool(hashAttack, false);
+        ani.SetBool(hashHit, false);
+        state = State.IDLE;
 
-        ray = playerCam.ScreenPointToRay(mousePos); // 카메라에서 보는 마우스 위치 포지션 받아옴.
+        MonsterWeaponCtrl monWp = GetComponent<MonsterWeaponCtrl>();
 
-        Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.green); // 레이시각화.
+        monWp.GetComponent<Collider>().enabled = true;
+    }
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 1 << 8)) // 레이케스트에 충돌하는 물체가 있는지 판별.
+    void SetPlayerRotate()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 500f, Color.green); // 레이시각화.
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
-            mousePos = new Vector3(raycastHit.point.x,tr.position.y,raycastHit.point.z) - tr.position;
+            mousePos = new Vector3(hit.point.x, tr.position.y, hit.point.z) - tr.position;
         }
 
         tr.forward = mousePos;
-        //tr.LookAt(mousePos);
     }
 
-    void EndAttackEvent()
+    void SetPlayerMovement()
     {
-        state = State.IDLE;
-        ani.SetBool(hashAttack, false);
-    }
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
 
-    void SetState(State s)
-    {
-        state = s;
+        movement = new Vector3(h, 0, v) * moveSpeed;
+        AttackMovement = new Vector3(h, 0, v) * AttackingMoveLeagth;
     }
 }
