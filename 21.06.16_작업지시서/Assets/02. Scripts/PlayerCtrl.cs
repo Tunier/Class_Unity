@@ -24,8 +24,8 @@ public class PlayerCtrl : MonoBehaviour
     public float moveSpeed = 3f; // 이동속도 계수
     public float AttackingMoveLeagth = 1f; // 공격시 이동 거리
 
+    public Transform tr;
     Rigidbody rb;
-    Transform tr;
     Animator ani;
 
     Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
@@ -92,7 +92,9 @@ public class PlayerCtrl : MonoBehaviour
                 ani.SetBool(hashHit, true);
                 break;
             case State.DIE:
-
+                StopAllCoroutines();
+                gameObject.SetActive(false);
+                rb.velocity = Vector3.zero;
                 break;
         }
     }
@@ -101,15 +103,20 @@ public class PlayerCtrl : MonoBehaviour
     {
         state = s;
     }
-    void EndMotion()
+    void EndAttackMotion()
     {
         ani.SetBool(hashAttack, false);
+        state = State.IDLE;
+    }
+
+    void EndHitMotion()
+    {
         ani.SetBool(hashHit, false);
         state = State.IDLE;
 
-        MonsterWeaponCtrl monWp = GetComponent<MonsterWeaponCtrl>();
+        MonsterWeaponCtrl mobWeapon = GetComponent<MonsterWeaponCtrl>();
 
-        monWp.GetComponent<Collider>().enabled = true;
+        mobWeapon.GetComponent<Collider>().enabled = false;
     }
 
     void SetPlayerRotate()

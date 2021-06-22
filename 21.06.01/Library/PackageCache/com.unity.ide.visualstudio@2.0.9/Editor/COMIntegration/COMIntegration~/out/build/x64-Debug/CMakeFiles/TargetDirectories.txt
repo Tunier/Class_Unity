@@ -1,3 +1,0 @@
-C:/Users/admin/source/repos/Tunier/Class_Unity/21.06.01/Library/PackageCache/com.unity.ide.visualstudio@2.0.9/Editor/COMIntegration/COMIntegration~/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/admin/source/repos/Tunier/Class_Unity/21.06.01/Library/PackageCache/com.unity.ide.visualstudio@2.0.9/Editor/COMIntegration/COMIntegration~/out/build/x64-Debug/CMakeFiles/COMIntegration.dir
-C:/Users/admin/source/repos/Tunier/Class_Unity/21.06.01/Library/PackageCache/com.unity.ide.visualstudio@2.0.9/Editor/COMIntegration/COMIntegration~/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir

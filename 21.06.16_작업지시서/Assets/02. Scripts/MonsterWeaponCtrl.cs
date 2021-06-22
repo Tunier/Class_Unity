@@ -6,9 +6,13 @@ public class MonsterWeaponCtrl : MonoBehaviour
 {
     Collider col;
 
+    MonsterCtrl Mob;
+
     void Start()
     {
         col = GetComponent<Collider>();
+        Mob = GetComponent<MonsterCtrl>();
+        col.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,7 +25,7 @@ public class MonsterWeaponCtrl : MonoBehaviour
 
             player.SetState(PlayerCtrl.State.HIT);
 
-            player.hp -= 10;
+            player.hp -= 20;
 
             print(player.hp);
 
@@ -30,9 +34,21 @@ public class MonsterWeaponCtrl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    IEnumerator CheckState()
+    {
+        while (true)
+        {
+            //if (Mob.state == MonsterCtrl.State.ATTACK)
+            //    col.enabled = true;
+            //else
+            //    col.enabled = false;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     void Update()
     {
-        
+        StartCoroutine(CheckState());
     }
 }
