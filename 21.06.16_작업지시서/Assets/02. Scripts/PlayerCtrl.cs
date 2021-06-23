@@ -13,7 +13,10 @@ public class PlayerCtrl : MonoBehaviour
         DIE
     }
 
-    public float hp = 100;
+    public int level;
+    public int score;
+    public float hp;
+    public float hpMax;
 
     Ray ray;
 
@@ -24,12 +27,13 @@ public class PlayerCtrl : MonoBehaviour
     public float moveSpeed = 3f; // 이동속도 계수
     public float AttackingMoveLeagth = 1f; // 공격시 이동 거리
 
-    public Transform tr;
+    Transform tr;
     Rigidbody rb;
     Animator ani;
 
     Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
     Vector3 AttackMovement = Vector3.zero; // 공격시 움직이는 백터 받아오는값
+    Vector3 hitMovement = Vector3.zero;
 
     Vector3 mousePos; // 마우스 백터 받아옴    
 
@@ -49,19 +53,28 @@ public class PlayerCtrl : MonoBehaviour
         ani = GetComponent<Animator>();
         ray = new Ray();
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
+
+        level = PlayerPrefs.GetInt("PlayerLevel");
+        score = PlayerPrefs.GetInt("PlayerScore");
+
+        hp = 100;
+        hpMax = 100;
     }
 
     IEnumerator CheckState()
     {
         while (true)
         {
-            if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && state != State.ATTACK)
-                SetState(State.MOVE);
-            else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
-                SetState(State.IDLE);
+            if (state != State.HIT)
+            {
+                if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && state != State.ATTACK)
+                    SetState(State.MOVE);
+                else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
+                    SetState(State.IDLE);
 
-            if (Input.GetButton("Fire1"))
-                SetState(State.ATTACK);
+                if (Input.GetButton("Fire1"))
+                    SetState(State.ATTACK);
+            }
 
             yield return new WaitForSeconds(0.02f);
         }
@@ -113,10 +126,6 @@ public class PlayerCtrl : MonoBehaviour
     {
         ani.SetBool(hashHit, false);
         state = State.IDLE;
-
-        MonsterWeaponCtrl mobWeapon = GetComponent<MonsterWeaponCtrl>();
-
-        mobWeapon.GetComponent<Collider>().enabled = false;
     }
 
     void SetPlayerRotate()

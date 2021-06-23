@@ -5,14 +5,20 @@ using UnityEngine;
 public class MonsterWeaponCtrl : MonoBehaviour
 {
     Collider col;
+    Transform tr;
 
-    MonsterCtrl Mob;
+    PlayerCtrl player;
+    MonsterCtrl mob;
+
+    float attackDamage;
 
     void Start()
     {
         col = GetComponent<Collider>();
-        Mob = GetComponent<MonsterCtrl>();
-        col.enabled = false;
+        tr = GetComponent<Transform>();
+        player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+        mob = GameObject.Find("Golem").GetComponent<MonsterCtrl>();
+        attackDamage = 1f;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -20,12 +26,13 @@ public class MonsterWeaponCtrl : MonoBehaviour
         if (collision.collider.CompareTag("PLAYER"))
         {
             col.enabled = false;
+            //print("플레이어 피격으로 인한 콜라이더비활성화");
 
-            PlayerCtrl player = collision.collider.GetComponent<PlayerCtrl>();
-
-            player.SetState(PlayerCtrl.State.HIT);
-
-            player.hp -= 20;
+            if (player.state != PlayerCtrl.State.HIT)
+            {
+                player.hp -= attackDamage;
+                player.SetState(PlayerCtrl.State.HIT);
+            }
 
             print(player.hp);
 
@@ -34,21 +41,24 @@ public class MonsterWeaponCtrl : MonoBehaviour
         }
     }
 
-    IEnumerator CheckState()
-    {
-        while (true)
-        {
-            //if (Mob.state == MonsterCtrl.State.ATTACK)
-            //    col.enabled = true;
-            //else
-            //    col.enabled = false;
-
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
     void Update()
     {
-        StartCoroutine(CheckState());
+        if (mob.state == MonsterCtrl.State.ATTACK)
+        {
+            if (mob.attackType == 0)
+            {
+                col.enabled = true;
+                //print("공격상태로 인한 콜라이더활성화");
+            }
+            else
+            {
+                col.enabled = false;
+            }
+        }
+        else
+        {
+            col.enabled = false;
+            //print("비공격상태로 인한 콜라이더비활성화");
+        }
     }
 }

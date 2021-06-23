@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealBullet : MonoBehaviour
+{
+    public float speed = 6f;
+
+    Rigidbody rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * speed;
+
+        Destroy(gameObject, 5f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerCtrl player = other.GetComponent<PlayerCtrl>();
+
+            Destroy(gameObject);
+
+            if (player.hp < 3)
+            {
+                player.hp += 1;
+            }
+
+        }
+        else if (other.CompareTag("WALL"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Update()
+    {
+
+    }
+}
