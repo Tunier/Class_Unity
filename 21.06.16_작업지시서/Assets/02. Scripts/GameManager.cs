@@ -9,11 +9,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public Text ScoreText;
-    public Text LevelText;
-    //public Text HpText;
+    public Text scoreText;
+    public Text levelText;
+    public Text hpText;
+    public Text mpText;
 
     PlayerCtrl player;
+    public GameObject pauseCanvas;
+
+    public bool isPause;
 
     private void Awake()
     {
@@ -31,14 +35,18 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+
+        isPause = false;
     }
 
     private void Update()
     {
         PlayerPrefs.Save();
 
-        ScoreText.text = "Score : " + player.score;
-        LevelText.text = "Level : " + player.level;
+        scoreText.text = "Score : " + player.score;
+        levelText.text = "Level : " + player.level;
+        hpText.text = player.hp + " / " + player.hpMax;
+        mpText.text = player.mp + " / " + player.mpMax;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
