@@ -42,17 +42,15 @@ public class PlayerScr : MonoBehaviour
             // Impulse 순간적으로 강한 힘을 주는 방식. (점프 등에 사용)
             // Force 힘을 전체에 고루 퍼뜨리는 방식. (캐릭터 이동에 사용)
             if (transform.eulerAngles.z <= 35f)
-            {
                 transform.Rotate(0, 0, rotSpeed);
-            }
             else
-            {
                 transform.rotation = Quaternion.Euler(0, 0, 35f);
-            }
         }
 
         if (transform.eulerAngles.z >= -35f)
-            transform.Rotate(0, 0, -rotSpeed * 3.5f * Time.deltaTime);
+            transform.Rotate(0, 0, rotSpeed * -3.5f * Time.deltaTime);
+        else
+            transform.rotation = Quaternion.Euler(0, 0, -35f);
     }
 
     public IEnumerator isHit()
@@ -108,10 +106,8 @@ public class PlayerScr : MonoBehaviour
     {
         if (hp < 3)
         {
-            for (int i = 0; i < hp; i++)
-            {
-                hpIcon[i].SetActive(true);
-            }
+            hp++;
+            hpIcon[hp].SetActive(true);
         }
     }
 }

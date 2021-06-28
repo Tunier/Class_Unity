@@ -42,7 +42,6 @@ public class ItemScr : MonoBehaviour
             }
             else if (gameObject.name == "Heal_Item(Clone)")
             {
-                player.hp += 1;
                 player.Healing();
             }
             Destroy(gameObject);
