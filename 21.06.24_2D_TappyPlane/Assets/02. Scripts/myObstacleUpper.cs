@@ -12,6 +12,7 @@ public class myObstacleUpper : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.left * 4 * Time.deltaTime;
+        
         if (transform.position.x <= -8)
         {
             transform.position += Vector3.right * 16;
@@ -22,7 +23,7 @@ public class myObstacleUpper : MonoBehaviour
     {
         if (collision.name == "Plane")
         {
-            print("Hit");
+            //print("Hit");
             collision.GetComponent<PlayerScr>().Call_Hit();
         }
     }

@@ -23,7 +23,7 @@ public class myObstacle : MonoBehaviour
     {
         if (collision.name == "Plane")
         {
-            print("Hit");
+            //print("Hit");
             collision.GetComponent<PlayerScr>().Call_Hit();
         }
     }

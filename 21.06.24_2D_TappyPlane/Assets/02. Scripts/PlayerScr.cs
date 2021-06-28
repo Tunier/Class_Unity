@@ -9,6 +9,7 @@ public class PlayerScr : MonoBehaviour
     float upPower;
     bool hitable; // 맞을수 있는가 없는가.
     public int hp;
+    float rotSpeed;
 
     Rigidbody2D rb;
 
@@ -19,10 +20,12 @@ public class PlayerScr : MonoBehaviour
     void Start()
     {
         g_velocity = 0;
-        upPower = 2f;
-        rb = GetComponent<Rigidbody2D>();
+        upPower = 3f;
         hitable = true;
         hp = 3;
+        rotSpeed = 20f;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -38,7 +41,18 @@ public class PlayerScr : MonoBehaviour
             rb.AddForce(Vector2.up * upPower, ForceMode2D.Impulse);
             // Impulse 순간적으로 강한 힘을 주는 방식. (점프 등에 사용)
             // Force 힘을 전체에 고루 퍼뜨리는 방식. (캐릭터 이동에 사용)
+            if (transform.eulerAngles.z <= 35f)
+            {
+                transform.Rotate(0, 0, rotSpeed);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 35f);
+            }
         }
+
+        if (transform.eulerAngles.z >= -35f)
+            transform.Rotate(0, 0, -rotSpeed * 3.5f * Time.deltaTime);
     }
 
     public IEnumerator isHit()
@@ -88,5 +102,16 @@ public class PlayerScr : MonoBehaviour
     void damage()
     {
         hpIcon[hp].SetActive(false);
+    }
+
+    public void Healing()
+    {
+        if (hp < 3)
+        {
+            for (int i = 0; i < hp; i++)
+            {
+                hpIcon[i].SetActive(true);
+            }
+        }
     }
 }
