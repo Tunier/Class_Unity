@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public Text scoreText;
     public Text levelText;
     public Text hpText;
     public Text mpText;
+    public Text monsterHpText;
 
     PlayerCtrl player;
+    public MonsterCtrl mob;
     public GameObject pauseCanvas;
 
     public bool isPause;
@@ -24,7 +25,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -43,18 +43,26 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.Save();
 
-        scoreText.text = "Score : " + player.score;
         levelText.text = "Level : " + player.level;
         hpText.text = player.hp + " / " + player.hpMax;
         mpText.text = player.mp + " / " + player.mpMax;
+        monsterHpText.text = mob.hp + " / " + mob.hpMax;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            isPause = true;
+            //UnityEditor.EditorApplication.isPlaying = false;
+        }
+        
+        if (isPause)
+        {
+            Time.timeScale = 0f;
+            pauseCanvas.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            pauseCanvas.SetActive(false);
         }
     }
 }

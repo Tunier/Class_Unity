@@ -14,11 +14,12 @@ public class PlayerCtrl : MonoBehaviour
     }
 
     public int level;
-    public int score;
     public float hp;
     public float hpMax;
     public float mp;
     public float mpMax;
+    public float exp;
+    public float expMax;
 
     public bool hitable;
 
@@ -28,14 +29,15 @@ public class PlayerCtrl : MonoBehaviour
 
     public State state = State.IDLE;
 
-    public float moveSpeed = 3f; // 이동속도 계수
-    public float AttackingMoveLeagth = 1f; // 공격시 이동 거리
+    public float moveSpeed; // 이동속도 계수
+    public float AttackingMoveLeagth; // 공격시 이동 거리
 
     Transform tr;
     Rigidbody rb;
     Animator ani;
 
     GameManager gameManager;
+    public GameObject playerWeapon;
 
     Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
     Vector3 AttackMovement = Vector3.zero; // 공격시 움직이는 백터 받아오는값
@@ -61,13 +63,18 @@ public class PlayerCtrl : MonoBehaviour
         ray = new Ray();
 
         level = PlayerPrefs.GetInt("PlayerLevel");
-        score = PlayerPrefs.GetInt("PlayerScore");
 
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
-        hp = 10;
+
+        hp = 100;
         hpMax = 100;
         mp = 20;
         mpMax = 20;
+        exp = 0;
+        expMax = level * 100 + 100;
+
+        moveSpeed = 6f;
+        AttackingMoveLeagth = 1f;
     }
 
     IEnumerator CheckState()
@@ -98,6 +105,13 @@ public class PlayerCtrl : MonoBehaviour
         if (state != State.DIE && !gameManager.isPause)
         {
             Playing();
+        }
+
+        if (exp >= expMax)
+        {
+            exp -= expMax;
+            expMax = level * 100 + 100;
+            level++;
         }
 
         switch (state)
@@ -133,17 +147,6 @@ public class PlayerCtrl : MonoBehaviour
     {
         state = s;
     }
-    void EndAttackMotion()
-    {
-        ani.SetBool(hashAttack, false);
-        state = State.IDLE;
-    }
-
-    void EndHitMotion()
-    {
-        ani.SetBool(hashHit, false);
-        state = State.IDLE;
-    }
 
     void SetPlayerRotate()
     {
@@ -171,5 +174,40 @@ public class PlayerCtrl : MonoBehaviour
     {
         SetPlayerMovement();
         SetPlayerRotate();
+    }
+
+    public void Attacking()
+    {
+        playerWeapon.GetComponent<Collider>().enabled = true;
+    }
+
+    public void EndAttacking()
+    {
+        playerWeapon.GetComponent<Collider>().enabled = false;
+        ani.SetBool(hashAttack, false);
+        state = State.IDLE;
+    }
+
+    public void Hit(float damage)
+    {
+        hitable = false;
+        SetState(State.HIT);
+
+        if (hp > 0)
+        {
+            hp -= damage;
+        }
+    }
+
+    void EndHit()
+    {
+        ani.SetBool(hashHit, false);
+        hitable = true;
+        SetState(State.IDLE);
+    }
+
+    public void Die()
+    {
+        SetState(State.DIE);
     }
 }

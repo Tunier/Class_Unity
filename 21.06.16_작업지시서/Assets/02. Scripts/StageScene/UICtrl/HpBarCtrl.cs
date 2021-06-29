@@ -17,7 +17,7 @@ public class HpBarCtrl : MonoBehaviour
     {
         UpdateHpSlider();
 
-        if ((player.state == PlayerCtrl.State.DIE) && (hpBar.value <= 2f))
+        if ((player.state == PlayerCtrl.State.DIE) && (hpBar.value <= 1f))
         {
             GameObject.Find("PlayerHpFill").GetComponent<Image>().enabled = false;
         }
