@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     public float offsetZ;
 
     Vector3 cameraPosition;
+    public Vector3 offset;
 
     void Start()
     {
@@ -17,6 +18,8 @@ public class CameraMovement : MonoBehaviour
 
         offsetY = 10f;
         offsetZ = -3.5f;
+
+        offset = new Vector3(0,offsetY,offsetZ);
     }
 
     void LateUpdate()

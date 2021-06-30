@@ -9,12 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public Text levelText;
-    public Text hpText;
-    public Text mpText;
-    public Text monsterHpText;
-
-    PlayerCtrl player;
     public MonsterCtrl mob;
     public GameObject pauseCanvas;
 
@@ -34,20 +28,13 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
-
         isPause = false;
     }
 
     private void Update()
     {
         PlayerPrefs.Save();
-
-        levelText.text = "Level : " + player.level;
-        hpText.text = player.hp + " / " + player.hpMax;
-        mpText.text = player.mp + " / " + player.mpMax;
-        monsterHpText.text = mob.hp + " / " + mob.hpMax;
-
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPause = true;

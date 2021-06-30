@@ -74,7 +74,7 @@ public class PlayerCtrl : MonoBehaviour
         expMax = level * 100 + 100;
 
         moveSpeed = 6f;
-        AttackingMoveLeagth = 1f;
+        AttackingMoveLeagth = moveSpeed * 0.15f;
     }
 
     IEnumerator CheckState()
@@ -119,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour
             case State.IDLE:
                 ani.SetBool(hashMove, false);
                 ani.SetBool(hashHit, false);
-                ani.SetBool(hashDie, false);
+                ani.SetBool(hashAttack, false);
                 rb.velocity = Vector3.zero;
                 break;
             case State.MOVE:
@@ -184,8 +184,12 @@ public class PlayerCtrl : MonoBehaviour
     public void EndAttacking()
     {
         playerWeapon.GetComponent<Collider>().enabled = false;
-        ani.SetBool(hashAttack, false);
+    }
+
+    public void EndAttackMotion()
+    {
         state = State.IDLE;
+        ani.SetBool(hashAttack, false);
     }
 
     public void Hit(float damage)

@@ -6,8 +6,8 @@ public class PlayerWeaponCtrl : MonoBehaviour
 {
     public PlayerCtrl player;
     public GameObject playerWeapon;
-    MonsterCtrl mob;
-
+    public MonsterCtrl hitmob;
+    
     public float damage;
     public float attackSpeed;
 
@@ -21,14 +21,14 @@ public class PlayerWeaponCtrl : MonoBehaviour
     {
         if (other.CompareTag("MONSTER"))
         {
-            mob = other.GetComponent<MonsterCtrl>();
+            hitmob = other.GetComponent<MonsterCtrl>();
 
-            mob.Hit(damage);
+            hitmob.Hit(damage);
 
-            if (mob.hp <= 0)
+            if (hitmob.hp <= 0)
             {
-                player.exp += mob.exp;
-                mob.Die();
+                player.exp += hitmob.exp;
+                hitmob.Die();
             }
         }
     }

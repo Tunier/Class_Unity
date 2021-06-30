@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class ExpBarCtrl : MonoBehaviour
 {
     PlayerCtrl player;
-    public Slider mpBar;
+    public Slider expBar;
+    public Text ExpText;
 
     void Start()
     {
@@ -16,19 +17,22 @@ public class ExpBarCtrl : MonoBehaviour
     void Update()
     {
         UpdateMpSlider();
-
-        if (mpBar.value <= 2f)
-        {
-            GameObject.Find("PlayerMpFill").GetComponent<Image>().enabled = false;
-        }
-        else
-        {
-            GameObject.Find("PlayerMpFill").GetComponent<Image>().enabled = true;
-        }
+        
+        ExpText.text = player.exp + " / " + player.expMax;
     }
 
     void UpdateMpSlider()
     {
-        mpBar.value = Mathf.Lerp(mpBar.value, player.mp / player.mpMax * 100, Time.deltaTime * 2);
+        expBar.value = Mathf.Lerp(expBar.value, player.exp / player.expMax * 100, Time.deltaTime * 2);
+        
+        if (expBar.value <= 2f)
+        {
+            GameObject.Find("PlayerExpFill").GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            GameObject.Find("PlayerExpFill").GetComponent<Image>().enabled = true;
+        }
+
     }
 }

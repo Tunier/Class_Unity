@@ -5,30 +5,53 @@ using UnityEngine.UI;
 
 public class MonsterHpBarCtrl : MonoBehaviour
 {
-    public MonsterCtrl mob;
-    public Slider hpBar;
+    public GameObject hpBar;
+    public Slider hpBarSlider;
+    public Text mobName;
+    public Text monsterHpText;
+
+    public PlayerWeaponCtrl Pwp;
+    MonsterCtrl mob;
 
     void Start()
     {
-
+        hpBar.SetActive(false);
     }
 
     void Update()
     {
-        UpdateHpSlider();
-
-        if (hpBar.value <= 1f)
+        if (Pwp.hitmob != null)
         {
-            GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = false;
+            mob = Pwp.hitmob;
+        }
+
+        if (mob != null)
+        {
+            hpBar.SetActive(true);
+
+            UpdateHpSlider();
+
+            if (mob.state == MonsterCtrl.State.DIE)
+            {
+                GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = false;
+            }
+            else
+            {
+                GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = true;
+            }
+
+            mobName.text = "Lv." + mob.level + " " + mob.sName;
+            monsterHpText.text = mob.hp + " / " + mob.hpMax;
         }
         else
         {
-            GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = true;
+            hpBar.SetActive(false);
         }
+
     }
 
     void UpdateHpSlider()
     {
-        hpBar.value = Mathf.Lerp(hpBar.value, mob.hp / mob.hpMax * 100, Time.deltaTime * 2);
+        hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, mob.hp / mob.hpMax * 100, Time.deltaTime * 2);
     }
 }

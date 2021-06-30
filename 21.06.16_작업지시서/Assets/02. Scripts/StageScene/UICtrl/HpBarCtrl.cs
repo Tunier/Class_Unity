@@ -7,6 +7,7 @@ public class HpBarCtrl : MonoBehaviour
 {
     PlayerCtrl player;
     public Slider hpBar;
+    public Text hpText;
 
     void Start()
     {
@@ -17,18 +18,20 @@ public class HpBarCtrl : MonoBehaviour
     {
         UpdateHpSlider();
 
-        if ((player.state == PlayerCtrl.State.DIE) && (hpBar.value <= 1f))
-        {
-            GameObject.Find("PlayerHpFill").GetComponent<Image>().enabled = false;
-        }
-        else
-        {
-            GameObject.Find("PlayerMpFill").GetComponent<Image>().enabled = true;
-        }
+        hpText.text = player.hp + " / " + player.hpMax;
     }
 
     void UpdateHpSlider()
     {
         hpBar.value = Mathf.Lerp(hpBar.value, player.hp / player.hpMax * 100, Time.deltaTime * 2);
+
+        if ((player.state == PlayerCtrl.State.DIE) && (hpBar.value <= 0.5f))
+        {
+            GameObject.Find("PlayerHpFill").GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            GameObject.Find("PlayerHpFill").GetComponent<Image>().enabled = true;
+        }
     }
 }

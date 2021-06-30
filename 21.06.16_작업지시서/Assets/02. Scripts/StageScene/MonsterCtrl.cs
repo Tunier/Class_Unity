@@ -16,10 +16,12 @@ public class MonsterCtrl : MonoBehaviour
 
     public State state = State.IDLE;
 
-    public float moveSpeed; // 이동속도 계수
+    public string sName;
+    public int level;
     public float hp;
     public float hpMax;
     public float exp;
+    public float moveSpeed; // 이동속도 계수
 
     float dieAfterTime = 0; // 죽고난후 시간.
     public int attackType; // 왼손인지 오른손인지 공격 타입 결정.
@@ -46,10 +48,12 @@ public class MonsterCtrl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
 
+        sName = "골렘";
+        level = 1;
+        hp = 30f;
+        hpMax = 100f;
+        exp = 150f;
         moveSpeed = 2f;
-        hp = 11;
-        hpMax = 100;
-        exp = 500;
 
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
     }
@@ -63,24 +67,17 @@ public class MonsterCtrl : MonoBehaviour
                 if (player.state != PlayerCtrl.State.DIE)
                 {
                     if (Vector3.Distance(tr.position, player.transform.position) <= 2.7f)
-                    {
                         state = State.ATTACK;
-                    }
                     else if (!(ani.GetBool(hashAttack)) && (Vector3.Distance(tr.position, player.transform.position) <= 7f))
-                    {
                         state = State.CHASE;
-                    }
                     else
-                    {
                         state = State.IDLE;
-                    }
                 }
                 else
                 {
                     state = State.IDLE;
                 }
             }
-
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -116,7 +113,7 @@ public class MonsterCtrl : MonoBehaviour
     }
 
 
-    void ChangeAttackType()
+    public virtual void ChangeAttackType()
     {
         if (attackType == 0)
             attackType++;
@@ -130,46 +127,42 @@ public class MonsterCtrl : MonoBehaviour
     }
 
 
-    public void Attacking()
+    public virtual void Attacking()
     {
         weapon[attackType].enabled = true;
     }
 
-    public void EndAttacking()
+    public virtual void EndAttacking()
     {
         weapon[attackType].enabled = false;
 
         ani.SetBool(hashAttack, false);
     }
 
-    public void Hit(float damage)
+    public virtual void Hit(float damage)
     {
         if (hp > 0)
-        {
             hp -= damage;
-        }
 
         if (hp < 0)
-        {
             hp = 0;
-        }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         StopAllCoroutines();
         state = State.DIE;
         dieAfterTime += Time.deltaTime;
 
-        if (dieAfterTime >= 3f)
-        {
+        for (int i = 0; i < 2; i++)
+            weapon[i].enabled = false;
+
+        if (dieAfterTime >= 1.2f)
             GetComponent<Collider>().enabled = false;
+        else if (dieAfterTime >= 3f)
             tr.Translate(new Vector3(0, -0.3f * Time.deltaTime, 0));
-        }
 
         if (tr.position.y <= -1.72f)
-        {
             Destroy(gameObject);
-        }
     }
 }
