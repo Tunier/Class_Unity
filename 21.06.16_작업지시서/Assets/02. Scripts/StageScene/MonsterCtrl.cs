@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MonsterCtrl : MonoBehaviour
 {
+    public GameObject hpPotion;
+    
     public enum State
     {
         IDLE,
@@ -17,16 +19,18 @@ public class MonsterCtrl : MonoBehaviour
     public State state = State.IDLE;
 
     public string sName;
-    public int level;
+    public int level = 1;
     public float hp;
     public float hpMax;
     public float exp;
     public float moveSpeed; // 이동속도 계수
 
     float dieAfterTime = 0; // 죽고난후 시간.
-    public int attackType; // 왼손인지 오른손인지 공격 타입 결정.
+    public int attackType = 0; // 왼손인지 오른손인지 공격 타입 결정.
 
-    Quaternion targetRot; // 플레이어쪽으로 바라볼 방향;
+    public bool hitable = true; // 연속으로 히트를 방지하는 변수
+
+    Quaternion targetRot; // 플레이어쪽으로 바라볼 방향
 
     Transform tr;
     Rigidbody rb;
@@ -49,9 +53,6 @@ public class MonsterCtrl : MonoBehaviour
         ani = GetComponent<Animator>();
 
         sName = "골렘";
-        level = 1;
-        hp = 30f;
-        hpMax = 100f;
         exp = 150f;
         moveSpeed = 2f;
 
@@ -106,8 +107,8 @@ public class MonsterCtrl : MonoBehaviour
                 break;
             case State.DIE:
                 ani.SetBool(hashDie, true);
-                Die();
                 rb.velocity = Vector3.zero;
+                CorpseDestroy();
                 break;
         }
     }
@@ -141,28 +142,56 @@ public class MonsterCtrl : MonoBehaviour
 
     public virtual void Hit(float damage)
     {
-        if (hp > 0)
-            hp -= damage;
+        if (hitable)
+        {
+            hitable = false;
+            if (hp > 0)
+            {
+                hp -= damage;
+            }
+        }
 
         if (hp < 0)
             hp = 0;
+
+        Invoke("HitableTranceTure", 0.2f);
+    }
+
+    public void HitableTranceTure()
+    {
+        hitable = true;
     }
 
     public virtual void Die()
     {
         StopAllCoroutines();
         state = State.DIE;
-        dieAfterTime += Time.deltaTime;
 
         for (int i = 0; i < 2; i++)
             weapon[i].enabled = false;
+        
+        CreateItem();
+    }
 
-        if (dieAfterTime >= 1.2f)
+    void CorpseDestroy()
+    {
+        dieAfterTime += Time.deltaTime;
+        if (dieAfterTime >= 0.6f)
             GetComponent<Collider>().enabled = false;
-        else if (dieAfterTime >= 3f)
-            tr.Translate(new Vector3(0, -0.3f * Time.deltaTime, 0));
+        else if (dieAfterTime >= 2f)
+            tr.Translate(new Vector3(0, -0.7f * Time.deltaTime, 0));
 
         if (tr.position.y <= -1.72f)
             Destroy(gameObject);
+    }
+
+    void CreateItem()
+    {
+        float itemNum = Random.Range(1f, 100f);
+
+        if (itemNum >= 50f)
+        {
+            Instantiate(hpPotion, tr.position, Quaternion.identity);
+        }
     }
 }

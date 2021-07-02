@@ -1048,6 +1048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74bf30f124486848aa9e4a5ac28dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpPotion: {fileID: 8998276756215291238, guid: 85562ded60178ed4196742c2483afd2b, type: 3}
   state: 0
   sName: 
   level: 0
@@ -1056,6 +1057,7 @@ MonoBehaviour:
   exp: 0
   moveSpeed: 0
   attackType: 0
+  hitable: 1
   weapon:
   - {fileID: 6153374015505145548}
   - {fileID: 6153374015848903447}

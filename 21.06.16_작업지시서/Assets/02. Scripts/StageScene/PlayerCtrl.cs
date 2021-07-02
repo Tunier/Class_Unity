@@ -20,6 +20,7 @@ public class PlayerCtrl : MonoBehaviour
     public float mpMax;
     public float exp;
     public float expMax;
+    public float str;
 
     public bool hitable;
 
@@ -62,16 +63,17 @@ public class PlayerCtrl : MonoBehaviour
 
         ray = new Ray();
 
-        level = PlayerPrefs.GetInt("PlayerLevel");
 
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
 
-        hp = 100;
+        level = PlayerPrefs.GetInt("PlayerLevel");
+        hp = 80;
         hpMax = 100;
         mp = 20;
         mpMax = 20;
         exp = 0;
         expMax = level * 100 + 100;
+        str = (level - 1) * 5 + 10;
 
         moveSpeed = 6f;
         AttackingMoveLeagth = moveSpeed * 0.15f;
@@ -105,13 +107,11 @@ public class PlayerCtrl : MonoBehaviour
         if (state != State.DIE && !gameManager.isPause)
         {
             Playing();
-        }
 
-        if (exp >= expMax)
-        {
-            exp -= expMax;
-            expMax = level * 100 + 100;
-            level++;
+            if (exp >= expMax)
+            {
+                LevelUp();
+            }
         }
 
         switch (state)
@@ -208,6 +208,20 @@ public class PlayerCtrl : MonoBehaviour
         ani.SetBool(hashHit, false);
         hitable = true;
         SetState(State.IDLE);
+    }
+
+    void LevelUp()
+    {
+        exp -= expMax;
+        expMax = level * 100 + 100;
+        level++;
+        str = (level - 1) * 5 + 10;
+#if UNITY_EDITOR
+        
+#else
+        PlayerPrefs.SetInt("PlayerLevel", level);
+        PlayerPrefs.Save();
+#endif
     }
 
     public void Die()

@@ -18,27 +18,15 @@ public class MonsterHpBarCtrl : MonoBehaviour
         hpBar.SetActive(false);
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Pwp.hitmob != null)
         {
             mob = Pwp.hitmob;
-        }
 
-        if (mob != null)
-        {
             hpBar.SetActive(true);
 
             UpdateHpSlider();
-
-            if (mob.state == MonsterCtrl.State.DIE)
-            {
-                GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = false;
-            }
-            else
-            {
-                GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = true;
-            }
 
             mobName.text = "Lv." + mob.level + " " + mob.sName;
             monsterHpText.text = mob.hp + " / " + mob.hpMax;
@@ -53,5 +41,14 @@ public class MonsterHpBarCtrl : MonoBehaviour
     void UpdateHpSlider()
     {
         hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, mob.hp / mob.hpMax * 100, Time.deltaTime * 2);
+
+        if (mob.state == MonsterCtrl.State.DIE)
+        {
+            GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            GameObject.Find("MonsterHpFill").GetComponent<Image>().enabled = true;
+        }
     }
 }

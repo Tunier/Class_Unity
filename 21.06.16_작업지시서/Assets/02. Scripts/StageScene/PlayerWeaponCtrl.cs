@@ -7,13 +7,14 @@ public class PlayerWeaponCtrl : MonoBehaviour
     public PlayerCtrl player;
     public GameObject playerWeapon;
     public MonsterCtrl hitmob;
+    public DamageTextCtrl damageUI;
     
     public float damage;
     public float attackSpeed;
 
     void Start()
     {
-        damage = 10f;
+        damage = player.str;
         attackSpeed = 1f;
     }
 
@@ -25,17 +26,18 @@ public class PlayerWeaponCtrl : MonoBehaviour
 
             hitmob.Hit(damage);
 
-            if (hitmob.hp <= 0)
+            if ((hitmob.hp <= 0) && (hitmob.state != MonsterCtrl.State.DIE))
             {
-                player.exp += hitmob.exp;
                 hitmob.Die();
+                player.exp += hitmob.exp;
             }
         }
     }
 
     void Update()
     {
-
+        damage = player.str;
+        attackSpeed = 1f;
     }
 
     
