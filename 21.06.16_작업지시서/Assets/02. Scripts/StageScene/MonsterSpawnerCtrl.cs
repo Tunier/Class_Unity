@@ -17,7 +17,7 @@ public class MonsterSpawnerCtrl : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
-        spawnAfterTime = 8f;
+        spawnAfterTime = 7f;
         spawnDelay = 8f;
         spawnMobLevel = 1;
     }
@@ -41,9 +41,9 @@ public class MonsterSpawnerCtrl : MonoBehaviour
 
             MonsterCtrl MobCtrl = obj.GetComponent<MonsterCtrl>();
             MobCtrl.level = spawnMobLevel;
-            MobCtrl.hpMax = (MobCtrl.level - 1) * 20f + 30;
+            MobCtrl.hpMax = (MobCtrl.level - 1) * 25f + 30;
             MobCtrl.hp = MobCtrl.hpMax;
-            Debug.Log(MobCtrl.level);
+            //Debug.Log(MobCtrl.level);
         }
     }
 }

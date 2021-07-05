@@ -13,6 +13,8 @@ public class HpPotion : MonoBehaviour
         tr = GetComponent<Transform>();
 
         RecoveryAmount = 20f;
+
+        Destroy(gameObject, 10f);
     }
 
     void Update()

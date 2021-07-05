@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class MonsterCtrl : MonoBehaviour
 {
     public GameObject hpPotion;
-    
+    public GameObject damageText;
+    public Canvas canvas;
+
     public enum State
     {
         IDLE,
@@ -46,17 +48,22 @@ public class MonsterCtrl : MonoBehaviour
     readonly int hashHit = Animator.StringToHash("IsHit"); // bool ¸Â´ÂÁß
     readonly int hashDie = Animator.StringToHash("IsDie"); // bool Á×À½.
 
-    void Start()
+    private void Awake()
     {
+        player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
+    }
 
+    void Start()
+    {
         sName = "°ñ·½";
         exp = 150f;
         moveSpeed = 2f;
-
-        player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+        
+        canvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
     }
 
     IEnumerator CheckState()
@@ -107,6 +114,8 @@ public class MonsterCtrl : MonoBehaviour
                 break;
             case State.DIE:
                 ani.SetBool(hashDie, true);
+                for (int i = 0; i < 2; i++)
+                    weapon[i].enabled = false;
                 rb.velocity = Vector3.zero;
                 CorpseDestroy();
                 break;
@@ -148,13 +157,21 @@ public class MonsterCtrl : MonoBehaviour
             if (hp > 0)
             {
                 hp -= damage;
+                PrintDamageText(damage);
             }
         }
 
         if (hp < 0)
             hp = 0;
 
-        Invoke("HitableTranceTure", 0.2f);
+        Invoke("HitableTranceTure", 0.25f);
+    }
+
+    public void PrintDamageText(float damage)
+    {
+        GameObject obj = Instantiate(damageText, canvas.gameObject.transform);
+
+        obj.GetComponent<FloatingTextCtrl>().damage = damage;
     }
 
     public void HitableTranceTure()
@@ -169,7 +186,7 @@ public class MonsterCtrl : MonoBehaviour
 
         for (int i = 0; i < 2; i++)
             weapon[i].enabled = false;
-        
+
         CreateItem();
     }
 

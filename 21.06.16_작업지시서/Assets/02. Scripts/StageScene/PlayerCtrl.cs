@@ -67,7 +67,7 @@ public class PlayerCtrl : MonoBehaviour
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
 
         level = PlayerPrefs.GetInt("PlayerLevel");
-        hp = 80;
+        hp = 100;
         hpMax = 100;
         mp = 20;
         mpMax = 20;
@@ -83,7 +83,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         while (true)
         {
-            if ((state != State.HIT) && (state != State.DIE))
+            if ((state != State.HIT) && (state != State.DIE) && !gameManager.isPause)
             {
                 hitable = true;
 

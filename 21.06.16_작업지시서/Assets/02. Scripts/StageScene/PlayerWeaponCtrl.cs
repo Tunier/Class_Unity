@@ -7,10 +7,11 @@ public class PlayerWeaponCtrl : MonoBehaviour
     public PlayerCtrl player;
     public GameObject playerWeapon;
     public MonsterCtrl hitmob;
-    public DamageTextCtrl damageUI;
-    
+
     public float damage;
+    public float criticalDamage;
     public float attackSpeed;
+    float critcalChance;
 
     void Start()
     {
@@ -24,7 +25,12 @@ public class PlayerWeaponCtrl : MonoBehaviour
         {
             hitmob = other.GetComponent<MonsterCtrl>();
 
-            hitmob.Hit(damage);
+            critcalChance = Random.Range(0, 100);
+
+            if (critcalChance >= 80)
+                hitmob.Hit(criticalDamage);
+            else
+                hitmob.Hit(damage);
 
             if ((hitmob.hp <= 0) && (hitmob.state != MonsterCtrl.State.DIE))
             {
@@ -37,8 +43,10 @@ public class PlayerWeaponCtrl : MonoBehaviour
     void Update()
     {
         damage = player.str;
+        criticalDamage = player.str * 1.5f;
+
         attackSpeed = 1f;
     }
 
-    
+
 }

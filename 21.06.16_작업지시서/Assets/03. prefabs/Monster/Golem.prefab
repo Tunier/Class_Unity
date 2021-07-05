@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 6068590319373380331}
   - component: {fileID: 6153374016647967064}
   - component: {fileID: 3563197062450737253}
-  - component: {fileID: 6153374016647967046}
+  - component: {fileID: 9044089640979167286}
   m_Layer: 0
   m_Name: Golem
   m_TagString: MONSTER
@@ -1036,7 +1036,7 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0.1}
---- !u!114 &6153374016647967046
+--- !u!114 &9044089640979167286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1049,9 +1049,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpPotion: {fileID: 8998276756215291238, guid: 85562ded60178ed4196742c2483afd2b, type: 3}
+  damageText: {fileID: 6807034069095506195, guid: eaef8f030f723a442ae57e46c5e95027, type: 3}
   state: 0
   sName: 
-  level: 0
+  level: 1
   hp: 0
   hpMax: 0
   exp: 0
