@@ -43,7 +43,7 @@ public class EnemyCtrl : MonoBehaviour
     {
         Destroy(gameObject);
 
-        int itemdrop = Random.Range(75, 100);
+        int itemdrop = Random.Range(20, 100);
 
         if (itemdrop >= 95)
         {
