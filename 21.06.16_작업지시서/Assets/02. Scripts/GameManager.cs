@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public MonsterCtrl mob;
+    public List<GameObject> mobList;
+    public GameObject mobSpawn;
+
     public GameObject pauseCanvas;
+    public GameObject statusUI;
 
     public bool isPause;
 
@@ -23,24 +26,27 @@ public class GameManager : MonoBehaviour
         else
         {
             if (instance != this)
-                Destroy(this.gameObject);
+                Destroy(gameObject);
         }
     }
     private void Start()
     {
         isPause = false;
+        mobList = new List<GameObject>();
     }
 
     private void Update()
     {
         PlayerPrefs.Save();
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        PauseGame();
+        ControlMonsterSpawn();
+
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            isPause = true;
-            //UnityEditor.EditorApplication.isPlaying = false;
+            statusUI.SetActive(!statusUI.activeSelf);
         }
-        
+
         if (isPause)
         {
             Time.timeScale = 0f;
@@ -51,5 +57,32 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             pauseCanvas.SetActive(false);
         }
+
+    }
+
+    public void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPause = !isPause;
+            //UnityEditor.EditorApplication.isPlaying = false;
+        }
+    }
+
+    public void ControlMonsterSpawn()
+    {
+        if (mobList.Count >= 3)
+        {
+            mobSpawn.SetActive(false);
+        }
+        else
+        {
+            mobSpawn.SetActive(true);
+        }
+    }
+
+    public void OnPauseClick()
+    {
+        isPause = !isPause;
     }
 }

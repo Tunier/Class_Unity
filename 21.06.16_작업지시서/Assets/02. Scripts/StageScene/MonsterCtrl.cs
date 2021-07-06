@@ -7,6 +7,7 @@ public class MonsterCtrl : MonoBehaviour
 {
     public GameObject hpPotion;
     public GameObject damageText;
+    public GameManager gm;
     public Canvas canvas;
 
     public enum State
@@ -51,6 +52,7 @@ public class MonsterCtrl : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -62,8 +64,8 @@ public class MonsterCtrl : MonoBehaviour
         sName = "°ñ·½";
         exp = 150f;
         moveSpeed = 2f;
-        
-        canvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+
+        canvas = GameObject.Find("DamageTextCanvas").GetComponent<Canvas>();
     }
 
     IEnumerator CheckState()
@@ -104,6 +106,8 @@ public class MonsterCtrl : MonoBehaviour
             case State.ATTACK:
                 ani.SetBool(hashAttack, true);
                 ani.SetBool(hashChase, false);
+                targetRot = Quaternion.LookRotation(player.transform.position - tr.position);
+                tr.rotation = Quaternion.RotateTowards(tr.rotation, targetRot, 60 * Time.deltaTime);
                 rb.velocity = Vector3.zero;
                 break;
             case State.CHASE:
@@ -187,18 +191,21 @@ public class MonsterCtrl : MonoBehaviour
         for (int i = 0; i < 2; i++)
             weapon[i].enabled = false;
 
+        gm.mobList.Remove(gameObject);
+
         CreateItem();
     }
 
     void CorpseDestroy()
     {
         dieAfterTime += Time.deltaTime;
-        if (dieAfterTime >= 0.6f)
+        if (dieAfterTime >= 0.5f)
             GetComponent<Collider>().enabled = false;
-        else if (dieAfterTime >= 2f)
-            tr.Translate(new Vector3(0, -0.7f * Time.deltaTime, 0));
+        
+        if (dieAfterTime >= 1.5f)
+            tr.Translate(Vector3.down * 0.3f * Time.deltaTime);
 
-        if (tr.position.y <= -1.72f)
+        if (tr.position.y <= -1.62f)
             Destroy(gameObject);
     }
 

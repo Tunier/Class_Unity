@@ -7,14 +7,16 @@ public class PlayerWeaponCtrl : MonoBehaviour
     public PlayerCtrl player;
     public GameObject playerWeapon;
     public MonsterCtrl hitmob;
+    CameraShake shake;
 
     public float damage;
     public float criticalDamage;
     public float attackSpeed;
-    float critcalChance;
+    public float critcalChance;
 
     void Start()
     {
+        shake = Camera.main.GetComponent<CameraShake>();
         damage = player.str;
         attackSpeed = 1f;
     }
@@ -25,10 +27,13 @@ public class PlayerWeaponCtrl : MonoBehaviour
         {
             hitmob = other.GetComponent<MonsterCtrl>();
 
-            critcalChance = Random.Range(0, 100);
+            int critcalRandom = Random.Range(0, 100);
 
-            if (critcalChance >= 80)
+            if (critcalRandom >= 100 - critcalChance)
+            {
                 hitmob.Hit(criticalDamage);
+                StartCoroutine(shake.ShakeCamera());
+            }
             else
                 hitmob.Hit(damage);
 
@@ -44,6 +49,7 @@ public class PlayerWeaponCtrl : MonoBehaviour
     {
         damage = player.str;
         criticalDamage = player.str * 1.5f;
+        critcalChance = player.dex + 20f;
 
         attackSpeed = 1f;
     }

@@ -6,6 +6,7 @@ public class MonsterSpawnerCtrl : MonoBehaviour
 {
     public GameObject mob;
     public PlayerCtrl player;
+    public GameManager gm;
 
     float spawnDelay;
     float spawnAfterTime;
@@ -43,7 +44,8 @@ public class MonsterSpawnerCtrl : MonoBehaviour
             MobCtrl.level = spawnMobLevel;
             MobCtrl.hpMax = (MobCtrl.level - 1) * 25f + 30;
             MobCtrl.hp = MobCtrl.hpMax;
-            //Debug.Log(MobCtrl.level);
+
+            gm.mobList.Add(obj);
         }
     }
 }

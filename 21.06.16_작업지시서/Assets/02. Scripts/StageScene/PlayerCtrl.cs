@@ -21,6 +21,8 @@ public class PlayerCtrl : MonoBehaviour
     public float exp;
     public float expMax;
     public float str;
+    public float dex;
+    public float def;
 
     public bool hitable;
 
@@ -42,7 +44,7 @@ public class PlayerCtrl : MonoBehaviour
 
     Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
     Vector3 AttackMovement = Vector3.zero; // 공격시 움직이는 백터 받아오는값
-    Vector3 hitMovement = Vector3.zero;
+    Vector3 hitMovement = Vector3.zero; // 피격시 이동하는 백터값
 
     Vector3 mousePos; // 마우스 백터 받아옴    
 
@@ -74,9 +76,13 @@ public class PlayerCtrl : MonoBehaviour
         exp = 0;
         expMax = level * 100 + 100;
         str = (level - 1) * 5 + 10;
+        dex = (level - 1) * 2.5f + 5;
+        def = 0;
 
         moveSpeed = 6f;
-        AttackingMoveLeagth = moveSpeed * 0.15f;
+        AttackingMoveLeagth = moveSpeed * 0.02f;
+
+        StartCoroutine(CheckState());
     }
 
     IEnumerator CheckState()
@@ -89,21 +95,19 @@ public class PlayerCtrl : MonoBehaviour
 
                 if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && state != State.ATTACK)
                     SetState(State.MOVE);
-                else if (Input.GetButtonUp("Horizontal") || Input.GetButtonUp("Vertical"))
+                else if (h == 0 && v == 0)
                     SetState(State.IDLE);
 
                 if (Input.GetButton("Fire1"))
                     SetState(State.ATTACK);
             }
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
     void Update()
     {
-        StartCoroutine(CheckState());
-
         if (state != State.DIE && !gameManager.isPause)
         {
             Playing();
@@ -128,7 +132,8 @@ public class PlayerCtrl : MonoBehaviour
                 break;
             case State.ATTACK:
                 ani.SetBool(hashAttack, true);
-                rb.velocity = AttackMovement;
+                //rb.velocity = v3.zero;
+                rb.AddForce(AttackMovement, ForceMode.Impulse);
                 break;
             case State.HIT:
                 ani.SetBool(hashHit, true);
@@ -151,7 +156,7 @@ public class PlayerCtrl : MonoBehaviour
     void SetPlayerRotate()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * Mathf.Infinity, Color.green); // 레이시각화.
+        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green); // 레이시각화.
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
@@ -167,7 +172,11 @@ public class PlayerCtrl : MonoBehaviour
         v = Input.GetAxis("Vertical");
 
         movement = new Vector3(h, 0, v) * moveSpeed;
-        AttackMovement = new Vector3(h, 0, v) * AttackingMoveLeagth;
+
+        if (v >= 0.8)
+            AttackMovement = new Vector3(h, 0, v) * AttackingMoveLeagth;
+        else
+            AttackMovement = Vector3.zero;
     }
 
     void Playing()
@@ -216,8 +225,9 @@ public class PlayerCtrl : MonoBehaviour
         expMax = level * 100 + 100;
         level++;
         str = (level - 1) * 5 + 10;
+        dex = (level - 1) * 2.5f + 5;
 #if UNITY_EDITOR
-        
+
 #else
         PlayerPrefs.SetInt("PlayerLevel", level);
         PlayerPrefs.Save();
