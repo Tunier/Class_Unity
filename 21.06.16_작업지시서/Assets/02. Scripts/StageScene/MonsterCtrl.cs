@@ -31,8 +31,6 @@ public class MonsterCtrl : MonoBehaviour
     float dieAfterTime = 0; // 죽고난후 시간.
     public int attackType = 0; // 왼손인지 오른손인지 공격 타입 결정.
 
-    public bool hitable = true; // 연속으로 히트를 방지하는 변수
-
     Quaternion targetRot; // 플레이어쪽으로 바라볼 방향
 
     Transform tr;
@@ -155,20 +153,23 @@ public class MonsterCtrl : MonoBehaviour
 
     public virtual void Hit(float damage)
     {
-        if (hitable)
+        if (hp > 0)
         {
-            hitable = false;
-            if (hp > 0)
-            {
-                hp -= damage;
-                PrintDamageText(damage);
-            }
+            hp -= damage;
+            PrintDamageText(damage);
         }
 
         if (hp < 0)
             hp = 0;
+    }
 
-        Invoke("HitableTranceTure", 0.25f);
+    public IEnumerator MultyHit(float damage, int attackTimes, float delay)
+    {
+        for (int i = 0; i < attackTimes; i++)
+        {
+            Hit(damage);
+            yield return new WaitForSeconds(delay);
+        }
     }
 
     public void PrintDamageText(float damage)
@@ -178,10 +179,6 @@ public class MonsterCtrl : MonoBehaviour
         obj.GetComponent<FloatingTextCtrl>().damage = damage;
     }
 
-    public void HitableTranceTure()
-    {
-        hitable = true;
-    }
 
     public virtual void Die()
     {
@@ -201,7 +198,7 @@ public class MonsterCtrl : MonoBehaviour
         dieAfterTime += Time.deltaTime;
         if (dieAfterTime >= 0.5f)
             GetComponent<Collider>().enabled = false;
-        
+
         if (dieAfterTime >= 1.5f)
             tr.Translate(Vector3.down * 0.3f * Time.deltaTime);
 

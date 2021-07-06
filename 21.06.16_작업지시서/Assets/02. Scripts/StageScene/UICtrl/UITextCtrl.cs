@@ -26,10 +26,10 @@ public class UITextCtrl : MonoBehaviour
         lvtext.text = "Lv : " + player.level;
         
         levelText.text = "Level : " + player.level;
-        strText.text = "Str : " + (int)player.str;
-        dexText.text = "Dex : " + (int)player.dex;
-        atkText.text = "Atk : " + (int)Pwp.damage;
-        defText.text = "Def : " + (int)player.def;
+        strText.text = "Str : " + Mathf.Round(player.str);
+        dexText.text = "Dex : " + Mathf.Round(player.dex);
+        atkText.text = "Atk : " + Mathf.Round(Pwp.damage);
+        defText.text = "Def : " + Mathf.Round(player.def);
         critText.text = "Crit : " + Pwp.critcalChance + " %";
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -79,7 +80,7 @@ public class PlayerCtrl : MonoBehaviour
         dex = (level - 1) * 2.5f + 5;
         def = 0;
 
-        moveSpeed = 6f;
+        moveSpeed = 4f;
         AttackingMoveLeagth = moveSpeed * 0.02f;
 
         StartCoroutine(CheckState());
@@ -97,9 +98,11 @@ public class PlayerCtrl : MonoBehaviour
                     SetState(State.MOVE);
                 else if (h == 0 && v == 0)
                     SetState(State.IDLE);
-
-                if (Input.GetButton("Fire1"))
-                    SetState(State.ATTACK);
+                if (!EventSystem.current.IsPointerOverGameObject()) // UI클릭시 동작 안하게함.
+                {
+                    if (Input.GetButton("Fire1"))
+                        SetState(State.ATTACK);
+                }
             }
 
             yield return new WaitForSeconds(0.01f);
@@ -137,6 +140,7 @@ public class PlayerCtrl : MonoBehaviour
                 break;
             case State.HIT:
                 ani.SetBool(hashHit, true);
+                EndAttacking();
                 hitable = false;
                 break;
             case State.DIE:

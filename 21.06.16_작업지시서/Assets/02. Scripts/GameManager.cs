@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseCanvas;
     public GameObject statusUI;
+    public GameObject dieText;
+
+    public PlayerCtrl player;
 
     public bool isPause;
 
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(gameObject);
         }
+
+        player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
     }
     private void Start()
     {
@@ -42,7 +47,7 @@ public class GameManager : MonoBehaviour
         PauseGame();
         ControlMonsterSpawn();
 
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             statusUI.SetActive(!statusUI.activeSelf);
         }
@@ -56,6 +61,19 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1f;
             pauseCanvas.SetActive(false);
+        }
+
+        if (player.state == PlayerCtrl.State.DIE)
+        {
+            dieText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("Stage");
+            }
+        }
+        else
+        {
+            dieText.SetActive(false);
         }
 
     }
@@ -84,5 +102,10 @@ public class GameManager : MonoBehaviour
     public void OnPauseClick()
     {
         isPause = !isPause;
+    }
+
+    public void OnStatusBottonClick()
+    {
+        statusUI.SetActive(!statusUI.activeSelf);
     }
 }

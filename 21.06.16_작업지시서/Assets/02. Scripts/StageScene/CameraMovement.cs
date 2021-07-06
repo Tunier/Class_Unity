@@ -19,7 +19,7 @@ public class CameraMovement : MonoBehaviour
         offsetY = 10f;
         offsetZ = -3.5f;
 
-        offset = new Vector3(0,offsetY,offsetZ);
+        offset = new Vector3(0, offsetY, offsetZ);
     }
 
     void LateUpdate()
