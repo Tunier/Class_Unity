@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseCanvas;
     public GameObject statusUI;
+    public GameObject inventoryUI;
+
     public GameObject dieText;
 
     public PlayerCtrl player;
@@ -44,13 +46,8 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.Save();
 
-        PauseGame();
-        ControlMonsterSpawn();
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            statusUI.SetActive(!statusUI.activeSelf);
-        }
+        UIHotKey();
+        //OnOffMonsterSpawn();
 
         if (isPause)
         {
@@ -78,8 +75,18 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void PauseGame()
+    void UIHotKey()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            statusUI.SetActive(!statusUI.activeSelf);
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPause = !isPause;
@@ -87,9 +94,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ControlMonsterSpawn()
+    public void OnOffMonsterSpawn()
     {
-        if (mobList.Count >= 3)
+        if (mobList.Count >= 4)
         {
             mobSpawn.SetActive(false);
         }
@@ -107,5 +114,10 @@ public class GameManager : MonoBehaviour
     public void OnStatusBottonClick()
     {
         statusUI.SetActive(!statusUI.activeSelf);
+    }
+
+    public void OnInventoryBottonClick()
+    {
+        inventoryUI.SetActive(!inventoryUI.activeSelf);
     }
 }

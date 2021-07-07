@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 8976231106759693116}
   - component: {fileID: 8985102822671036832}
   - component: {fileID: 8297238971393068395}
+  - component: {fileID: 7808024424420777542}
   - component: {fileID: 8999416844599890937}
-  m_Layer: 0
+  - component: {fileID: 4263277712686130966}
+  m_Layer: 10
   m_Name: HpPotion
-  m_TagString: Untagged
+  m_TagString: ITEM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8998276756215291238}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -6.89, y: 0.8, z: 6.47}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,6 +100,22 @@ CapsuleCollider:
   m_Height: 1.3098193
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: -0.000000014901161}
+--- !u!54 &7808024424420777542
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998276756215291238}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &8999416844599890937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d06f2d39e73aa4bb95e35005eb8f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4263277712686130966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998276756215291238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e95cc7483289743a67a7fb3fffb606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: bab5bea45fa3fa34d8f4850215ce6b1f, type: 2}

@@ -9,6 +9,7 @@ TagManager:
   - MONSTER
   - MONSTERWEAPON
   - PLAYER
+  - ITEM
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - RAYTARGET
   - PLAYER
-  - 
+  - ITEM
   - 
   - 
   - 
