@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet:
-  - {fileID: 3403411807084166061, guid: 6989a814616f56147b1741d4db429b9a, type: 3}
+  - {fileID: 8271143900552860278, guid: 6989a814616f56147b1741d4db429b9a, type: 3}
   item:
   - {fileID: 5703936802237095873, guid: 74e18638b2d25b54bbf63a1da8e0cb05, type: 3}
   - {fileID: 4773178509985411723, guid: a75af3260be01634d94c59574a12102e, type: 3}

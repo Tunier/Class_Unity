@@ -8,7 +8,6 @@ public class FloatingTextCtrl : MonoBehaviour
     public PlayerWeaponCtrl Pwp;
     MonsterCtrl mob;
 
-    float v;
     float moveSpeed;
     float alphaSpeed;
     float destroyTime;
@@ -24,8 +23,6 @@ public class FloatingTextCtrl : MonoBehaviour
 
     void Start()
     {
-        v = 0;
-
         moveSpeed = 25f;
         alphaSpeed = 1.2f;
         destroyTime = 2f;
@@ -48,6 +45,7 @@ public class FloatingTextCtrl : MonoBehaviour
 
         Vector3 printPos = new Vector3(mobPos.x, mobPos.y + 50f, mobPos.z);
 
+        float v = 0f;
         v += moveSpeed * Time.deltaTime;
 
         printPos = printPos + new Vector3(0, v, 0);

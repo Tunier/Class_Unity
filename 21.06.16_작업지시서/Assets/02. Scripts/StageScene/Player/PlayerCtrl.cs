@@ -42,6 +42,7 @@ public class PlayerCtrl : MonoBehaviour
 
     GameManager gameManager;
     public GameObject playerWeapon;
+    Status status;
 
     Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
     Vector3 AttackMovement = Vector3.zero; // 공격시 움직이는 백터 받아오는값
@@ -62,14 +63,16 @@ public class PlayerCtrl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         tr = GetComponent<Transform>();
         ani = GetComponent<Animator>();
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        status = FindObjectOfType<Status>();
 
         ray = new Ray();
 
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
 
         level = PlayerPrefs.GetInt("PlayerLevel");
-        hp = 100;
+        hp = 60;
         hpMax = 100;
         mp = 20;
         mpMax = 20;
@@ -110,15 +113,19 @@ public class PlayerCtrl : MonoBehaviour
 
     void Update()
     {
-        if (state != State.DIE && !gameManager.isPause)
+        if (state != State.DIE)
         {
-            Playing();
-
+            if (!gameManager.isPause)
+            {
+                Playing();
+            }
+            
             if (exp >= expMax)
             {
                 LevelUp();
             }
         }
+
 
         switch (state)
         {
@@ -186,6 +193,8 @@ public class PlayerCtrl : MonoBehaviour
     {
         SetPlayerMovement();
         SetPlayerRotate();
+
+
     }
 
     public void Attacking()

@@ -10,6 +10,8 @@ TagManager:
   - MONSTERWEAPON
   - PLAYER
   - ITEM
+  - INVENTORY
+  - STATUS
   layers:
   - Default
   - TransparentFX

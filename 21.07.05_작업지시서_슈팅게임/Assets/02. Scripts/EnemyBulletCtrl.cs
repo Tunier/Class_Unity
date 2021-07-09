@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class EnemyBulletCtrl : MonoBehaviour
 {
+    PlayerCtrl player;
+
     public float speed;
 
+    private void Awake()
+    {
+        player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
+    }
     void Start()
     {
         speed = 4f;
@@ -22,10 +28,14 @@ public class EnemyBulletCtrl : MonoBehaviour
 
         if (obj.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            obj.GetComponent<PlayerCtrl>().Hit();
+            if (player.hitable)
+            {
+                Destroy(gameObject);
+                obj.GetComponent<PlayerCtrl>().Hit();
+            }
         }
-        else if (obj.CompareTag("Wall"))
+
+        if (obj.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }

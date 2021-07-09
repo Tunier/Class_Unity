@@ -12,10 +12,18 @@ public class Item : ScriptableObject
         Resources,
     }
 
+    public enum ItemRarelity
+    { 
+        Common,
+        Rare,
+        Epic,
+    }
+
     public string itemName;
     public ItemType itemType;
+    public ItemRarelity itemRarelity;
     public Sprite itemImage;
     public GameObject itemPrefab;
 
-    public string weaponType;
+    public string EquipmentType;
 }

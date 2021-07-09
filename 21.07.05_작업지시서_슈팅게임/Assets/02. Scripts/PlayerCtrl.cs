@@ -6,6 +6,7 @@ public class PlayerCtrl : MonoBehaviour
 {
     Transform tr;
     Animator ani;
+    SpriteRenderer spr;
 
     public GameObject[] bullet;
     int bulletType;
@@ -15,6 +16,7 @@ public class PlayerCtrl : MonoBehaviour
     public int life;
     public float score;
 
+    public bool hitable;
 
     float shotDelay;
     float shotAfterTime;
@@ -28,15 +30,18 @@ public class PlayerCtrl : MonoBehaviour
     {
         bulletType = 0;
 
-        speed = 3f;
-        life = 3;
+        speed = 4f;
+        life = 1;
         power = 1;
         score = 0;
-        
+
+        hitable = true;
+
         shotAfterTime = 0;
 
         tr = GetComponent<Transform>();
         ani = GetComponent<Animator>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -103,10 +108,32 @@ public class PlayerCtrl : MonoBehaviour
     public void Hit()
     {
         life--;
-        if (life <= 0)
+        
+        if (life <= -1)
         {
             life = 0;
-            Destroy(gameObject);
+            spr.enabled = false;
+            hitable = false;
+            return;
         }
+
+        StartCoroutine(Invincible());
+    }
+
+    public IEnumerator Invincible()
+    {
+        hitable = false;
+        for (int i = 0; i < 10; i++)
+        {
+            if (i % 2 == 0)
+                spr.enabled = false;
+            else
+                spr.enabled = true;
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+        hitable = true;
+
+        yield return null;
     }
 }
