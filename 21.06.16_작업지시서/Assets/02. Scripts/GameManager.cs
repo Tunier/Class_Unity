@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         UIHotKey();
-        //OnOffMonsterSpawn();
+        OnOffMonsterSpawn();
 
         if (isPause)
         {

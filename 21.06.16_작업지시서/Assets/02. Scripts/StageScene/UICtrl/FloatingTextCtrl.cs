@@ -23,9 +23,17 @@ public class FloatingTextCtrl : MonoBehaviour
 
     void Start()
     {
+<<<<<<< Updated upstream
         moveSpeed = 25f;
         alphaSpeed = 1.2f;
         destroyTime = 2f;
+=======
+        v = 0;
+
+        moveSpeed = 50f;
+        alphaSpeed = 1f;
+        destroyTime = 3f;
+>>>>>>> Stashed changes
 
         floatingText = GetComponent<Text>();
         alpha = floatingText.color;

@@ -30,8 +30,7 @@ public class PlayerWeaponCtrl : MonoBehaviour
         {
             hitmob = other.GetComponent<MonsterCtrl>();
 
-            if (mobList.Contains(other.gameObject)) { }
-            else
+            if (!mobList.Contains(other.gameObject))
             {
                 mobList.Add(other.gameObject);
             }
@@ -43,10 +42,8 @@ public class PlayerWeaponCtrl : MonoBehaviour
                 foreach (GameObject obj in mobList)
                 {
                     obj.GetComponent<MonsterCtrl>().Hit(criticalDamage);
-                    //StartCoroutine(obj.GetComponent<MonsterCtrl>().MultyHit(damage, 2,0.2f)); // 딜레이를 가진 연속공격호출
+                    //StartCoroutine(obj.GetComponent<MonsterCtrl>().MultyHit(damage, 2, 0.2f)); // 딜레이를 가진 연속공격호출
                 }
-                mobList.Clear();
-                //hitmob.Hit(criticalDamage);
             }
             else
             {
@@ -54,9 +51,8 @@ public class PlayerWeaponCtrl : MonoBehaviour
                 {
                     obj.GetComponent<MonsterCtrl>().Hit(damage);
                 }
-                mobList.Clear();
-                //hitmob.Hit(damage);
             }
+            mobList.Clear();
 
             if ((hitmob.hp <= 0) && (hitmob.state != MonsterCtrl.State.DIE))
             {
@@ -70,7 +66,7 @@ public class PlayerWeaponCtrl : MonoBehaviour
     {
         damage = Mathf.Round(player.str);
         criticalDamage = Mathf.Round(damage * 1.5f);
-        critcalChance = 100;//Mathf.Round(player.dex + 20f);
+        critcalChance = Mathf.Round(player.dex + 20f);
 
         attackSpeed = 1f;
     }

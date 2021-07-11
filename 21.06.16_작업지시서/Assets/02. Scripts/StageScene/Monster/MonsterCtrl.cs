@@ -163,7 +163,8 @@ public class MonsterCtrl : MonoBehaviour
             hp = 0;
     }
 
-    public IEnumerator MultyHit(float damage, int attackTimes, float delay)
+    // µ¥¹ÌÁö, È½¼ö, µô·¹ÀÌ
+    public IEnumerator MultyHit(float damage, int attackTimes = 1, float delay = 0.1f)
     {
         for (int i = 0; i < attackTimes; i++)
         {
