@@ -71,13 +71,8 @@ public class PlayerCtrl : MonoBehaviour
 
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
 
-<<<<<<< Updated upstream
         level = PlayerPrefs.GetInt("PlayerLevel");
         hp = 60;
-=======
-        level = 1; //PlayerPrefs.GetInt("PlayerLevel");
-        hp = 100;
->>>>>>> Stashed changes
         hpMax = 100;
         mp = 20;
         mpMax = 20;
