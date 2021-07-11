@@ -12,6 +12,8 @@ public class FloatingTextCtrl : MonoBehaviour
     float alphaSpeed;
     float destroyTime;
 
+    float v;
+
     Text floatingText;
     Color alpha;
     public float damage;
@@ -26,6 +28,8 @@ public class FloatingTextCtrl : MonoBehaviour
         moveSpeed = 25f;
         alphaSpeed = 1.2f;
         destroyTime = 2f;
+
+        v = 0f;
 
         floatingText = GetComponent<Text>();
         alpha = floatingText.color;
@@ -44,13 +48,14 @@ public class FloatingTextCtrl : MonoBehaviour
         Vector3 mobPos = Camera.main.WorldToScreenPoint(mob.transform.position);
 
         Vector3 printPos = new Vector3(mobPos.x, mobPos.y + 50f, mobPos.z);
-
-        float v = 0f;
+        
         v += moveSpeed * Time.deltaTime;
 
         printPos = printPos + new Vector3(0, v, 0);
 
         transform.position = printPos;
+
+        Debug.Log(v);
 
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed);
         floatingText.color = alpha;

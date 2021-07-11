@@ -20,11 +20,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
     InputNumberUI inputNumber;
     Inventory inven;
 
-    Rect baseRect; // InventoryBase의 이미지 Rect 정보 가져옴.
+    [SerializeField]
+    RectTransform invenBase;
+    [SerializeField]
+    RectTransform statusBase;
 
     private void Start()
     {
-        baseRect = transform.parent.parent.GetComponent<RectTransform>().rect;
         status = FindObjectOfType<Status>();
         database = FindObjectOfType<ItemEffectDatebase>();
         inputNumber = FindObjectOfType<InputNumberUI>();
@@ -87,18 +89,25 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
             if (transform.parent.CompareTag("INVENTORY")) // 인벤토리에 있는 슬롯.
                 if (item != null)
                 {
+                    if (item.itemType == Item.ItemType.Equipment)
+                    {
+                        if (item.EquipmentType == "Weapon")
+                        {
+                            if (status.weaponSlot.item == null)
+                            {
+                                EquipItem(item);
+                                return;
+                            }
+                            else
+                                return;
+                        }
+                    }
+
                     database.UseItem(item);
 
                     if (item.itemType == Item.ItemType.Used)
                         SetSlotCount(-1);
-                    else if (item.itemType == Item.ItemType.Equipment)
-                    {
-                        if (item.EquipmentType == "Weapon")
-                        {
-                            if (status.slots[0].item == null)
-                                SetSlotCount(-1);
-                        }
-                    }
+
                 }
 
             if (transform.parent.CompareTag("STATUS")) // 스테이터스 창에 있는 슬롯.
@@ -129,28 +138,67 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
     }
 
     // 드레그 끝나면 드레그 슬롯 알파값 0으로 바꾸고 비워줌
+    // 드레그 끝난 위치가 스텟창이나 인벤창 밖이면 아이템 드롭창 불러줌.
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (DragSlot.instance.transform.localPosition.x < baseRect.xMin
-            || DragSlot.instance.transform.localPosition.x > baseRect.xMax
-            || DragSlot.instance.transform.localPosition.y < baseRect.yMin
-            || DragSlot.instance.transform.localPosition.y > baseRect.yMax)
+        // 활성화된 창만 계산되게 if문 넣어줌.
+        if (invenBase.gameObject.activeSelf && statusBase.gameObject.activeSelf)
         {
-            if (DragSlot.instance.dragSlot != null)
+            if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position)
+                || RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position))
             {
-                if (DragSlot.instance.dragSlot.itemCount <= 1)
-                {
-                    DragSlot.instance.SetColorAlpha(0);
-                    StartCoroutine(inputNumber.DropItemCoruntine(1));
-                }
-                else
-                    inputNumber.Call();
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
+            else
+            {
+                if (DragSlot.instance.dragSlot != null)
+                    if (DragSlot.instance.dragSlot.itemCount <= 1)
+                    {
+                        DragSlot.instance.SetColorAlpha(0);
+                        StartCoroutine(inputNumber.DropItemCoruntine(1));
+                    }
+                    else
+                        inputNumber.Call();
             }
         }
-        else
+        else if (invenBase.gameObject.activeSelf)
         {
-            DragSlot.instance.SetColorAlpha(0);
-            DragSlot.instance.dragSlot = null;
+            if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position))
+            {
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
+            else
+            {
+                if (DragSlot.instance.dragSlot != null)
+                    if (DragSlot.instance.dragSlot.itemCount <= 1)
+                    {
+                        DragSlot.instance.SetColorAlpha(0);
+                        StartCoroutine(inputNumber.DropItemCoruntine(1));
+                    }
+                    else
+                        inputNumber.Call();
+            }
+        }
+        else if (statusBase.gameObject.activeSelf)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position))
+            {
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
+            else
+            {
+                if (DragSlot.instance.dragSlot != null)
+                    if (DragSlot.instance.dragSlot.itemCount <= 1)
+                    {
+                        DragSlot.instance.SetColorAlpha(0);
+                        StartCoroutine(inputNumber.DropItemCoruntine(1));
+                    }
+                    else
+                        inputNumber.Call();
+            }
         }
     }
 
@@ -178,6 +226,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
             DragSlot.instance.dragSlot.AddItem(_item, _itemCount);
         else
             DragSlot.instance.dragSlot.ClearSlot();
+    }
+
+    public void EquipItem(Item _item)
+    {
+        database.EquipItem(_item);
+
+        SetSlotCount(-1);
     }
 
     public void UnEquipItem(Item _item)

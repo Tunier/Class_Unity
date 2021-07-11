@@ -81,6 +81,9 @@ public class InputNumberUI : MonoBehaviour, IPointerClickHandler
 
     public IEnumerator DropItemCoruntine(int num)
     {
+        inputUI.SetActive(false);
+        activated = false;
+
         for (int i = 0; i < num; i++)
         {
             Instantiate(DragSlot.instance.dragSlot.item.itemPrefab, player.transform.position, Quaternion.identity);
@@ -90,19 +93,16 @@ public class InputNumberUI : MonoBehaviour, IPointerClickHandler
             yield return new WaitForSeconds(0.1f);
         }
         DragSlot.instance.dragSlot = null;
-
-        inputUI.SetActive(false);
-        activated = false;
     }
 
     private bool CheckNumber(string _string)
     {
-        char[] _charArray = _string.ToCharArray();
+        char[] Array = _string.ToCharArray();
         bool isNumber = true;
 
-        for (int i = 0; i < _charArray.Length; i++)
+        for (int i = 0; i < Array.Length; i++)
         {
-            if (_charArray[i] >= 48 && _charArray[i] <= 57)
+            if (Array[i] >= 48 && Array[i] <= 57)
                 continue;
             isNumber = false;
         }

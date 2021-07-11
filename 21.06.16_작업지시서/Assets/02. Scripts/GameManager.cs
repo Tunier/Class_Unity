@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         UIHotKey();
-        //OnOffMonsterSpawn();
+        OnOffMonsterSpawn();
 
         if (isPause)
         {
@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
         {
             dieText.SetActive(false);
         }
-
     }
 
     void UIHotKey()

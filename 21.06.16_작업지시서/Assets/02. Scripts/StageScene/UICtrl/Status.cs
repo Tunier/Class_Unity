@@ -7,12 +7,26 @@ public class Status : MonoBehaviour
     [SerializeField]
     GameObject slotsParent;
 
-    [SerializeField]
     public Slot[] slots;
+
+    public Slot weaponSlot;
+
+    ItemEffectDatebase itemDatebase;
+
+    [SerializeField]
+    Item baseWeapon;
 
     void Start()
     {
         slots = slotsParent.GetComponentsInChildren<Slot>();
+
+        foreach (Slot slot in slots)
+        {
+            if (slot.name == "WeaponSlot")
+                weaponSlot = slot;
+        }
+
+        //itemDatebase.EquipItem(baseWeapon);
     }
 
     void Update()
@@ -20,3 +34,6 @@ public class Status : MonoBehaviour
 
     }
 }
+
+
+
