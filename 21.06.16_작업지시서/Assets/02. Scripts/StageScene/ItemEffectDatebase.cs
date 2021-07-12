@@ -7,7 +7,7 @@ public class ItemEffect
 {
     public string itemName;
 
-    [Tooltip("HP, MP, HPMAX, MPMAX, STR 만 가능.")]
+    [Tooltip("HP, MP, HPMAX, MPMAX, STR, ATK 만 가능.")]
     public string[] part;
 
     public int[] num;
@@ -20,11 +20,13 @@ public class ItemEffectDatebase : MonoBehaviour
 
     [SerializeField]
     PlayerCtrl player;
+    [SerializeField]
+    PlayerWeaponCtrl pWp;
 
     [SerializeField]
     Status status;
 
-    private const string HP = "HP", MP = "MP", HPMAX = "HPMAX", MPMAX = "MPMAX", STR = "STR";
+    private const string HP = "HP", MP = "MP", HPMAX = "HPMAX", MPMAX = "MPMAX", STR = "STR", ATK = "ATK";
 
     public void UseItem(Item _item)
     {
@@ -83,6 +85,9 @@ public class ItemEffectDatebase : MonoBehaviour
                         case STR:
                             player.str += itemEffects[i].num[j];
                             break;
+                        case ATK:
+                            pWp.weaponDamage += itemEffects[i].num[j];
+                            break;
                         default:
                             Debug.Log("오류");
                             break;
@@ -110,6 +115,9 @@ public class ItemEffectDatebase : MonoBehaviour
                             break;
                         case STR:
                             player.str -= itemEffects[i].num[j];
+                            break;
+                        case ATK:
+                            pWp.weaponDamage -= itemEffects[i].num[j];
                             break;
                         default:
                             Debug.Log("오류");

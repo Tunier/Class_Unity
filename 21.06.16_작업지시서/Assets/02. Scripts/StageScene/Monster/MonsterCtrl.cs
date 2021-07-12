@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MonsterCtrl : MonoBehaviour
 {
-    public GameObject hpPotion;
+    public GameObject[] Item;
     public GameObject damageText;
     public GameManager gm;
     public Canvas canvas;
@@ -179,7 +179,6 @@ public class MonsterCtrl : MonoBehaviour
         obj.GetComponent<FloatingTextCtrl>().damage = damage;
     }
 
-
     public virtual void Die()
     {
         StopAllCoroutines();
@@ -190,7 +189,7 @@ public class MonsterCtrl : MonoBehaviour
 
         gm.mobList.Remove(gameObject);
 
-        CreateItem();
+        DropItem();
     }
 
     void CorpseDestroy()
@@ -206,13 +205,15 @@ public class MonsterCtrl : MonoBehaviour
             Destroy(gameObject);
     }
 
-    void CreateItem()
+    void DropItem()
     {
-        float itemNum = Random.Range(1f, 100f);
+        float itemDropChance = Random.Range(1f, 100f);
+        int itemType = Random.Range(0, 3);
 
-        if (itemNum >= 50f)
+        if (itemDropChance >= 1f)
         {
-            Instantiate(hpPotion, tr.position, Quaternion.identity);
+            if (Item[itemType] != null)
+                Instantiate(Item[itemType], tr.position, Quaternion.identity);
         }
     }
 }

@@ -119,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour
             {
                 Playing();
             }
-            
+
             if (exp >= expMax)
             {
                 LevelUp();
@@ -193,8 +193,10 @@ public class PlayerCtrl : MonoBehaviour
     {
         SetPlayerMovement();
         SetPlayerRotate();
-
-
+        if (hp > hpMax)
+            hp = hpMax;
+        if (mp > mpMax)
+            mp = mpMax;
     }
 
     public void Attacking()
@@ -211,6 +213,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         state = State.IDLE;
         ani.SetBool(hashAttack, false);
+        playerWeapon.GetComponent<PlayerWeaponCtrl>().ClearMobList();
     }
 
     public void Hit(float damage)
