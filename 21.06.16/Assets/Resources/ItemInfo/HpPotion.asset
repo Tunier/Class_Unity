@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efff0110e0064044a1e6f1aaa085cb2, type: 3}
+  m_Name: HpPotion
+  m_EditorClassIdentifier: 
+  itemName: HpPotion
+  itemDescription: "Hp\uD3EC\uC158\nhp\uB97C 20 \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4."
+  itemType: 1
+  itemRarelity: 0
+  itemImage: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
+  itemPrefab: {fileID: 8998276756215291238, guid: 85562ded60178ed4196742c2483afd2b, type: 3}
+  EquipmentType: 
