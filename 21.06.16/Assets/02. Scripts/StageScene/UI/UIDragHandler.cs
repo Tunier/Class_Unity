@@ -22,7 +22,7 @@ public class UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        transform.SetSiblingIndex(5);
+        transform.SetSiblingIndex(6);
         beginMousePos = Input.mousePosition;
     }
 
@@ -42,6 +42,6 @@ public class UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        transform.SetSiblingIndex(5);
+        transform.SetSiblingIndex(6);
     }
 }

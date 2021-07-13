@@ -29,7 +29,7 @@ public class FloatingTextCtrl : MonoBehaviour
         moveSpeed = 45f;
         alphaSpeed = 1.2f;
         destroyTime = 2f;
-        offset = new Vector3(0, 100f, 0);
+        offset = new Vector3(0, 60f, 0);
         v = 0f;
 
 

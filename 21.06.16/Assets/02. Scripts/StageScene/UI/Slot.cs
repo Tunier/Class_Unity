@@ -24,6 +24,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     RectTransform invenBase;
     [SerializeField]
     RectTransform statusBase;
+    [SerializeField]
+    RectTransform quickSlotBase;
 
     private void Start()
     {
@@ -116,9 +118,29 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                     UnEquipItem(item);
                 }
 
-            if (transform.CompareTag("QUICKSlOT"))
+            if (transform.CompareTag("QUICKSLOT"))
             {
-                //Äü½½·Ô¿¡¼­ ±â´É Ãß°¡
+                if (item != null)
+                {
+                    if (item.itemType == Item.ItemType.Equipment)
+                    {
+                        if (item.EquipmentType == "Weapon")
+                        {
+                            if (status.weaponSlot.item == null)
+                            {
+                                EquipItem(item);
+                                return;
+                            }
+                            else
+                                return;
+                        }
+                    }
+
+                    database.UseItem(item);
+
+                    if (item.itemType == Item.ItemType.Used)
+                        SetSlotCount(-1);
+                }
             }
         }
     }
@@ -147,7 +169,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             DragSlot.instance.dragSlot = this;
             DragSlot.instance.DragSetImage(itemImage);
             DragSlot.instance.transform.position = eventData.position;
-
         }
     }
 
@@ -166,7 +187,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (invenBase.gameObject.activeSelf && statusBase.gameObject.activeSelf)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position)
-                || RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position))
+                || RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position)
+                || RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
             {
                 DragSlot.instance.SetColorAlpha(0);
                 DragSlot.instance.dragSlot = null;
@@ -185,7 +207,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
         else if (invenBase.gameObject.activeSelf)
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position))
+            if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position)
+                || RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
             {
                 DragSlot.instance.SetColorAlpha(0);
                 DragSlot.instance.dragSlot = null;
@@ -204,7 +227,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
         else if (statusBase.gameObject.activeSelf)
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position))
+            if (RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position)
+                || RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
             {
                 DragSlot.instance.SetColorAlpha(0);
                 DragSlot.instance.dragSlot = null;
@@ -234,6 +258,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (DragSlot.instance.dragSlot != null)
                 if (DragSlot.instance.dragSlot.item.itemType == Item.ItemType.Equipment)
                     ChangeSlot();
+
+        if (transform.parent.CompareTag("QUICKSLOT"))
+            if (DragSlot.instance.dragSlot != null)
+                ChangeSlot();
 
         if (item != null)
             database.ShowToolTip(item);

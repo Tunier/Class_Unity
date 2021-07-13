@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject statusUI;
     public GameObject inventoryUI;
 
+    ItemEffectDatebase database;
+    Status status;
+
     [SerializeField]
     RectTransform invenBase;
     [SerializeField]
@@ -23,6 +26,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     SlotToolTip toolTip;
+
+    [SerializeField]
+    GameObject quickSlotParent;
+    [SerializeField]
+    Slot[] quickSlots;
 
     public GameObject dieText;
 
@@ -43,11 +51,15 @@ public class GameManager : MonoBehaviour
         }
 
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+
+        mobList = new List<GameObject>();
+        status = FindObjectOfType<Status>();
+        database = FindObjectOfType<ItemEffectDatebase>();
+        quickSlots = quickSlotParent.GetComponentsInChildren<Slot>();
     }
     private void Start()
     {
         isPause = false;
-        mobList = new List<GameObject>();
     }
 
     private void Update()
@@ -88,26 +100,61 @@ public class GameManager : MonoBehaviour
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
 
-            if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(invenBase, toolTip.baseImage.transform.position - toolTip.offset))
-                toolTip.HideToolTip();
+            if (Input.mousePosition.y >= toolTip.baseImage.GetComponent<RectTransform>().rect.height)
+            {
+                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(invenBase, toolTip.baseImage.transform.position - toolTip.RD_Offset))
+                    toolTip.HideToolTip();
+            }
+            else
+            {
+                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, toolTip.baseImage.transform.position - toolTip.RU_Offset))
+                    toolTip.HideToolTip();
+            }
+            
         }
-
         if (Input.GetKeyDown(KeyCode.C))
         {
             statusUI.SetActive(!statusUI.activeSelf);
 
-            if (!statusUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, toolTip.baseImage.transform.position - toolTip.offset))
-                toolTip.HideToolTip();
+            if (Input.mousePosition.y >= toolTip.baseImage.GetComponent<RectTransform>().rect.height)
+            {
+                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(invenBase, toolTip.baseImage.transform.position - toolTip.RD_Offset))
+                    toolTip.HideToolTip();
+            }
+            else
+            {
+                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, toolTip.baseImage.transform.position - toolTip.RU_Offset))
+                    toolTip.HideToolTip();
+            }
         }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPause = !isPause;
         }
-
-        if (Input.GetKeyDown(KeyCode.F12))
+        if (Input.GetKeyDown(KeyCode.F10))
         {
             isPause = !isPause;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            QuickSlotUseItem(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            QuickSlotUseItem(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            QuickSlotUseItem(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            QuickSlotUseItem(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            QuickSlotUseItem(4);
         }
     }
 
@@ -136,5 +183,22 @@ public class GameManager : MonoBehaviour
     public void OnInventoryBottonClick()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
+    }
+
+    void QuickSlotUseItem(int i)
+    {
+        if (quickSlots[i].item != null)
+        {
+            if (quickSlots[i].item.itemType == Item.ItemType.Equipment)
+            {
+                quickSlots[i].EquipItem(quickSlots[0].item);
+                return;
+            }
+
+            database.UseItem(quickSlots[i].item);
+
+            if (quickSlots[i].item.itemType == Item.ItemType.Used)
+                quickSlots[i].SetSlotCount(-1);
+        }
     }
 }

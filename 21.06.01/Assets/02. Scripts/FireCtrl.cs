@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 // struct = 구조체, 클래스 열화판으로 생각하면 편함. stack 영역에 보관됨.
@@ -17,7 +18,7 @@ public struct PlayerSfx
 public class FireCtrl : MonoBehaviour
 {
     public enum WeaponType // 열거형.
-    { 
+    {
         RIFLE = 0,
         SHOTGUN
     }
@@ -31,7 +32,16 @@ public class FireCtrl : MonoBehaviour
     AudioSource _audio;
     public PlayerSfx playerSfx; // 오디오 클립 저장 변수.
 
-    Shake shake;        
+    Shake shake;
+
+    public Image magazineImg;
+    public Text magazineText;
+
+    public int maxBullet = 10;
+    public int remainingBullet = 10;
+
+    public float reloadTime = 2f;
+    bool isReloading = false;
 
     void Start()
     {
@@ -44,10 +54,17 @@ public class FireCtrl : MonoBehaviour
     {
         // 0이면 좌클린 1이면 우클릭
         // GetMouseButtonDown 함수는 눌렀을때 한번만 동작.
-        if (Input.GetMouseButtonDown(0))
+        if (!isReloading && Input.GetMouseButtonDown(0))
         {
+            remainingBullet--;
+
             // 공격함수 호출
             Fire();
+
+            if (remainingBullet <= 0)
+            {
+                //재장전 코루틴 함수
+            }
         }
     }
 
@@ -63,7 +80,15 @@ public class FireCtrl : MonoBehaviour
         cartidge.Play(); // 탄피 파티클 재생
         muzzleFlash.Play(); // 총구 화염 파티클 재생
 
-        FireSfx(); // 공격시 사운드 발생.        
+        FireSfx(); // 공격시 사운드 발생.
+
+        magazineImg.fillAmount = (float)remainingBullet / (float)maxBullet;
+        UpdateBulletText();
+
+        if (remainingBullet == 0)
+        { 
+            StartCoroutine(Reloading());
+        }
     }
 
     void FireSfx()
@@ -72,5 +97,25 @@ public class FireCtrl : MonoBehaviour
         var _sfx = playerSfx.fire[(int)currWeapon];
         // Play = 소리 조절 불가, PlayOneShot 소리 조절 가능.
         _audio.PlayOneShot(_sfx, 1f);
+    }
+
+    IEnumerator Reloading()
+    {
+        isReloading = true;
+        _audio.PlayOneShot(playerSfx.reload[(int)currWeapon], 1f);
+
+        float audioLegth = playerSfx.reload[(int)currWeapon].length + 0.3f;
+        yield return new WaitForSeconds(audioLegth);
+
+        isReloading = false;
+        magazineImg.fillAmount = 1f;
+        remainingBullet = maxBullet;
+
+        UpdateBulletText();
+    }
+
+    void UpdateBulletText()
+    {
+        magazineText.text = string.Format("<color=#00ff00>{0}</color>/{1}", remainingBullet, maxBullet);
     }
 }

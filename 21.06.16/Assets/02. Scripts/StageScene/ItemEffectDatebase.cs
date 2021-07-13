@@ -68,6 +68,10 @@ public class ItemEffectDatebase : MonoBehaviour
             {
                 status.weaponSlot.AddItem(_item);
             }
+            else
+            {
+                return;
+            }
         }
 
         for (int i = 0; i < itemEffects.Length; i++)

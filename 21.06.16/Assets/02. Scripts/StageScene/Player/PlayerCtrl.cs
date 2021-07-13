@@ -72,8 +72,8 @@ public class PlayerCtrl : MonoBehaviour
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
 
         level = 1;//PlayerPrefs.GetInt("PlayerLevel");
-        hp = 60;
-        hpMax = 100;
+        hp = 50;
+        hpMax = 50;
         mp = 20;
         mpMax = 20;
         exp = 0;
@@ -241,6 +241,10 @@ public class PlayerCtrl : MonoBehaviour
         level++;
         str = (level - 1) * 5 + 10;
         dex = (level - 1) * 2.5f + 5;
+        hpMax += 10;
+        hp = hpMax;
+        mpMax += 10;
+        mp = mpMax;
 #if UNITY_EDITOR
 
 #else
