@@ -76,7 +76,16 @@ public class FireCtrl : MonoBehaviour
 
         // Instantiate(동적생성할 오브젝트, 위치, 방향);
         // 사용되지 않는 객체(Object)를 활성화 해주는 함수.
-        Instantiate(bullet, firePos.position, firePos.rotation);
+        //Instantiate(bullet, firePos.position, firePos.rotation);
+
+        var _bullet = GameManager.instance.GetBullet();
+        if (_bullet != null)
+        {
+            _bullet.transform.position = firePos.position;
+            _bullet.transform.rotation = firePos.rotation;
+            _bullet.SetActive(true);
+        }
+
         cartidge.Play(); // 탄피 파티클 재생
         muzzleFlash.Play(); // 총구 화염 파티클 재생
 

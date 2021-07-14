@@ -40,7 +40,6 @@ public class PlayerCtrl : MonoBehaviour
     Rigidbody rb;
     Animator ani;
 
-    GameManager gameManager;
     public GameObject playerWeapon;
     Status status;
 
@@ -64,7 +63,6 @@ public class PlayerCtrl : MonoBehaviour
         tr = GetComponent<Transform>();
         ani = GetComponent<Animator>();
 
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         status = FindObjectOfType<Status>();
 
         ray = new Ray();
@@ -92,7 +90,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         while (true)
         {
-            if ((state != State.HIT) && (state != State.DIE) && !gameManager.isPause)
+            if ((state != State.HIT) && (state != State.DIE) && !GameManager.instance.isPause)
             {
                 hitable = true;
 
@@ -115,7 +113,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (state != State.DIE)
         {
-            if (!gameManager.isPause)
+            if (!GameManager.instance.isPause)
             {
                 Playing();
             }

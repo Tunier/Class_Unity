@@ -14,29 +14,40 @@ public class PlayerActionCtrl : MonoBehaviour
     bool pickupActivated = false;
 
     [SerializeField]
-    List<GameObject> item;
+    List<GameObject> items;
 
     [SerializeField]
     Inventory inven;
+    [SerializeField]
+    QuickSlot qSlot;
 
     GameObject neareastItem = null;
 
+    [SerializeField]
     Text actionText;
+
+    private void Awake()
+    {
+        items = new List<GameObject>();
+
+        range = 5f;
+    }
 
     void Start()
     {
-        range = 5f;
-        item = new List<GameObject>();
+
     }
 
     void Update()
     {
+        DeleteNullSlot();
+
         FindItem();
 
-        if (item != null)
+        if (items != null)
         {
-            item = item.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).ToList();
-            neareastItem = item.FirstOrDefault();
+            items = items.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).ToList();
+            neareastItem = items.FirstOrDefault();
         }
 
         pickupActivated = neareastItem == null ? false : true;
@@ -63,16 +74,16 @@ public class PlayerActionCtrl : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, obj.transform.position) <= range)
             {
-                if (!item.Contains(obj))
+                if (!items.Contains(obj))
                 {
-                    item.Add(obj);
+                    items.Add(obj);
                 }
             }
             else
             {
-                if (item.Contains(obj))
+                if (items.Contains(obj))
                 {
-                    item.Remove(obj);
+                    items.Remove(obj);
                 }
             }
         }
@@ -83,10 +94,39 @@ public class PlayerActionCtrl : MonoBehaviour
         if (pickupActivated)
         {
             inven.GetItem(neareastItem.GetComponent<ItemPickUp>().item);
-            item.Remove(neareastItem);
-            Destroy(neareastItem);
+            if (inven.isFull)
+                qSlot.GetItem(neareastItem.GetComponent<ItemPickUp>().item);
+
+            if (inven.isFull && qSlot.isFull)
+            {
+                if (!actionText.gameObject.activeSelf)
+                    StartCoroutine(PrintActionText("¿Œ∫•≈‰∏Æ∞° ≤À√°Ω¿¥œ¥Ÿ."));
+            }
+            else
+            {
+                items.Remove(neareastItem);
+                Destroy(neareastItem);
+            }
         }
     }
 
+    public IEnumerator PrintActionText(string _string)
+    {
+        actionText.text = _string;
+        actionText.gameObject.SetActive(true);
 
+        yield return new WaitForSeconds(3f);
+
+        actionText.gameObject.SetActive(false);
+        actionText.text = "";
+    }
+
+    void DeleteNullSlot()
+    {
+        for (int i = 0; i < items.Count; ++i)
+        {
+            if (items[i] == null)
+                items.RemoveAt(i);
+        }
+    }
 }

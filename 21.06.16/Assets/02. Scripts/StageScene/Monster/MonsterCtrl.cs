@@ -8,7 +8,6 @@ public class MonsterCtrl : MonoBehaviour
 {
     public GameObject[] Item;
     public GameObject damageText;
-    public GameManager gm;
     public Canvas canvas;
 
     public enum State
@@ -51,11 +50,10 @@ public class MonsterCtrl : MonoBehaviour
 
     Vector3 destination;
 
-    private void Awake()
+    void Start()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        canvas = GameObject.Find("DamageTextCanvas").GetComponent<Canvas>();
+        canvas = GameObject.Find("BackCanvas").GetComponent<Canvas>();
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -65,11 +63,6 @@ public class MonsterCtrl : MonoBehaviour
         sName = "°ñ·½";
         exp = 100f;
         moveSpeed = 1.5f;
-    }
-
-    void Start()
-    {
-        
     }
 
     IEnumerator CheckState()
@@ -182,7 +175,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         GameObject obj = Instantiate(damageText, canvas.gameObject.transform);
 
-        obj.GetComponent<FloatingTextCtrl>().damage = damage;
+        obj.GetComponent<FloatingTextCtrl>().SetDamage(damage);
     }
 
     public virtual void Die()
@@ -193,7 +186,7 @@ public class MonsterCtrl : MonoBehaviour
         for (int i = 0; i < 2; i++)
             weapon[i].enabled = false;
 
-        gm.mobList.Remove(gameObject);
+        GameManager.instance.mobList.Remove(gameObject);
 
         DropItem();
     }

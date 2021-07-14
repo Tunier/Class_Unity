@@ -24,6 +24,7 @@ public class Item : ScriptableObject
     public string itemDescription;
     public ItemType itemType;
     public ItemRarelity itemRarelity;
+    
     public Sprite itemImage;
     public GameObject itemPrefab;
 

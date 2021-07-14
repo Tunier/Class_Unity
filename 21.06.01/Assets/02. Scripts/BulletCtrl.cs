@@ -8,11 +8,28 @@ public class BulletCtrl : MonoBehaviour
     public float speed = 1000f; // ÃÑ¾Ë ¼Óµµ
 
     Rigidbody rb;
-    void Start()
+    Transform tr;
+    TrailRenderer trail;
+    
+    void Awake()
     {
+        tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * speed);
+        trail = GetComponent<TrailRenderer>();
         // GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+    }
+
+    private void OnEnable()
+    {
+        rb.AddForce(transform.forward * speed);
+    }
+
+    private void OnDisable()
+    {
+        trail.Clear();
+        tr.position = Vector3.zero;
+        tr.rotation = Quaternion.identity;
+        rb.Sleep();
     }
 
     void Update()

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FloatingTextCtrl : MonoBehaviour
 {
-    public PlayerWeaponCtrl Pwp;
+    PlayerWeaponCtrl Pwp;
     MonsterCtrl mob;
 
     float moveSpeed;
@@ -17,26 +17,28 @@ public class FloatingTextCtrl : MonoBehaviour
 
     Text floatingText;
     Color alpha;
+
     public float damage;
 
     private void Awake()
     {
-        Pwp = GameObject.Find("PlayerSword").GetComponent<PlayerWeaponCtrl>();
-    }
+        floatingText = GetComponent<Text>();
 
-    void Start()
-    {
+        Pwp = GameObject.Find("PlayerSword").GetComponent<PlayerWeaponCtrl>();
+        
         moveSpeed = 45f;
         alphaSpeed = 1.2f;
         destroyTime = 2f;
         offset = new Vector3(0, 60f, 0);
         v = 0f;
 
-
-        floatingText = GetComponent<Text>();
+    
         alpha = floatingText.color;
-        floatingText.text = damage.ToString();
+        
+    }
 
+    void Start()
+    {
         if (Pwp.hitmob != null)
         {
             mob = Pwp.hitmob;
@@ -59,5 +61,10 @@ public class FloatingTextCtrl : MonoBehaviour
 
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed);
         floatingText.color = alpha;
+    }
+
+    public void SetDamage(float _damage)
+    {
+        floatingText.text = _damage.ToString();
     }
 }

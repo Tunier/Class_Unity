@@ -11,9 +11,9 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public Image itemImage;
 
     [SerializeField]
-    Text countText;
-    [SerializeField]
     GameObject countImage;
+    [SerializeField]
+    Text countText;
 
     Status status;
     ItemEffectDatebase database;
@@ -80,6 +80,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         countText.text = "0";
         countImage.SetActive(false);
+
+        inven.isFull = false;
     }
 
     // 슬롯 우클릭시 슬롯에 있는 아이템 타입을 보고 소모품이면 아이템 사용
@@ -272,12 +274,28 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         Item _item = item;
         int _itemCount = itemCount;
 
-        AddItem(DragSlot.instance.dragSlot.item, DragSlot.instance.dragSlot.itemCount);
-
         if (_item != null)
-            DragSlot.instance.dragSlot.AddItem(_item, _itemCount);
+        {
+            if (_item.itemName == DragSlot.instance.dragSlot.item.itemName)
+            {
+                if (_item.itemType == Item.ItemType.Used)
+                {
+                    SetSlotCount(DragSlot.instance.dragSlot.itemCount);
+
+                    DragSlot.instance.dragSlot.ClearSlot();
+                }
+            }
+        }
         else
-            DragSlot.instance.dragSlot.ClearSlot();
+        {
+            AddItem(DragSlot.instance.dragSlot.item, DragSlot.instance.dragSlot.itemCount);
+
+            if (_item != null)
+                DragSlot.instance.dragSlot.AddItem(_item, _itemCount);
+            else
+                DragSlot.instance.dragSlot.ClearSlot();
+        }
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

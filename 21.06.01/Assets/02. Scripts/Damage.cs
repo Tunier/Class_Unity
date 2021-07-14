@@ -20,6 +20,8 @@ public class Damage : MonoBehaviour
     readonly Color initColor = new Vector4(0, 1f, 0f, 1f);
     Color currColor;
 
+    bool isOnBloodScreen = false;
+
     void Start()
     {
         currHp = iniHp;
@@ -36,7 +38,9 @@ public class Damage : MonoBehaviour
             currHp -= 5; // hp 5 감소
             //print("현재 체력 : " + currHp);
             // Debug.Log(currHp); <-- 동일한 방법.
-            StartCoroutine(BloodScreen());
+            if (!isOnBloodScreen)
+                StartCoroutine(BloodScreen());
+
             if (currHp <= 0f)
             {
                 // 플레이어 사망 함수 호출
@@ -69,13 +73,15 @@ public class Damage : MonoBehaviour
 
     IEnumerator BloodScreen()
     {
+        isOnBloodScreen = true;
         for (int i = 1; i < 3; i++)
         {
             Color color = bloodScreen.color;
             color.a = i % 2;
             bloodScreen.color = color;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.25f);
         }
+        isOnBloodScreen = false;
     }
 
     void DisplayHpbar()

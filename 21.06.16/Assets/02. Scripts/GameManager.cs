@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseCanvas;
     public GameObject statusUI;
     public GameObject inventoryUI;
+    FadeCtrl fadectrl;
 
     ItemEffectDatebase database;
     Status status;
@@ -33,10 +34,9 @@ public class GameManager : MonoBehaviour
     Slot[] quickSlots;
 
     public GameObject dieText;
-
     public PlayerCtrl player;
 
-    public bool isPause;
+    public bool isPause = false;
 
     private void Awake()
     {
@@ -49,16 +49,18 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(gameObject);
         }
-
+        
+    }
+    private void Start()
+    {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+        fadectrl = FindObjectOfType<FadeCtrl>();
 
         mobList = new List<GameObject>();
         status = FindObjectOfType<Status>();
         database = FindObjectOfType<ItemEffectDatebase>();
         quickSlots = quickSlotParent.GetComponentsInChildren<Slot>();
-    }
-    private void Start()
-    {
+
         isPause = false;
     }
 
@@ -110,7 +112,7 @@ public class GameManager : MonoBehaviour
                 if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, toolTip.baseImage.transform.position - toolTip.RU_Offset))
                     toolTip.HideToolTip();
             }
-            
+
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
