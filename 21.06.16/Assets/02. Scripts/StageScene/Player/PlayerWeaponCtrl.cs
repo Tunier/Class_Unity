@@ -16,7 +16,8 @@ public class PlayerWeaponCtrl : MonoBehaviour
     public float attackSpeed;
     public float critcalChance;
 
-    float hitAfterTime;
+    public bool isCrit = false;
+
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class PlayerWeaponCtrl : MonoBehaviour
 
             if (critcalRandom >= 100 - critcalChance)
             {
+                isCrit = true;
                 foreach (GameObject obj in mobList)
                 {
                     obj.GetComponent<MonsterCtrl>().Hit(criticalDamage);
@@ -50,6 +52,7 @@ public class PlayerWeaponCtrl : MonoBehaviour
             }
             else
             {
+                isCrit = false;
                 foreach (GameObject obj in mobList)
                 {
                     obj.GetComponent<MonsterCtrl>().Hit(resultdamage);

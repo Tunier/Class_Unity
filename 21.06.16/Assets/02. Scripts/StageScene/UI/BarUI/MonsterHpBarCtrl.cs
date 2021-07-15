@@ -17,7 +17,6 @@ public class MonsterHpBarCtrl : MonoBehaviour
     {
         hpBar.SetActive(false);
     }
-
     void LateUpdate()
     {
         if (Pwp.hitmob != null)
@@ -35,7 +34,6 @@ public class MonsterHpBarCtrl : MonoBehaviour
         {
             hpBar.SetActive(false);
         }
-
     }
 
     void UpdateHpSlider()

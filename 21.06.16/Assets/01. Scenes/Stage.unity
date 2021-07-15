@@ -13396,7 +13396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3951229398020017800, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Name
-      value: PlayerSword
+      value: PlayerWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 3951229398020017800, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Layer
@@ -17509,6 +17509,7 @@ MonoBehaviour:
   criticalDamage: 0
   attackSpeed: 0
   critcalChance: 0
+  isCrit: 0
 --- !u!136 &1650534380
 CapsuleCollider:
   m_ObjectHideFlags: 0

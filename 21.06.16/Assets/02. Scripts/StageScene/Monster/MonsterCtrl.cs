@@ -40,6 +40,7 @@ public class MonsterCtrl : MonoBehaviour
 
     PlayerCtrl player;
     public Collider[] weapon;
+    PlayerWeaponCtrl Pwp;
 
     readonly int hashMove = Animator.StringToHash("IsMove"); // bool 움직이는중
     readonly int hashAttack = Animator.StringToHash("IsAttack"); // bool 공격중
@@ -54,6 +55,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
         canvas = GameObject.Find("BackCanvas").GetComponent<Canvas>();
+        Pwp = GameObject.Find("PlayerWeapon").GetComponent<PlayerWeaponCtrl>();
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -176,6 +178,8 @@ public class MonsterCtrl : MonoBehaviour
         GameObject obj = Instantiate(damageText, canvas.gameObject.transform);
 
         obj.GetComponent<FloatingTextCtrl>().SetDamage(damage);
+        if (Pwp.isCrit)
+            obj.GetComponent<FloatingTextCtrl>().SetTextColor(Color.red);
     }
 
     public virtual void Die()
