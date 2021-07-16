@@ -25,6 +25,10 @@ public class PlayerCtrl : MonoBehaviour
     public float dex;
     public float def;
 
+    public float attackSpeed;
+    public float critcalChance;
+    public float resultDamage;
+
     public bool hitable;
 
     Ray ray;
@@ -79,6 +83,7 @@ public class PlayerCtrl : MonoBehaviour
         str = (level - 1) * 5 + 10;
         dex = (level - 1) * 2.5f + 5;
         def = 0;
+        attackSpeed = 1f;
 
         moveSpeed = 4f;
         AttackingMoveLeagth = moveSpeed * 0.02f;
@@ -117,13 +122,13 @@ public class PlayerCtrl : MonoBehaviour
             {
                 Playing();
             }
-
             if (exp >= expMax)
             {
                 LevelUp();
             }
+            critcalChance = Mathf.Round(dex + 10f); // 나중에 아이템 효과로 추가되는 값 더해주게 수정
+            resultDamage = Mathf.Round(str) + playerWeapon.GetComponent<PlayerWeaponCtrl>().weaponDamage;
         }
-
 
         switch (state)
         {

@@ -15,8 +15,7 @@ public class ItemEffect
 
 public class ItemEffectDatebase : MonoBehaviour
 {
-    [SerializeField]
-    ItemEffect[] itemEffects;
+    public ItemEffect[] itemEffects;
 
     [SerializeField]
     PlayerCtrl player;

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efff0110e0064044a1e6f1aaa085cb2, type: 3}
   m_Name: Sword1
   m_EditorClassIdentifier: 
+  id: 3
   itemName: Sword1
   itemDescription: "\uAC80\n\uACF5\uACA9\uB825 + 5"
   itemType: 0

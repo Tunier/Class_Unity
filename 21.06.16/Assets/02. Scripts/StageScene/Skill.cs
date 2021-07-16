@@ -13,8 +13,8 @@ public class Skill : ScriptableObject
 
     public string skillName;
     public SkillType skilltype;
-    //[TextArea]
-    //public string skillDescription;
+    [TextArea]
+    public string skillDescription;
 
     public Sprite skillImage;
     public GameObject skillPrefab;

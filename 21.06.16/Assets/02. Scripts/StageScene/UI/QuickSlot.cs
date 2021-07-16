@@ -7,8 +7,7 @@ public class QuickSlot : MonoBehaviour
     [SerializeField]
     GameObject slotsParent;
 
-    [SerializeField]
-    List<Slot> slots;
+    public List<Slot> slots;
 
     public bool isFull = false;
 
@@ -44,7 +43,6 @@ public class QuickSlot : MonoBehaviour
                     if (slots[i].item.itemName == _item.itemName) // 같은 이름을 가진 item이 있으면
                     {
                         slots[i].SetSlotCount(count); // 갯수를 증가시킴
-                        isFull = false; // 다찼는지 확인하는 변수 false로
                         return;
                     }
                 }
@@ -57,7 +55,6 @@ public class QuickSlot : MonoBehaviour
             if (slots[i].item == null) // 비어 있는 슬롯에
             {
                 slots[i].AddItem(_item, count); // 아이템추가
-                isFull = false; // 다찼는지 확인하는 변수 false로
                 return;
             }
         }

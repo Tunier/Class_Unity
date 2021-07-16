@@ -7,25 +7,26 @@ public class DragSlot : MonoBehaviour
 {
     static public DragSlot instance;
     public Slot dragSlot;
+    public SkillSlot dragSkillSlot;
 
     [SerializeField]
-    private Image imageItem;
+    private Image image;
 
     void Start()
     {
         instance = this;
     }
 
-    public void DragSetImage(Image _itemImage)
+    public void DragSetImage(Image _Image)
     {
-        imageItem.sprite = _itemImage.sprite;
+        image.sprite = _Image.sprite;
         SetColorAlpha(1);
     }
 
     public void SetColorAlpha(float alpha)
     {
-        Color color = imageItem.color;
+        Color color = image.color;
         color.a = alpha;
-        imageItem.color = color;
+        image.color = color;
     }
 }

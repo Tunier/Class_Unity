@@ -6,16 +6,19 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
-    GameObject slotsParent;
+    ItemEffectDatebase itemdatebase;
 
     [SerializeField]
-    List<Slot> slots;
+    GameObject slotsParent;
+
+    public List<Slot> slots;
 
     public bool isFull = false;
 
     private void Awake()
     {
         slots = new List<Slot>();
+
         slots.AddRange(slotsParent.GetComponentsInChildren<Slot>());
     }
 
@@ -38,14 +41,13 @@ public class Inventory : MonoBehaviour
     {
         if (_item.itemType != Item.ItemType.Equipment) // 장비가 아닌종류일때 (소비, 재료 등)
         {
-            for (int i = 0; i < slots.Count; i++) // 모든 슬롯중
+            foreach (Slot slot in slots) // 모든 슬롯중
             {
-                if (slots[i].item != null) // 아이템이 있는 슬롯에
+                if (slot.item != null) // 아이템이 있는 슬롯에
                 {
-                    if (slots[i].item.itemName == _item.itemName) // 같은 이름을 가진 item이 있으면
+                    if (slot.item.itemName == _item.itemName) // 같은 이름을 가진 item이 있으면
                     {
-                        slots[i].SetSlotCount(count); // 갯수를 증가시킴
-                        isFull = false; // 다찼는지 확인하는 변수 false로
+                        slot.SetSlotCount(count); // 갯수를 증가시킴
                         return;
                     }
                 }
@@ -53,12 +55,11 @@ public class Inventory : MonoBehaviour
         }
 
         // 장비 종류에 상관없이
-        for (int i = 0; i < slots.Count; i++) // 모든 슬롯중
+        foreach (Slot slot in slots) // 모든 슬롯중
         {
-            if (slots[i].item == null) // 비어 있는 슬롯에
+            if (slot.item == null) // 비어 있는 슬롯에
             {
-                slots[i].AddItem(_item, count); // 아이템추가
-                isFull = false; // 다찼는지 확인하는 변수 false로
+                slot.AddItem(_item, count); // 아이템추가
                 return;
             }
         }

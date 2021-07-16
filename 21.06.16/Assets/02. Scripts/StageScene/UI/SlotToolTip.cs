@@ -26,8 +26,8 @@ public class SlotToolTip : MonoBehaviour
 
     private void Awake()
     {
-        RD_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, -baseImage.GetComponent<RectTransform>().rect.height * 0.5f, 0);
-        RU_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, baseImage.GetComponent<RectTransform>().rect.height * 0.5f, 0);
+        RD_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, -baseImage.GetComponent<RectTransform>().rect.height * 0.5f, 0); // 오른쪽 아래로 띄우는 오프셋
+        RU_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, baseImage.GetComponent<RectTransform>().rect.height * 0.5f, 0); // 오른쪽 위로 띄우는 오프셋
     }
 
     private void Update()
@@ -47,6 +47,19 @@ public class SlotToolTip : MonoBehaviour
 
         itemName.text = _item.itemName;
         itemDesc.text = _item.itemDescription;
+
+        switch (_item.itemRarelity)
+        {
+            case Item.ItemRarelity.Common:
+                SetitemNameColor(Color.white);
+                break;
+            case Item.ItemRarelity.Rare:
+                SetitemNameColor(Color.blue);
+                break;
+            case Item.ItemRarelity.Epic:
+                SetitemNameColor(Color.yellow);
+                break;
+        }
 
         if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, Input.mousePosition))
         {
@@ -91,5 +104,19 @@ public class SlotToolTip : MonoBehaviour
     public void HideToolTip()
     {
         baseImage.SetActive(false);
+    }
+
+    public void SetitemNameColor(Color _color)
+    {
+        itemName.color = _color;
+    }
+
+    public void SetitemDescColor(Color _color)
+    {
+        itemDesc.color = _color;
+    }
+    public void SetitemHouToUseColor(Color _color)
+    {
+        itemHouToUse.color = _color;
     }
 }

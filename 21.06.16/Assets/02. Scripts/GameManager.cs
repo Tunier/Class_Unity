@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.O))
         {
             statusUI.SetActive(!statusUI.activeSelf);
 

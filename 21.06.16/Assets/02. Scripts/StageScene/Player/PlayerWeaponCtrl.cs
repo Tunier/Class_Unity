@@ -7,23 +7,15 @@ public class PlayerWeaponCtrl : MonoBehaviour
     public PlayerCtrl player;
     public GameObject playerWeapon;
     public MonsterCtrl hitmob;
-    [SerializeField]
     public List<GameObject> mobList;
 
     public float weaponDamage = 0;
-    public float resultdamage;
-    public float criticalDamage;
-    public float attackSpeed;
-    public float critcalChance;
+    
 
     public bool isCrit = false;
 
-
     void Start()
     {
-        resultdamage = player.str + weaponDamage;
-        attackSpeed = 1f;
-
         mobList = new List<GameObject>();
     }
 
@@ -39,23 +31,21 @@ public class PlayerWeaponCtrl : MonoBehaviour
             }
             else { return; }
 
-            int critcalRandom = Random.Range(0, 100);
 
-            if (critcalRandom >= 100 - critcalChance)
+            foreach (GameObject obj in mobList)
             {
-                isCrit = true;
-                foreach (GameObject obj in mobList)
+                int critcalRandom = Random.Range(0, 100);
+
+                if (critcalRandom >= 100 - player.critcalChance)
                 {
-                    obj.GetComponent<MonsterCtrl>().Hit(criticalDamage);
-                    //StartCoroutine(obj.GetComponent<MonsterCtrl>().MultyHit(damage, 2,0.2f)); // 딜레이를 가진 연속공격호출
+                    isCrit = true;
+                    obj.GetComponent<MonsterCtrl>().Hit(player.resultDamage * 1.5f);
+                    //StartCoroutine(obj.GetComponent<MonsterCtrl>().MultyHit(resultdamage, 2,0.2f)); // 딜레이를 가진 연속공격호출
                 }
-            }
-            else
-            {
-                isCrit = false;
-                foreach (GameObject obj in mobList)
+                else
                 {
-                    obj.GetComponent<MonsterCtrl>().Hit(resultdamage);
+                    isCrit = false;
+                    obj.GetComponent<MonsterCtrl>().Hit(player.resultDamage);
                 }
             }
 
@@ -65,15 +55,6 @@ public class PlayerWeaponCtrl : MonoBehaviour
                 player.exp += hitmob.exp;
             }
         }
-    }
-
-    void Update()
-    {
-        resultdamage = Mathf.Round(player.str) + weaponDamage;
-        criticalDamage = Mathf.Round(resultdamage * 1.5f);
-        critcalChance = Mathf.Round(player.dex + 20f);
-
-        attackSpeed = 1f;
     }
 
     public void ClearMobList()

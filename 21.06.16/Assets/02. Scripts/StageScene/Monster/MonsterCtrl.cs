@@ -9,6 +9,7 @@ public class MonsterCtrl : MonoBehaviour
     public GameObject[] Item;
     public GameObject damageText;
     public Canvas canvas;
+    PlayerWeaponCtrl Pwp;
 
     public enum State
     {
@@ -40,7 +41,6 @@ public class MonsterCtrl : MonoBehaviour
 
     PlayerCtrl player;
     public Collider[] weapon;
-    PlayerWeaponCtrl Pwp;
 
     readonly int hashMove = Animator.StringToHash("IsMove"); // bool 움직이는중
     readonly int hashAttack = Animator.StringToHash("IsAttack"); // bool 공격중
@@ -55,7 +55,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
         canvas = GameObject.Find("BackCanvas").GetComponent<Canvas>();
-        Pwp = GameObject.Find("PlayerWeapon").GetComponent<PlayerWeaponCtrl>();
+        Pwp = GameObject.FindWithTag("PLAYERWEAPON").GetComponent<PlayerWeaponCtrl>();
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();

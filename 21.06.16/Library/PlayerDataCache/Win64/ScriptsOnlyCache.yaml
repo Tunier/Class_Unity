@@ -3,7 +3,6 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - CameraMovement
     - CameraShake
-    - DieText
     - DragSlot
     - FloatingTextCtrl
     - GameManager
@@ -13,7 +12,6 @@ ScriptsOnlyBuild:
     - ItemEffectDatebase
     - ItemMove
     - ItemPickUp
-    - MainMenu
     - MonsterCtrl
     - MonsterHpBarCtrl
     - MonsterSpawnerCtrl
@@ -24,9 +22,6 @@ ScriptsOnlyBuild:
     - PlayerCtrl
     - PlayerUIBarCtrl
     - PlayerWeaponCtrl
-    - QuickSlot
-    - Skill
-    - SkillSlot
     - Slot
     - SlotToolTip
     - Status
@@ -49,7 +44,6 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
-    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.HorizontalLayoutGroup
@@ -106,89 +100,79 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1442}
     - Class: 114
-      Script: {instanceID: 1566}
+      Script: {instanceID: 1526}
     - Class: 114
-      Script: {instanceID: 1652}
+      Script: {instanceID: 1612}
     - Class: 114
-      Script: {instanceID: 1660}
+      Script: {instanceID: 1620}
     - Class: 114
-      Script: {instanceID: 1670}
+      Script: {instanceID: 1630}
     - Class: 114
-      Script: {instanceID: 1686}
+      Script: {instanceID: 1646}
     - Class: 114
-      Script: {instanceID: 1748}
+      Script: {instanceID: 1950}
     - Class: 114
-      Script: {instanceID: 2000}
+      Script: {instanceID: 2018}
     - Class: 114
-      Script: {instanceID: 2072}
+      Script: {instanceID: 2076}
     - Class: 114
-      Script: {instanceID: 2130}
+      Script: {instanceID: 2100}
     - Class: 114
-      Script: {instanceID: 2154}
+      Script: {instanceID: 2232}
     - Class: 114
-      Script: {instanceID: 2292}
+      Script: {instanceID: 2266}
     - Class: 114
-      Script: {instanceID: 2330}
+      Script: {instanceID: 2290}
     - Class: 114
-      Script: {instanceID: 2354}
+      Script: {instanceID: 2336}
     - Class: 114
-      Script: {instanceID: 2400}
+      Script: {instanceID: 2482}
     - Class: 114
-      Script: {instanceID: 2556}
+      Script: {instanceID: 2512}
     - Class: 114
-      Script: {instanceID: 2586}
+      Script: {instanceID: 2524}
     - Class: 114
-      Script: {instanceID: 2598}
+      Script: {instanceID: 2662}
     - Class: 114
-      Script: {instanceID: 2738}
+      Script: {instanceID: 2740}
     - Class: 114
-      Script: {instanceID: 2756}
+      Script: {instanceID: 2766}
     - Class: 114
-      Script: {instanceID: 2820}
+      Script: {instanceID: 2864}
     - Class: 114
-      Script: {instanceID: 2846}
+      Script: {instanceID: 2916}
     - Class: 114
-      Script: {instanceID: 2946}
+      Script: {instanceID: 2932}
     - Class: 114
-      Script: {instanceID: 2974}
+      Script: {instanceID: 2956}
     - Class: 114
-      Script: {instanceID: 2978}
+      Script: {instanceID: 2990}
     - Class: 114
-      Script: {instanceID: 3000}
+      Script: {instanceID: 3018}
     - Class: 114
-      Script: {instanceID: 3016}
+      Script: {instanceID: 3142}
     - Class: 114
-      Script: {instanceID: 3042}
+      Script: {instanceID: 3144}
     - Class: 114
-      Script: {instanceID: 3076}
+      Script: {instanceID: 3248}
     - Class: 114
-      Script: {instanceID: 3106}
+      Script: {instanceID: 3376}
     - Class: 114
-      Script: {instanceID: 3230}
+      Script: {instanceID: 3474}
     - Class: 114
-      Script: {instanceID: 3232}
+      Script: {instanceID: 3494}
     - Class: 114
-      Script: {instanceID: 3250}
+      Script: {instanceID: 3656}
     - Class: 114
-      Script: {instanceID: 3338}
+      Script: {instanceID: 3724}
     - Class: 114
-      Script: {instanceID: 3468}
+      Script: {instanceID: 3890}
     - Class: 114
-      Script: {instanceID: 3566}
+      Script: {instanceID: 4196}
     - Class: 114
-      Script: {instanceID: 3586}
+      Script: {instanceID: 4248}
     - Class: 114
-      Script: {instanceID: 3752}
-    - Class: 114
-      Script: {instanceID: 3820}
-    - Class: 114
-      Script: {instanceID: 3994}
-    - Class: 114
-      Script: {instanceID: 4186}
-    - Class: 114
-      Script: {instanceID: 4314}
-    - Class: 114
-      Script: {instanceID: 4368}
+      Script: {instanceID: 99298}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -217,63 +201,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 258
       Script: {instanceID: 0}
-    - Class: 850595691
-      Script: {instanceID: 0}
-    Assets/01. Scenes/StartMenu.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1440}
-    - Class: 114
-      Script: {instanceID: 1442}
-    - Class: 114
-      Script: {instanceID: 1686}
-    - Class: 114
-      Script: {instanceID: 2292}
-    - Class: 114
-      Script: {instanceID: 2400}
-    - Class: 114
-      Script: {instanceID: 2556}
-    - Class: 114
-      Script: {instanceID: 2738}
-    - Class: 114
-      Script: {instanceID: 2820}
-    - Class: 114
-      Script: {instanceID: 3076}
-    - Class: 114
-      Script: {instanceID: 3842}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
   scriptHashData:
   - hash:
       serializedVersion: 2
@@ -301,7 +228,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 78f35fad08d659ab1787ef755780d165
+      Hash: dda766796a09a42be397406a2eb7aa66
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Inventory
@@ -361,12 +288,6 @@ ScriptsOnlyBuild:
     className: TMP_FontAsset
   - hash:
       serializedVersion: 2
-      Hash: 78f35fad08d659ab1787ef755780d165
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: QuickSlot
-  - hash:
-      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -391,7 +312,7 @@ ScriptsOnlyBuild:
     className: PlaymodeTestsController
   - hash:
       serializedVersion: 2
-      Hash: 1c773908f5f23c94d3829a235ad71723
+      Hash: df59e8b07a6cfe69164b28acf80434ed
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Slot
@@ -421,13 +342,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 6c2e809c4718812e816d67e6f44db5f9
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: FadeCtrl
-  - hash:
-      serializedVersion: 2
-      Hash: 2afd8b2184b42a6eab0e66f7e8329923
+      Hash: 4289ee4f2dc4f91d5290eddc81866eca
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -487,7 +402,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 6dce17cd8db0cfb0ef54b5769d744a5f
+      Hash: 49e795eb493010bfa0266e0dd7584283
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterCtrl
@@ -533,12 +448,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMesh
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DieText
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -589,12 +498,6 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: c7c424622b09ffb8c1195d5944239d70
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Skill
-  - hash:
-      serializedVersion: 2
       Hash: 3e918f2c2ce1b3d34111ac9a72789189
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -637,7 +540,7 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
-      Hash: 53f645c908a56bdcc49c0b3127ca6a49
+      Hash: ca1f9d26401524c1c7c38ae5753ac0ae
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerActionCtrl
@@ -697,12 +600,6 @@ ScriptsOnlyBuild:
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 6358413568381a9a5ba8720f40e4019b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SlotToolTip
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -751,7 +648,7 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: be7c58ece932a007a8001107d96fa9b9
+      Hash: fa1a023d94f7ffd10175dc6788f12e69
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FloatingTextCtrl
@@ -797,12 +694,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerSkillCtrl
   - hash:
       serializedVersion: 2
       Hash: ef5c43f921427d03730f6ea4c848f07d
@@ -859,12 +750,6 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 1c8e7ec12ebb9221f427878db0d1a0f1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SkillSlot
-  - hash:
-      serializedVersion: 2
       Hash: 8220b46879dc5e37db1b940c938f5744
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -893,8 +778,13 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterSpawnerCtrl
+  - hash:
+      serializedVersion: 2
+      Hash: 48ff737e6d6cb5f41237911e9e625ed3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SlotToolTip
   platform: 19
   scenePathNames:
   - Assets/01. Scenes/Stage.unity
-  - Assets/01. Scenes/StartMenu.unity
-  playerPath: C:/Users/Yang/Desktop/Dogablo/Dogablo.exe
+  playerPath: "C:/Users/admin/Desktop/Build/21.06.16_\uC791\uC5C5\uC9C0\uC2DC\uC11C.exe"

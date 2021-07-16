@@ -28,7 +28,7 @@ public class Status : MonoBehaviour
                 weaponSlot = slot;
         }
 
-        //itemDatebase.EquipItem(baseWeapon);
+        slots[0].AddItem(Resources.Load<Item>("ItemInfo/Sword1"));
     }
 
     void Update()

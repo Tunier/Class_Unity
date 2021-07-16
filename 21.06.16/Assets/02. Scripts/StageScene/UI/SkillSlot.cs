@@ -19,6 +19,9 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     [SerializeField]
     RectTransform QuickSkillSlotBase;
 
+    [SerializeField]
+    SkillSlotToolTip toolTip;
+
     void SetColorAlpha(float alpha)
     {
         Color color = skillImage.color;
@@ -47,39 +50,60 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         cooltimeText.text = "0";
         cooldownImage.SetActive(false);
     }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Å¬¸¯");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (skill != null)
+        {
+            DragSlot.instance.dragSkillSlot = this;
+            DragSlot.instance.DragSetImage(skillImage);
+            DragSlot.instance.transform.position = eventData.position;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        throw new System.NotImplementedException();
+        if (skill != null)
+            DragSlot.instance.transform.position = eventData.position;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        DragSlot.instance.SetColorAlpha(0);
+        DragSlot.instance.dragSkillSlot = null;
     }
 
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (DragSlot.instance.dragSkillSlot != null)
+            ChangeSlot();
+    }
+
+    private void ChangeSlot()
+    {
+        Skill _skill = skill;
+
+        AddSkillIcon(DragSlot.instance.dragSkillSlot.skill);
+
+        if (_skill != null)
+            DragSlot.instance.dragSkillSlot.AddSkillIcon(_skill);
+        else
+            DragSlot.instance.dragSkillSlot.ClearSlot();
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (skill != null)
+            toolTip.ShowToolTip(skill);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        toolTip.HideToolTip();
     }
 }

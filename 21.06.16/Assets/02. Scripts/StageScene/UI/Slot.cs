@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
+    public int itemId;
     public Item item;
     public int itemCount;
     public Image itemImage;
@@ -44,6 +45,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void AddItem(Item _item, int count = 1)
     {
+        itemId = _item.id;
         item = _item;
         itemCount = count;
         itemImage.sprite = item.itemImage;
@@ -73,6 +75,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     void ClearSlot()
     {
+        itemId = 0;
         item = null;
         itemCount = 0;
         itemImage.sprite = null;
@@ -295,7 +298,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             else
                 DragSlot.instance.dragSlot.ClearSlot();
         }
-
     }
 
     public void OnPointerEnter(PointerEventData eventData)

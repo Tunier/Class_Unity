@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class FloatingTextCtrl : MonoBehaviour
 {
-    public enum ColorType
-    {
-        BLACK,
-        RED,
-    }
-
     PlayerWeaponCtrl Pwp;
     MonsterCtrl mob;
 
@@ -31,10 +25,10 @@ public class FloatingTextCtrl : MonoBehaviour
         floatingText = GetComponent<Text>();
 
         Pwp = GameObject.Find("PlayerWeapon").GetComponent<PlayerWeaponCtrl>();
-
+        
         moveSpeed = 45f;
         alphaSpeed = 1.2f;
-        destroyTime = 1f;
+        destroyTime = 2f;
         offset = new Vector3(0, 60f, 0);
         v = 0f;
     }

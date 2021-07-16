@@ -19,6 +19,7 @@ public class Item : ScriptableObject
         Epic,
     }
 
+    public int id;
     public string itemName;
     [TextArea]
     public string itemDescription;

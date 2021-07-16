@@ -89,23 +89,26 @@ public class PlayerActionCtrl : MonoBehaviour
         }
     }
 
-    private void GetItem()
+    private void GetItem(int count = 1)
     {
         if (pickupActivated)
         {
-            inven.GetItem(neareastItem.GetComponent<ItemPickUp>().item);
-            if (inven.isFull)
-                qSlot.GetItem(neareastItem.GetComponent<ItemPickUp>().item);
-
-            if (inven.isFull && qSlot.isFull)
+            if (!inven.isFull)
             {
-                if (!actionText.gameObject.activeSelf)
-                    StartCoroutine(PrintActionText("¿Œ∫•≈‰∏Æ∞° ≤À√°Ω¿¥œ¥Ÿ."));
+                inven.GetItem(neareastItem.GetComponent<ItemPickUp>().item);
+                items.Remove(neareastItem);
+                Destroy(neareastItem);
+            }
+            else if (!qSlot.isFull)
+            {
+                qSlot.GetItem(neareastItem.GetComponent<ItemPickUp>().item);
+                items.Remove(neareastItem);
+                Destroy(neareastItem);
             }
             else
             {
-                items.Remove(neareastItem);
-                Destroy(neareastItem);
+                if (!actionText.gameObject.activeSelf)
+                    StartCoroutine(PrintActionText("¿Œ∫•≈‰∏Æ∞° ≤À√°Ω¿¥œ¥Ÿ."));
             }
         }
     }

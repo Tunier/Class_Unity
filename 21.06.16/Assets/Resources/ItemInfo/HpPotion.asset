@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efff0110e0064044a1e6f1aaa085cb2, type: 3}
   m_Name: HpPotion
   m_EditorClassIdentifier: 
+  id: 1
   itemName: HpPotion
   itemDescription: "Hp\uD3EC\uC158\nhp\uB97C 20 \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4."
   itemType: 1
