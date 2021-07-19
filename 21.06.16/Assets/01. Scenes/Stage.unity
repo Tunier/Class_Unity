@@ -18122,6 +18122,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HpBar
       objectReference: {fileID: 0}
+    - target: {fileID: 2276742502598938423, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276742503069386445, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2276742503069386445, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -18372,6 +18380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MpBar
       objectReference: {fileID: 0}
+    - target: {fileID: 2276742502598938423, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2276742503069386444, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -18382,6 +18394,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2276742503069386444, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2276742503069386445, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2276742503069386445, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
@@ -23032,7 +23048,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
