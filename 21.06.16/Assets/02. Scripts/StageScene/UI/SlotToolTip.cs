@@ -8,11 +8,11 @@ public class SlotToolTip : MonoBehaviour
     public GameObject baseImage;
 
     [SerializeField]
-    Text itemName;
+    Text itemNameText;
     [SerializeField]
-    Text itemDesc;
+    Text itemDescText;
     [SerializeField]
-    Text itemHouToUse;
+    Text itemHouToUseText;
 
     [SerializeField]
     RectTransform invenBase;
@@ -45,54 +45,43 @@ public class SlotToolTip : MonoBehaviour
     {
         baseImage.SetActive(true);
 
-        itemName.text = _item.itemName;
-        itemDesc.text = _item.itemDescription;
+        itemNameText.text = _item.itemName;
+        itemDescText.text = _item.itemDescription;
 
-        switch (_item.itemRarelity)
-        {
-            case Item.ItemRarelity.Common:
-                SetitemNameColor(Color.white);
-                break;
-            case Item.ItemRarelity.Rare:
-                SetitemNameColor(Color.blue);
-                break;
-            case Item.ItemRarelity.Epic:
-                SetitemNameColor(Color.yellow);
-                break;
-        }
+        SetItemNameColor(_item.itemRarelity);
 
         if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, Input.mousePosition))
         {
             if (_item.itemType == Item.ItemType.Equipment)
             {
-                itemHouToUse.text = "우클릭 - 장착";
+                itemHouToUseText.text = "우클릭 - 장착";
             }
             else if (_item.itemType == Item.ItemType.Used)
             {
-                itemHouToUse.text = "우클릭 - 사용";
+                itemHouToUseText.text = "우클릭 - 사용";
             }
             else
             {
-                itemHouToUse.text = "";
+                itemHouToUseText.text = "";
             }
         }
         else if (RectTransformUtility.RectangleContainsScreenPoint(statusBase, Input.mousePosition))
         {
-            itemHouToUse.text = "우클릭 - 장착해제";
+            itemHouToUseText.text = "우클릭 - 장착해제";
         }
         else if (RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, Input.mousePosition))
         {
             if (_item.itemType == Item.ItemType.Equipment)
             {
-                itemHouToUse.text = "우클릭 - 장착";
+                itemHouToUseText.text = "우클릭 - 장착";
             }
             else if (_item.itemType == Item.ItemType.Used)
             {
-                itemHouToUse.text = "우클릭 - 사용";
+                itemHouToUseText.text = "우클릭 - 사용";
             }
             else
             {
-                itemHouToUse.text = "";
+                itemHouToUseText.text = "";
             }
         }
         else
@@ -106,17 +95,35 @@ public class SlotToolTip : MonoBehaviour
         baseImage.SetActive(false);
     }
 
-    public void SetitemNameColor(Color _color)
+    ///<summary>
+    ///SetItemNameColor(아이템 레어리티)<br/>
+    ///아이템의 레어리티에 따라 아이템 이름 텍스트의 컬러를 바꿔줌.
+    ///</summary>
+    public void SetItemNameColor(Item.ItemRarelity itemRarelity)
     {
-        itemName.color = _color;
+        Color color;
+
+        switch (itemRarelity)
+        {
+            case Item.ItemRarelity.Common:
+                itemNameText.color = Color.white;
+                break;
+            case Item.ItemRarelity.Rare:
+                ColorUtility.TryParseHtmlString("#0078FF", out color);
+                itemNameText.color = color;
+                break;
+            case Item.ItemRarelity.Epic:
+                itemNameText.color = Color.yellow;
+                break;
+        }
     }
 
     public void SetitemDescColor(Color _color)
     {
-        itemDesc.color = _color;
+        itemDescText.color = _color;
     }
     public void SetitemHouToUseColor(Color _color)
     {
-        itemHouToUse.color = _color;
+        itemHouToUseText.color = _color;
     }
 }

@@ -42,10 +42,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -298,7 +296,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 6396e7b6d0978e20b6bcf46bd22fb038
+      Hash: 3d886cce0ab582b732674a3adf7c4638
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Item
@@ -460,7 +458,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: ef3a56a0cce02c479f00f040b845e6ff
+      Hash: 24315134276995aeaeeaea29041e5bdf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MonsterCtrl
@@ -688,7 +686,7 @@ ScriptsOnlyBuild:
     className: AudioPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 6358413568381a9a5ba8720f40e4019b
+      Hash: fa501183975e797d522126e7aae0e002
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SlotToolTip

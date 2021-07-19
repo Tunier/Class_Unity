@@ -45,7 +45,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void AddItem(Item _item, int count = 1)
     {
-        itemId = _item.id;
         item = _item;
         itemCount = count;
         itemImage.sprite = item.itemImage;
@@ -307,15 +306,18 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                     DragSlot.instance.dragSlot.ClearSlot();
                 }
             }
+            else
+            {
+                AddItem(DragSlot.instance.dragSlot.item, DragSlot.instance.dragSlot.itemCount);
+
+                DragSlot.instance.dragSlot.AddItem(_item, _itemCount);
+            }
         }
         else
         {
             AddItem(DragSlot.instance.dragSlot.item, DragSlot.instance.dragSlot.itemCount);
 
-            if (_item != null)
-                DragSlot.instance.dragSlot.AddItem(_item, _itemCount);
-            else
-                DragSlot.instance.dragSlot.ClearSlot();
+            DragSlot.instance.dragSlot.ClearSlot();
         }
     }
 

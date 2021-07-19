@@ -7296,6 +7296,11 @@ MonoBehaviour:
     part:
     - ATK
     num: 05000000
+  - itemName: Sword2
+    part:
+    - ATK
+    - DEX
+    num: 0700000001000000
   player: {fileID: 1373422330}
   pWp: {fileID: 1650534378}
   toolTip: {fileID: 2074776307}
@@ -15973,7 +15978,6 @@ MonoBehaviour:
   attackSpeed: 0
   critcalChance: 0
   resultDamage: 0
-  isCrit: 0
   hitable: 0
   infinityMpToggle: {fileID: 1441187837}
   hitmob: {fileID: 0}
@@ -22808,12 +22812,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseImage: {fileID: 642279158}
-  itemName: {fileID: 1875243845}
-  itemDesc: {fileID: 1010152432}
-  itemHouToUse: {fileID: 1600947556}
+  itemNameText: {fileID: 1875243845}
+  itemDescText: {fileID: 1010152432}
+  itemHouToUseText: {fileID: 1600947556}
   invenBase: {fileID: 1251219755}
   statusBase: {fileID: 905724100}
-  quickSlotBase: {fileID: 0}
+  quickSlotBase: {fileID: 782356661}
   RD_Offset: {x: 0, y: 0, z: 0}
   RU_Offset: {x: 0, y: 0, z: 0}
 --- !u!1001 &2078820906

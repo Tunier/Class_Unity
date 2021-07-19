@@ -1071,13 +1071,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74bf30f124486848aa9e4a5ac28dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item:
+  item:
   - {fileID: 8998276756215291238, guid: 85562ded60178ed4196742c2483afd2b, type: 3}
   - {fileID: 7771291906846981818, guid: f6bf0738595bb354ba6c8d7ef2a5cfab, type: 3}
   - {fileID: 1939247543488004404, guid: a12f752e2e27f524d8315ae82e620241, type: 3}
-  damageText: {fileID: 6807034069095506195, guid: eaef8f030f723a442ae57e46c5e95027, type: 3}
-  gm: {fileID: 0}
-  canvas: {fileID: 0}
+  - {fileID: 8910334213719886569, guid: 429f99a1ac550824e9b04206bbd0972b, type: 3}
   state: 0
   sName: 
   level: 1

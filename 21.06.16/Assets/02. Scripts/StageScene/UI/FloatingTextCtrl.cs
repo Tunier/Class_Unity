@@ -58,7 +58,7 @@ public class FloatingTextCtrl : MonoBehaviour
 
     public void SetDamageText(float _damage)
     {
-        floatingText.text = _damage.ToString();
+        floatingText.text = Mathf.RoundToInt(_damage) + "";
     }
 
     public void SetTextColor(Color _color)

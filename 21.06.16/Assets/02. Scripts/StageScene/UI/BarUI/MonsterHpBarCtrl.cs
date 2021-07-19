@@ -35,7 +35,7 @@ public class MonsterHpBarCtrl : MonoBehaviour
             UpdateHpSlider();
 
             mobName.text = "Lv." + mob.level + " " + mob.sName;
-            monsterHpText.text = mob.hp + " / " + mob.hpMax;
+            monsterHpText.text = Mathf.RoundToInt(mob.hp) + " / " + mob.hpMax;
         }
         else
         {

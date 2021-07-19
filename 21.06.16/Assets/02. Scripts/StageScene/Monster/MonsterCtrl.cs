@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class MonsterCtrl : MonoBehaviour
 {
-    public GameObject[] Item;
+    public GameObject[] item;
 
     public enum State
     {
@@ -223,11 +223,11 @@ public class MonsterCtrl : MonoBehaviour
     void DropItem()
     {
         float itemDropChance = Random.Range(1f, 100f); // 플롯값은 1과 100 모두 포함.
-        int itemType = Random.Range(0, 3);
+        int itemType = Random.Range(0, item.Length); // 인트값 계산이라 1더해줌
 
         if (itemDropChance >= 30f)
         {
-            var obj = Instantiate(Item[itemType], tr.position, Quaternion.identity);
+            var obj = Instantiate(item[itemType], tr.position, Quaternion.identity);
 
             obj.transform.Translate(new Vector3(0, 0.85f, 0));
         }
