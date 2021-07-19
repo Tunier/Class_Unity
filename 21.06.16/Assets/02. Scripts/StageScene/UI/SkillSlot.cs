@@ -29,10 +29,12 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillImage.color = color;
     }
 
-    public void AddSkillIcon(Skill _skill)
+    public void AddSkillIcon(Skill _skill, float curCooltime)
     {
         skill = _skill;
         skillImage.sprite = _skill.skillImage;
+        skillCooltime = _skill.coolTime;
+        currentSkillCoolTime = curCooltime;
 
         // 해당 스킬이 쿨타임 이라면 쿨타임 이미지를 active 시키고
         // 쿨타임 표시 되게 하는 기능 넣어야함.
@@ -43,12 +45,27 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     void ClearSlot()
     {
         skill = null;
-        skillCooltime = 0;
+        skillCooltime = 0f;
+        currentSkillCoolTime = 0f;
         skillImage.sprite = null;
         SetColorAlpha(0);
 
         cooltimeText.text = "0";
         cooldownImage.SetActive(false);
+    }
+
+    private void Update()
+    {
+        cooldownImage.SetActive(currentSkillCoolTime > 0f ? true : false);
+
+        if (currentSkillCoolTime > 0f)
+            currentSkillCoolTime -= Time.deltaTime;
+        else if (currentSkillCoolTime < 0f)
+            currentSkillCoolTime = 0f;
+
+        cooltimeText.text = currentSkillCoolTime.ToString("F0");
+
+        cooldownImage.GetComponent<Image>().fillAmount = currentSkillCoolTime / skillCooltime;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -87,11 +104,12 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private void ChangeSlot()
     {
         Skill _skill = skill;
+        float curCoolTime = currentSkillCoolTime;
 
-        AddSkillIcon(DragSlot.instance.dragSkillSlot.skill);
+        AddSkillIcon(DragSlot.instance.dragSkillSlot.skill, DragSlot.instance.dragSkillSlot.currentSkillCoolTime);
 
         if (_skill != null)
-            DragSlot.instance.dragSkillSlot.AddSkillIcon(_skill);
+            DragSlot.instance.dragSkillSlot.AddSkillIcon(_skill, curCoolTime);
         else
             DragSlot.instance.dragSkillSlot.ClearSlot();
     }

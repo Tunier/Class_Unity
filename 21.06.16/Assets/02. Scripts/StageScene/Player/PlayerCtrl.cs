@@ -17,8 +17,10 @@ public class PlayerCtrl : MonoBehaviour
     public int level = 1;
     public float hp;
     public float hpMax;
+    public float hpRegen;
     public float mp;
     public float mpMax;
+    public float mpRegen;
     public float exp;
     public float expMax;
     public float str;
@@ -29,7 +31,10 @@ public class PlayerCtrl : MonoBehaviour
     public float critcalChance;
     public float resultDamage;
 
+    public bool isCrit;
     public bool hitable;
+
+    public MonsterCtrl hitmob = null;
 
     Ray ray;
 
@@ -45,11 +50,9 @@ public class PlayerCtrl : MonoBehaviour
     Animator ani;
 
     public GameObject playerWeapon;
-    Status status;
 
     Vector3 movement = Vector3.zero; // 이동시 백터 받아오는값
     Vector3 AttackMovement = Vector3.zero; // 공격시 움직이는 백터 받아오는값
-    Vector3 hitMovement = Vector3.zero; // 피격시 이동하는 백터값
 
     Vector3 mousePos; // 마우스 백터 받아옴    
 
@@ -67,8 +70,6 @@ public class PlayerCtrl : MonoBehaviour
         tr = GetComponent<Transform>();
         ani = GetComponent<Animator>();
 
-        status = FindObjectOfType<Status>();
-
         ray = new Ray();
 
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
@@ -76,8 +77,10 @@ public class PlayerCtrl : MonoBehaviour
         level = 1;//PlayerPrefs.GetInt("PlayerLevel");
         hp = 50;
         hpMax = 50;
+        hpRegen = 0.5f;
         mp = 20;
         mpMax = 20;
+        mpRegen = 1f;
         exp = 0;
         expMax = level * 100 + 100;
         str = (level - 1) * 5 + 10;
@@ -88,6 +91,8 @@ public class PlayerCtrl : MonoBehaviour
         moveSpeed = 4f;
         AttackingMoveLeagth = moveSpeed * 0.02f;
 
+        hitable = true;
+
         StartCoroutine(CheckState());
     }
 
@@ -97,16 +102,15 @@ public class PlayerCtrl : MonoBehaviour
         {
             if ((state != State.HIT) && (state != State.DIE) && !GameManager.instance.isPause)
             {
-                hitable = true;
-
                 if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && state != State.ATTACK)
-                    SetState(State.MOVE);
+                    state = State.MOVE;
                 else if (h == 0 && v == 0)
-                    SetState(State.IDLE);
+                    state = State.IDLE;
+
                 if (!EventSystem.current.IsPointerOverGameObject()) // UI클릭시 동작 안하게함.
                 {
                     if (Input.GetButton("Fire1"))
-                        SetState(State.ATTACK);
+                        state = State.ATTACK;
                 }
             }
 
@@ -161,11 +165,6 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void SetState(State s)
-    {
-        state = s;
-    }
-
     void SetPlayerRotate()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -196,10 +195,14 @@ public class PlayerCtrl : MonoBehaviour
     {
         SetPlayerMovement();
         SetPlayerRotate();
+
         if (hp > hpMax)
             hp = hpMax;
         if (mp > mpMax)
             mp = mpMax;
+
+        hp += hpRegen * Time.deltaTime;
+        mp += mpRegen * Time.deltaTime;
     }
 
     public void Attacking()
@@ -216,13 +219,13 @@ public class PlayerCtrl : MonoBehaviour
     {
         state = State.IDLE;
         ani.SetBool(hashAttack, false);
-        playerWeapon.GetComponent<PlayerWeaponCtrl>().ClearMobList();
+        playerWeapon.GetComponent<PlayerWeaponCtrl>().mobList.Clear();
     }
 
     public void Hit(float damage)
     {
         hitable = false;
-        SetState(State.HIT);
+        state = State.HIT;
 
         if (hp > 0)
         {
@@ -234,7 +237,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         ani.SetBool(hashHit, false);
         hitable = true;
-        SetState(State.IDLE);
+        state = State.IDLE;
     }
 
     void LevelUp()
@@ -258,6 +261,22 @@ public class PlayerCtrl : MonoBehaviour
 
     public void Die()
     {
-        SetState(State.DIE);
+        state = State.DIE;
+    }
+
+    public bool CritCal()
+    {
+        int critcalRandom = Random.Range(0, 100);
+
+        if (critcalRandom >= 100 - critcalChance)
+        {
+            isCrit = true;
+        }
+        else
+        {
+            isCrit = false;
+        }
+
+        return isCrit;
     }
 }

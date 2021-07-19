@@ -18,6 +18,23 @@ public class GameManager : MonoBehaviour
     int maxPool = 10;
     public List<GameObject> bulletpool = new List<GameObject>();
 
+    bool isPaused;
+
+    public void OnPauseClick()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+
+        var PlayerObj = GameObject.FindGameObjectWithTag("PLAYER");
+        var scripts = PlayerObj.GetComponents<MonoBehaviour>();
+        foreach (var script in scripts)
+        {
+            script.enabled = !isPaused;
+        }
+
+        var canvasGroup = GameObject.Find("Panel-Weapon").GetComponent<CanvasGroup>();
+        canvasGroup.blocksRaycasts = !isPaused;
+    }
 
     private void Awake()
     {
@@ -69,11 +86,6 @@ public class GameManager : MonoBehaviour
             obj.SetActive(false);
             bulletpool.Add(obj);
         }
-    }
-
-    void Update()
-    {
-
     }
 
     IEnumerator CreateEnemy()

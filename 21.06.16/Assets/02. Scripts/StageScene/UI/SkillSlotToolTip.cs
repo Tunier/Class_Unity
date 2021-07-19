@@ -8,11 +8,13 @@ public class SkillSlotToolTip : MonoBehaviour
     public GameObject baseImage;
 
     [SerializeField]
-    Text skillName;
+    Text skillNameAndLvText;
     [SerializeField]
-    Text skillLv;
+    Text coolTimeText;
     [SerializeField]
     Text skillDesc;
+    [SerializeField]
+    Text mpCostText;
 
     [SerializeField]
     RectTransform QuickSkillSlot;
@@ -46,23 +48,14 @@ public class SkillSlotToolTip : MonoBehaviour
     {
         baseImage.SetActive(true);
 
-        skillName.text = _skill.skillName;
-        skillLv.text = "Lv : 0";
+        skillNameAndLvText.text = _skill.skillName + "(1레벨)";
+        coolTimeText.text = "쿨타임 : " + _skill.coolTime;
         skillDesc.text = _skill.skillDescription;
+        mpCostText.text = "마나 : " + _skill.mpCost;
     }
 
     public void HideToolTip()
     {
         baseImage.SetActive(false);
-    }
-
-    public void SetitemNameColor(Color _color)
-    {
-        skillName.color = _color;
-    }
-
-    public void SetitemDescColor(Color _color)
-    {
-        skillDesc.color = _color;
     }
 }

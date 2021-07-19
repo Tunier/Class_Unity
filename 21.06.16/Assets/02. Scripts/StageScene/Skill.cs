@@ -18,4 +18,8 @@ public class Skill : ScriptableObject
 
     public Sprite skillImage;
     public GameObject skillPrefab;
+
+    public float coolTime;
+
+    public float mpCost;
 }

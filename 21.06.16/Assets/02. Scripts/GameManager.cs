@@ -15,10 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseCanvas;
     public GameObject statusUI;
     public GameObject inventoryUI;
-    FadeCtrl fadectrl;
 
     ItemEffectDatebase database;
-    Status status;
 
     [SerializeField]
     RectTransform invenBase;
@@ -49,15 +47,13 @@ public class GameManager : MonoBehaviour
             if (instance != this)
                 Destroy(gameObject);
         }
-        
     }
+
     private void Start()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
-        fadectrl = FindObjectOfType<FadeCtrl>();
 
         mobList = new List<GameObject>();
-        status = FindObjectOfType<Status>();
         database = FindObjectOfType<ItemEffectDatebase>();
         quickSlots = quickSlotParent.GetComponentsInChildren<Slot>();
 
@@ -102,59 +98,41 @@ public class GameManager : MonoBehaviour
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
 
-            if (Input.mousePosition.y >= toolTip.baseImage.GetComponent<RectTransform>().rect.height)
-            {
-                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(invenBase, toolTip.baseImage.transform.position - toolTip.RD_Offset))
-                    toolTip.HideToolTip();
-            }
-            else
-            {
-                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, toolTip.baseImage.transform.position - toolTip.RU_Offset))
-                    toolTip.HideToolTip();
-            }
-
+            if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(invenBase, Input.mousePosition))
+                toolTip.HideToolTip();
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        else if (Input.GetKeyDown(KeyCode.O))
         {
             statusUI.SetActive(!statusUI.activeSelf);
 
-            if (Input.mousePosition.y >= toolTip.baseImage.GetComponent<RectTransform>().rect.height)
-            {
-                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(invenBase, toolTip.baseImage.transform.position - toolTip.RD_Offset))
-                    toolTip.HideToolTip();
-            }
-            else
-            {
-                if (!inventoryUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, toolTip.baseImage.transform.position - toolTip.RU_Offset))
-                    toolTip.HideToolTip();
-            }
+            if (!statusUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, Input.mousePosition))
+                toolTip.HideToolTip();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPause = !isPause;
         }
-        if (Input.GetKeyDown(KeyCode.F10))
+        else if (Input.GetKeyDown(KeyCode.F10))
         {
             isPause = !isPause;
         }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             QuickSlotUseItem(0);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             QuickSlotUseItem(1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             QuickSlotUseItem(2);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             QuickSlotUseItem(3);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             QuickSlotUseItem(4);
         }

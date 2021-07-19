@@ -108,4 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e9d3dcffb09fa4db72b86e8dadebdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageText: {fileID: 6807034069095506195}
+  backCanvas: {fileID: 0}
   damage: 0

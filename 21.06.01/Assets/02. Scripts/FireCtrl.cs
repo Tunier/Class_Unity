@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -43,6 +44,16 @@ public class FireCtrl : MonoBehaviour
     public float reloadTime = 2f;
     bool isReloading = false;
 
+    public Sprite[] weaponIcons;
+    public Image weaponImage;
+
+    public void OnChangeWeapon()
+    {
+        currWeapon++;
+        currWeapon = (WeaponType)((int)currWeapon % 2);
+        weaponImage.sprite = weaponIcons[(int)currWeapon];
+    }
+
     void Start()
     {
         muzzleFlash = firePos.GetComponentInChildren<ParticleSystem>(muzzleFlash);
@@ -52,6 +63,8 @@ public class FireCtrl : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
         // 0이면 좌클린 1이면 우클릭
         // GetMouseButtonDown 함수는 눌렀을때 한번만 동작.
         if (!isReloading && Input.GetMouseButtonDown(0))
@@ -95,7 +108,7 @@ public class FireCtrl : MonoBehaviour
         UpdateBulletText();
 
         if (remainingBullet == 0)
-        { 
+        {
             StartCoroutine(Reloading());
         }
     }

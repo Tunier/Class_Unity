@@ -7,9 +7,6 @@ using UnityEngine.AI;
 public class MonsterCtrl : MonoBehaviour
 {
     public GameObject[] Item;
-    public GameObject damageText;
-    public Canvas canvas;
-    PlayerWeaponCtrl Pwp;
 
     public enum State
     {
@@ -54,8 +51,6 @@ public class MonsterCtrl : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
-        canvas = GameObject.Find("BackCanvas").GetComponent<Canvas>();
-        Pwp = GameObject.FindWithTag("PLAYERWEAPON").GetComponent<PlayerWeaponCtrl>();
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -157,7 +152,6 @@ public class MonsterCtrl : MonoBehaviour
         if (hp > 0)
         {
             hp -= damage;
-            PrintDamageText(damage);
         }
 
         if (hp < 0)
@@ -171,15 +165,6 @@ public class MonsterCtrl : MonoBehaviour
             Hit(damage);
             yield return new WaitForSeconds(delay);
         }
-    }
-
-    public void PrintDamageText(float damage)
-    {
-        GameObject obj = Instantiate(damageText, canvas.gameObject.transform);
-
-        obj.GetComponent<FloatingTextCtrl>().SetDamage(damage);
-        if (Pwp.isCrit)
-            obj.GetComponent<FloatingTextCtrl>().SetTextColor(Color.red);
     }
 
     public virtual void Die()

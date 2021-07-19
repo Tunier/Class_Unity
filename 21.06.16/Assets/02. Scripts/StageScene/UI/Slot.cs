@@ -250,6 +250,25 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         inputNumber.Call();
             }
         }
+        else
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
+            {
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
+            else
+            {
+                if (DragSlot.instance.dragSlot != null)
+                    if (DragSlot.instance.dragSlot.itemCount <= 1)
+                    {
+                        DragSlot.instance.SetColorAlpha(0);
+                        StartCoroutine(inputNumber.DropItemCoruntine(1));
+                    }
+                    else
+                        inputNumber.Call();
+            }
+        }
     }
 
     // 드레그해서 드롭했을경우 슬롯두개 내용물을 바꿔줌, 비어있으면 넣어만줌.

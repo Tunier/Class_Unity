@@ -13,7 +13,7 @@ public class MonsterSpawnerCtrl : MonoBehaviour
 
     int spawnMobLevel;
 
-    Vector3 mobPos; // x -13 -3 z 6 17
+    Vector3 mobPos; // x -13 ~ -3 / z 6 ~ 17
 
     void Start()
     {

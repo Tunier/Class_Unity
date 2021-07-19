@@ -34,9 +34,9 @@ public class PlayerUIBarCtrl : MonoBehaviour
         UpdateMpSlider();
         UpdateExpSlider();
 
-        hpText.text = player.hp + " / " + player.hpMax;
-        mpText.text = player.mp + " / " + player.mpMax;
-        expText.text = player.exp + " / " + player.expMax;
+        hpText.text = (player.hp).ToString("F0") + " / " + player.hpMax;
+        mpText.text = (player.mp).ToString("F0") + " / " + player.mpMax;
+        expText.text = (player.exp).ToString("F0") + " / " + player.expMax;
     }
 
     void UpdateHpSlider()

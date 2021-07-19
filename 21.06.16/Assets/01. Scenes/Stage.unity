@@ -1787,7 +1787,7 @@ GameObject:
   - component: {fileID: 185166484}
   - component: {fileID: 185166483}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: NameAndLvText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1807,9 +1807,9 @@ RectTransform:
   m_Father: {fileID: 775856388}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75, y: -15}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -15}
   m_SizeDelta: {x: 80, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &185166483
@@ -1845,7 +1845,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Name
+  m_Text: Name (Lv)
 --- !u!222 &185166484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3347,6 +3347,85 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9d997aae7f6d46645aa003219f26a50f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d07f983f52b4e39459ade3e25d164ec6, type: 3}
+--- !u!1 &333521028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 333521029}
+  - component: {fileID: 333521031}
+  - component: {fileID: 333521030}
+  m_Layer: 5
+  m_Name: MpCostText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &333521029
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333521028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 775856388}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 9.7, y: -25}
+  m_SizeDelta: {x: 50, y: 18}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &333521030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333521028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d8fc179a11a32ad43acdba1f2a125ef8, type: 3}
+    m_FontSize: 11
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\uB9C8\uB098 : 20"
+--- !u!222 &333521031
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333521028}
+  m_CullTransparentMesh: 1
 --- !u!1 &339201269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5607,7 +5686,7 @@ RectTransform:
   - {fileID: 1084101577}
   - {fileID: 91745252}
   m_Father: {fileID: 1192008145}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7174,7 +7253,6 @@ MonoBehaviour:
   skillEffects:
   - skillName: ShockWave
   - skillName: LightningBolt
-  shockwavePrefeb: {fileID: 1833671049391301048, guid: 9d9125f27f1d32b4aa6b94bb85ab86bc, type: 3}
 --- !u!224 &612688955 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2276742502598938420, guid: 99afb8bfb01bdd44d97fb1be69b68a72, type: 3}
@@ -7633,7 +7711,7 @@ RectTransform:
   - {fileID: 1177931675}
   - {fileID: 1960627070}
   m_Father: {fileID: 1192008145}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8235,7 +8313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 37.304, y: -30.025, z: -18.272}
 --- !u!1 &710929807 stripped
 GameObject:
@@ -8841,13 +8919,14 @@ RectTransform:
   - {fileID: 185166482}
   - {fileID: 1776265370}
   - {fileID: 1935209318}
+  - {fileID: 333521029}
   m_Father: {fileID: 1159355230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 120}
+  m_SizeDelta: {x: 170, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775856389
 MonoBehaviour:
@@ -8926,7 +9005,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 225, y: 45}
+  m_SizeDelta: {x: 240, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &782356662
 MonoBehaviour:
@@ -9592,6 +9671,7 @@ GameObject:
   - component: {fileID: 896266699}
   - component: {fileID: 896266698}
   - component: {fileID: 896266697}
+  - component: {fileID: 896266701}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -9615,7 +9695,6 @@ MonoBehaviour:
   hpBarSlider: {fileID: 2276742502070624174}
   mobName: {fileID: 2128263129}
   monsterHpText: {fileID: 1177579959}
-  Pwp: {fileID: 1650534378}
 --- !u!114 &896266698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9669,6 +9748,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &896266701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896266696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c87d3de74ae7140a643f33f881d37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backCanvas: {fileID: 1392225747}
+  floatingText: {fileID: 6807034069095506195, guid: eaef8f030f723a442ae57e46c5e95027, type: 3}
+  actionText: {fileID: 766024991}
 --- !u!1 &905724099
 GameObject:
   m_ObjectHideFlags: 0
@@ -11950,9 +12044,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseImage: {fileID: 775856387}
-  skillName: {fileID: 185166483}
-  skillLv: {fileID: 1776265371}
+  skillNameAndLvText: {fileID: 185166483}
+  coolTimeText: {fileID: 1776265371}
   skillDesc: {fileID: 1935209320}
+  mpCostText: {fileID: 333521030}
   QuickSkillSlot: {fileID: 1027094509}
 --- !u!1001 &1160072170
 PrefabInstance:
@@ -12742,8 +12837,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 643770169}
   - {fileID: 466755474}
+  - {fileID: 643770169}
   m_Father: {fileID: 1935837819}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13840,7 +13935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2066896392038131574, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14186,6 +14281,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 3951229398020017800, guid: 45288819fde2143449a96207b14db0bb, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 3951229398020017800, guid: 45288819fde2143449a96207b14db0bb, type: 3}
       propertyPath: m_Name
       value: PlayerWeapon
@@ -15289,8 +15388,10 @@ MonoBehaviour:
   level: 0
   hp: 0
   hpMax: 0
+  hpRegen: 0
   mp: 0
   mpMax: 0
+  mpRegen: 0
   exp: 0
   expMax: 0
   str: 0
@@ -15299,7 +15400,9 @@ MonoBehaviour:
   attackSpeed: 0
   critcalChance: 0
   resultDamage: 0
+  isCrit: 0
   hitable: 0
+  hitmob: {fileID: 0}
   state: 0
   moveSpeed: 3
   AttackingMoveLeagth: 1
@@ -15321,7 +15424,6 @@ MonoBehaviour:
   items: []
   inven: {fileID: 1345817985}
   qSlot: {fileID: 339201271}
-  actionText: {fileID: 766024991}
 --- !u!114 &1373422334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15334,6 +15436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02b87d0a6513e443a51420379f15304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1373422330}
   datebase: {fileID: 611714826}
   qSkillSlot: {fileID: 823757840}
   playerSkills: []
@@ -16491,7 +16594,7 @@ Transform:
   - {fileID: 188952813}
   - {fileID: 824522152}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1503176518 stripped
 GameObject:
@@ -18426,7 +18529,6 @@ MonoBehaviour:
   hitmob: {fileID: 0}
   mobList: []
   weaponDamage: 0
-  isCrit: 0
 --- !u!136 &1650534380
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19409,7 +19511,7 @@ GameObject:
   - component: {fileID: 1776265372}
   - component: {fileID: 1776265371}
   m_Layer: 5
-  m_Name: SkillLvText
+  m_Name: CoolTimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19429,11 +19531,11 @@ RectTransform:
   m_Father: {fileID: 775856388}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -11.3, y: 77}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -17.1, y: -25}
   m_SizeDelta: {x: 35, y: 18}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &1776265371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19465,9 +19567,9 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Lv : 0'
+  m_Text: "\uCFE8\uD0C0\uC784 : 00\uCD08"
 --- !u!222 &1776265372
 CanvasRenderer:
   m_ObjectHideFlags: 0

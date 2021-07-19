@@ -17,3 +17,5 @@ MonoBehaviour:
   skillDescription: "\uB77C\uC774\uD2B8\uB2DD \uBCFC\uD2B8"
   skillImage: {fileID: 21300000, guid: cc1940d6befa78a44aaa92ecf8644d76, type: 3}
   skillPrefab: {fileID: 0}
+  coolTime: 10
+  mpCost: 10

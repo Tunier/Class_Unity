@@ -17,8 +17,8 @@ public class QuickSkillSlot : MonoBehaviour
 
     private void Start()
     {
-        slots[0].AddSkillIcon(Resources.Load<Skill>("Skill_Info/LightningBolt"));
-        slots[1].AddSkillIcon(Resources.Load<Skill>("Skill_Info/ShockWave")); // 임시로 스킬 추가
+        slots[0].AddSkillIcon(Resources.Load<Skill>("Skill_Info/ShockWave"),0); // 임시 스킬 추가
+        slots[1].AddSkillIcon(Resources.Load<Skill>("Skill_Info/LightningBolt"),0); // 임시 스킬 추가
     }
 
     void Update()

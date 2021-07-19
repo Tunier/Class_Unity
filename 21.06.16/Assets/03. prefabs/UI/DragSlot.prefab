@@ -321,4 +321,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragSlot: {fileID: 0}
-  imageItem: {fileID: 3982819555009282562}
+  dragSkillSlot: {fileID: 0}
+  image: {fileID: 3982819555009282562}

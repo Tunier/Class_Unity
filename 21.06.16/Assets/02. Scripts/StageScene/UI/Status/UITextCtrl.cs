@@ -32,6 +32,4 @@ public class UITextCtrl : MonoBehaviour
         defText.text = "Def : " + Mathf.Round(player.def);
         critText.text = "Crit : " + player.critcalChance + " %";
     }
-
-    
 }

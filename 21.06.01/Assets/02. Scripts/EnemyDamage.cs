@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class EnemyDamage : MonoBehaviour
     float hp = 100f; // 체력
     GameObject bloodEffect; // 혈흔 효과 변수
 
+    float initHp = 100f;
+    public GameObject hpBarPrefab;
+    public Vector3 hpBaroffset = new Vector3(0, 2.2f, 0);
+    Canvas uiCanvas;
+    Image hpBarImage;
+
     void Start()
     {
         // Load 함수는 예약폴더인 Resources 에서 데이터를 불러오는 함수임
@@ -16,6 +23,18 @@ public class EnemyDamage : MonoBehaviour
         // 최상위 경로는 Resources 폴더임 ex) C 드라이브
         // 파일의 경로는 하위 폴더명 + 파일명까지 정확하게 풀경로를 명시.
         bloodEffect = Resources.Load<GameObject>("Blood");
+        SetHpBar();
+    }
+
+    void SetHpBar()
+    {
+        uiCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
+        var hpBar = Instantiate(hpBarPrefab, uiCanvas.transform);
+        hpBarImage = hpBar.GetComponentsInChildren<Image>()[1];
+
+        var _hpBar = hpBar.GetComponent<EnemyHpBar>();
+        _hpBar.targetTr = gameObject.transform;
+        _hpBar.offset = hpBaroffset;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,11 +48,14 @@ public class EnemyDamage : MonoBehaviour
             collision.gameObject.SetActive(false);
 
             hp -= collision.gameObject.GetComponent<BulletCtrl>().damage;
+
+            hpBarImage.fillAmount = hp / initHp;
             // 체력이 0 이하가 되면 적이 죽었다고 판단.
             if (hp <= 0)
             {
                 // 상태 변환 해줌.
                 GetComponent<EnemyAI>().state = EnemyAI.State.DIE;
+                hpBarImage.GetComponentInParent<Image>().color = Color.clear;
             }
         }
     }

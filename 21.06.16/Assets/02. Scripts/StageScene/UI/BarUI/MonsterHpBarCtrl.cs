@@ -10,19 +10,25 @@ public class MonsterHpBarCtrl : MonoBehaviour
     public Text mobName;
     public Text monsterHpText;
 
-    public PlayerWeaponCtrl Pwp;
+    PlayerCtrl player;
     MonsterCtrl mob;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerCtrl>();
+
         hpBar.SetActive(false);
     }
 
     void LateUpdate()
     {
-        if (Pwp.hitmob != null)
+        if (player.hitmob != null)
         {
-            mob = Pwp.hitmob;
+            if (player.hitmob != mob)
+            {
+                mob = player.hitmob;
+                hpBarSlider.value = 100f;
+            }
 
             hpBar.SetActive(true);
 

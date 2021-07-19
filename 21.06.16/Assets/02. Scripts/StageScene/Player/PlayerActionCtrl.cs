@@ -23,9 +23,6 @@ public class PlayerActionCtrl : MonoBehaviour
 
     GameObject neareastItem = null;
 
-    [SerializeField]
-    Text actionText;
-
     private void Awake()
     {
         items = new List<GameObject>();
@@ -107,22 +104,13 @@ public class PlayerActionCtrl : MonoBehaviour
             }
             else
             {
-                if (!actionText.gameObject.activeSelf)
-                    StartCoroutine(PrintActionText("¿Œ∫•≈‰∏Æ∞° ≤À√°Ω¿¥œ¥Ÿ."));
+                if (!UIManager.instance.actionText.gameObject.activeSelf)
+                    StartCoroutine(UIManager.instance.PrintActionText("¿Œ∫•≈‰∏Æ∞° ≤À√°Ω¿¥œ¥Ÿ."));
             }
         }
     }
 
-    public IEnumerator PrintActionText(string _string)
-    {
-        actionText.text = _string;
-        actionText.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(3f);
-
-        actionText.gameObject.SetActive(false);
-        actionText.text = "";
-    }
+    
 
     void DeleteNullSlot()
     {

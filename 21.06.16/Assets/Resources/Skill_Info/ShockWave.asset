@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: ShockWave
   skilltype: 0
-  skillDescription: "\uC1FC\uD06C\uC6E8\uC774\uBE0C!\n\uB450\uC904\n\uC138\uC904\n\uB124\uC904"
+  skillDescription: "\uC1FC\uD06C\uC6E8\uC774\uBE0C!"
   skillImage: {fileID: 21300000, guid: 722910fa548e24147bb10a7d090ea24b, type: 3}
-  skillPrefab: {fileID: 0}
+  skillPrefab: {fileID: 1833671049391301048, guid: 9d9125f27f1d32b4aa6b94bb85ab86bc, type: 3}
+  coolTime: 2
+  mpCost: 10
