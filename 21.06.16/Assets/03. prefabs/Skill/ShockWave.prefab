@@ -95,7 +95,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1833671049391301051
 MonoBehaviour:
@@ -109,7 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da9c88c4b6d9ea4a8a72d3195a33321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobList: []
   moveSpeed: 3
+  damageFactor: 0
+  attackTimes: 0
 --- !u!54 &1833671049391301050
 Rigidbody:
   m_ObjectHideFlags: 0

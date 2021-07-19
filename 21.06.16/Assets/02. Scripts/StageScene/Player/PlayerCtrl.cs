@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -31,8 +32,10 @@ public class PlayerCtrl : MonoBehaviour
     public float critcalChance;
     public float resultDamage;
 
-    public bool isCrit;
     public bool hitable;
+
+    [SerializeField]
+    Toggle infinityMpToggle; // 옵션에서 마나 무한 켜져있는지 받아오는데 사용함.
 
     public MonsterCtrl hitmob = null;
 
@@ -165,6 +168,9 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
+    ///<summary>
+    ///마우스 커서가 있는 방향으로 플레이어를 회전시킴.
+    ///</summary>
     void SetPlayerRotate()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -178,6 +184,9 @@ public class PlayerCtrl : MonoBehaviour
         tr.forward = mousePos;
     }
 
+    ///<summary>
+    ///키보드 입력을 받아서 플레이어를 이동시킴.
+    ///</summary>
     void SetPlayerMovement()
     {
         h = Input.GetAxis("Horizontal");
@@ -191,6 +200,10 @@ public class PlayerCtrl : MonoBehaviour
             AttackMovement = Vector3.zero;
     }
 
+    ///<summary>
+    ///SetPlayerMoveMent 함수, SetPlayerRotate 함수와<br/>
+    ///수치 최대 최소값 제한, hp,mp 리젠 등 플레이에 필요한 부분 실행. 
+    ///</summary>
     void Playing()
     {
         SetPlayerMovement();
@@ -198,23 +211,40 @@ public class PlayerCtrl : MonoBehaviour
 
         if (hp > hpMax)
             hp = hpMax;
+        else if (hp < 0)
+            hp = 0;
+
         if (mp > mpMax)
+            mp = mpMax;
+        else if (mp < 0)
+            mp = 0;
+
+        if (infinityMpToggle.isOn)
             mp = mpMax;
 
         hp += hpRegen * Time.deltaTime;
         mp += mpRegen * Time.deltaTime;
     }
 
+    ///<summary>
+    ///에니메이션 이벤트에 붙어있다. 검을 앞으로 휘두루기 시작할때 호출.
+    ///</summary>
     public void Attacking()
     {
         playerWeapon.GetComponent<Collider>().enabled = true;
     }
 
+    ///<summary>
+    ///에니메이션 이벤트에 붙어있다. 검을 휘두른후 회수할때부터 콜라이더를 끄기 위하여 사용.
+    ///</summary>
     public void EndAttacking()
     {
         playerWeapon.GetComponent<Collider>().enabled = false;
     }
 
+    ///<summary>
+    ///에니메이션 이벤트에 붙어있다. 검 회수가 끝나면 호출.
+    ///</summary>
     public void EndAttackMotion()
     {
         state = State.IDLE;
@@ -222,24 +252,35 @@ public class PlayerCtrl : MonoBehaviour
         playerWeapon.GetComponent<PlayerWeaponCtrl>().mobList.Clear();
     }
 
+    ///<summary>
+    ///Hit(데미지, 크리티컬인지 아닌지)
+    ///</summary>
     public void Hit(float damage)
     {
         hitable = false;
         state = State.HIT;
 
-        if (hp > 0)
+        hp -= damage;
+
+        if (hp <= 0)
         {
-            hp -= damage;
+            Die();
         }
     }
 
-    void EndHit()
+    // 에니메이션 이벤트에 붙어있다.
+    public void EndHit()
     {
         ani.SetBool(hashHit, false);
         hitable = true;
         state = State.IDLE;
     }
 
+
+    ///<summary>
+    ///경험치를 레벨업에 필요한 경험치만큼 빼고, 레벨업에 필요한 경험치량 증가시킨후 레벨업 시킴.<br/>
+    ///그후 여러가지 스텟들 증가.
+    ///</summary>
     void LevelUp()
     {
         exp -= expMax;
@@ -249,7 +290,7 @@ public class PlayerCtrl : MonoBehaviour
         dex = (level - 1) * 2.5f + 5;
         hpMax += 10;
         hp = hpMax;
-        mpMax += 10;
+        mpMax += 5;
         mp = mpMax;
 #if UNITY_EDITOR
 
@@ -261,11 +302,18 @@ public class PlayerCtrl : MonoBehaviour
 
     public void Die()
     {
+        StopAllCoroutines();
+
         state = State.DIE;
     }
 
+    ///<summary>
+    ///크리티컬이 떴는지 계산해서 Bool값 반환해줌.
+    ///</summary>
     public bool CritCal()
     {
+        bool isCrit;
+
         int critcalRandom = Random.Range(0, 100);
 
         if (critcalRandom >= 100 - critcalChance)

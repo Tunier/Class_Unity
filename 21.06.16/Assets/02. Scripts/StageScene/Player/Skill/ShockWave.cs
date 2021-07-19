@@ -13,6 +13,8 @@ public class ShockWave : MonoBehaviour
     public List<GameObject> mobList;
 
     public float moveSpeed;
+    public float damageFactor;
+    public int attackTimes;
 
     private void Awake()
     {
@@ -24,10 +26,12 @@ public class ShockWave : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
 
         moveSpeed = 10f;
+        damageFactor = 0.6f;
+        attackTimes = 2;
     }
     void Start()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 1.2f);
     }
 
     void Update()
@@ -37,37 +41,26 @@ public class ShockWave : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MONSTER"))
+        if (other.CompareTag("MONSTER")) //몬스터가 맞으면
         {
             hitmob = other.gameObject;
 
-            player.hitmob = hitmob.GetComponent<MonsterCtrl>();
+            player.hitmob = hitmob.GetComponent<MonsterCtrl>(); // 맞은 몬스터 정보를 플레이어에게 전달
 
-            if (!mobList.Contains(other.gameObject))
+            if (!mobList.Contains(other.gameObject)) // 맞은 몬스터가 리스트에 없으면
             {
-                mobList.Add(other.gameObject);
-            }
-            else { return; }
+                mobList.Add(other.gameObject); // 맞은 몬스터를 리스트에 저장하고
 
-            foreach (GameObject obj in mobList)
-            {
-                if (player.isCrit)
+                if (player.CritCal()) // 크리티컬이 떴는지 계산해서 StartMultyHit(다단히트)를 호출
                 {
-                    obj.GetComponent<MonsterCtrl>().Hit(player.resultDamage * 2f);
-                    UIManager.instance.PrintDamageText(player.resultDamage * 2f, true);
+                    hitmob.GetComponent<MonsterCtrl>().StartMultyHit(player.resultDamage * damageFactor * 1.5f, attackTimes, 0.2f, true);
                 }
                 else
                 {
-                    obj.GetComponent<MonsterCtrl>().Hit(player.resultDamage * 1f);
-                    UIManager.instance.PrintDamageText(player.resultDamage * 1f, false);
-                }
-
-                if (obj.GetComponent<MonsterCtrl>().hp <= 0)
-                {
-                    obj.GetComponent<MonsterCtrl>().Die();
-                    player.exp += obj.GetComponent<MonsterCtrl>().exp;
+                    hitmob.GetComponent<MonsterCtrl>().StartMultyHit(player.resultDamage * damageFactor, attackTimes, 0.2f, false);
                 }
             }
+            else { return; }
         }
     }
 }

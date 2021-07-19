@@ -65,6 +65,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/01. Scenes/Stage.unity:
@@ -114,6 +115,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1442}
     - Class: 114
       Script: {instanceID: 1526}
+    - Class: 114
+      Script: {instanceID: 1568}
     - Class: 114
       Script: {instanceID: 1612}
     - Class: 114
@@ -173,41 +176,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3008}
     - Class: 114
-      Script: {instanceID: 3042}
+      Script: {instanceID: 3020}
     - Class: 114
-      Script: {instanceID: 3072}
+      Script: {instanceID: 3044}
     - Class: 114
-      Script: {instanceID: 3196}
+      Script: {instanceID: 3074}
     - Class: 114
       Script: {instanceID: 3198}
     - Class: 114
-      Script: {instanceID: 3216}
+      Script: {instanceID: 3200}
     - Class: 114
-      Script: {instanceID: 3304}
+      Script: {instanceID: 3218}
     - Class: 114
-      Script: {instanceID: 3434}
+      Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 3532}
+      Script: {instanceID: 3436}
     - Class: 114
-      Script: {instanceID: 3552}
+      Script: {instanceID: 3534}
     - Class: 114
-      Script: {instanceID: 3658}
+      Script: {instanceID: 3554}
     - Class: 114
-      Script: {instanceID: 3718}
+      Script: {instanceID: 3660}
     - Class: 114
-      Script: {instanceID: 3786}
+      Script: {instanceID: 3720}
     - Class: 114
-      Script: {instanceID: 3960}
+      Script: {instanceID: 3788}
     - Class: 114
-      Script: {instanceID: 4152}
+      Script: {instanceID: 3962}
     - Class: 114
-      Script: {instanceID: 4280}
+      Script: {instanceID: 4154}
     - Class: 114
-      Script: {instanceID: 4334}
+      Script: {instanceID: 4282}
     - Class: 114
-      Script: {instanceID: 4338}
+      Script: {instanceID: 4336}
     - Class: 114
-      Script: {instanceID: 69146}
+      Script: {instanceID: 4340}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -595,10 +598,16 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: 01af0a961528722abd412299bfe04c67
+      Hash: 3e841c25a87cbf42d2a044e8691c2b2a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerCtrl
+  - hash:
+      serializedVersion: 2
+      Hash: 5c81f8cdbfaae85a16f409cb51a5872c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIManager
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -739,7 +748,7 @@ ScriptsOnlyBuild:
     className: FloatingTextCtrl
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 4a9d2bf9db2703eee2e01e1f32c7757c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PauseCanvasCtrl
@@ -877,17 +886,11 @@ ScriptsOnlyBuild:
     className: MonsterSpawnerCtrl
   - hash:
       serializedVersion: 2
-      Hash: 7af79b8bcfba82b2b9e8a47d18a4fcf6
+      Hash: bf5a2e4f512a0a4510207de0a4e6d6a1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShockWave
-  - hash:
-      serializedVersion: 2
-      Hash: 5c81f8cdbfaae85a16f409cb51a5872c
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UIManager
   platform: 19
   scenePathNames:
   - Assets/01. Scenes/Stage.unity
-  playerPath: "C:/Users/admin/Desktop/20210719_\uAC8C\uC784\uC5D4\uC9C4\uC751\uC6A9\uD504\uB85C\uADF8\uB798\uBC0D_\uC591\uBA85\uADE0/Dogablo.exe"
+  playerPath: "C:/Users/Yang/Desktop/20210720_\uAC8C\uC784\uC5D4\uC9C4\uC751\uC6A9\uD504\uB85C\uADF8\uB798\uBC0D_\uC591\uBA85\uADE0/Dogablo.exe"

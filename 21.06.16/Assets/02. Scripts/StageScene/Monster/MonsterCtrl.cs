@@ -134,12 +134,13 @@ public class MonsterCtrl : MonoBehaviour
             ani.SetInteger(hashAttackType, 1);
     }
 
-
+    // 에니메이션 이벤트에 붙어있다.
     public virtual void Attacking()
     {
         weapon[attackType].enabled = true;
     }
 
+    // 에니메이션 이벤트에 붙어있다.
     public virtual void EndAttacking()
     {
         weapon[attackType].enabled = false;
@@ -147,29 +148,48 @@ public class MonsterCtrl : MonoBehaviour
         ani.SetBool(hashAttack, false);
     }
 
-    public virtual void Hit(float damage)
+    ///<summary>
+    ///Hit(데미지, 크리티컬인지 아닌지)
+    ///</summary>
+    public virtual void Hit(float damage, bool crit)
     {
-        if (hp > 0)
-        {
-            hp -= damage;
-        }
+        hp -= damage;
 
-        if (hp < 0)
+        UIManager.instance.PrintDamageText(damage, crit);
+
+        if (hp <= 0)
+        {
             hp = 0;
+            Die();
+            player.exp += exp;
+        }
     }
 
-    public IEnumerator MultyHit(float damage, int attackTimes, float delay)
+    public IEnumerator MultyHit(float damage, int attackTimes, float delay, bool isCrit)
     {
         for (int i = 0; i < attackTimes; i++)
         {
-            Hit(damage);
+            Hit(damage, isCrit);
             yield return new WaitForSeconds(delay);
         }
     }
 
+    // 타격 대상에서 코루틴을 시작하면 타격 대상이 없어지면(ex : 스킬이 시간이 지나서 없어짐) 코루틴이 끝나기때문에 몬스터에서 코루틴 시작
+    ///<summary>
+    ///StartMultyHit(데미지, 타격횟수, 타격간의 딜레이, 크리티컬인지 아닌지)
+    ///</summary>
+    public void StartMultyHit(float damage, int attackTimes, float delay, bool isCrit)
+    {
+        StartCoroutine(MultyHit(damage, attackTimes, delay, isCrit));
+    }
+
+    ///<summary>
+    ///모든코루틴정지, 상태 사망으로 변경, 게임메니져에 몹 리스트에서 삭제(리젠 제한 -1), 아이템 드롭 실행
+    ///</summary>
     public virtual void Die()
     {
         StopAllCoroutines();
+
         state = State.DIE;
 
         for (int i = 0; i < 2; i++)
@@ -180,6 +200,10 @@ public class MonsterCtrl : MonoBehaviour
         DropItem();
     }
 
+
+    ///<summary>
+    ///상태가 사망이 된다음 0.5초가 지나면 콜라이더 비활성화, 2초가 지나면 시체가 가라앉기 시작, 일정이상 가라앉으면 Destroy
+    ///</summary>
     void CorpseDestroy()
     {
         dieAfterTime += Time.deltaTime;
@@ -193,19 +217,19 @@ public class MonsterCtrl : MonoBehaviour
             Destroy(gameObject);
     }
 
+    ///<summary>
+    ///드롭 계산해서(현재는 테스트를 위하여 70%확률로 책정되어있음) 랜덤한 아이템 드롭.
+    ///</summary>
     void DropItem()
     {
-        float itemDropChance = Random.Range(1f, 100f);
+        float itemDropChance = Random.Range(1f, 100f); // 플롯값은 1과 100 모두 포함.
         int itemType = Random.Range(0, 3);
 
-        if (itemDropChance >= 1f)
+        if (itemDropChance >= 30f)
         {
-            if (Item[itemType] != null)
-            {
-                var obj = Instantiate(Item[itemType], tr.position, Quaternion.identity);
+            var obj = Instantiate(Item[itemType], tr.position, Quaternion.identity);
 
-                obj.transform.Translate(new Vector3(0, 0.85f, 0));
-            }
+            obj.transform.Translate(new Vector3(0, 0.85f, 0));
         }
     }
 }

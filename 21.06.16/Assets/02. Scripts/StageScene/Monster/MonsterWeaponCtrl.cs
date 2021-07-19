@@ -22,16 +22,6 @@ public class MonsterWeaponCtrl : MonoBehaviour
             {
                 player.Hit(damage);
             }
-
-            if (player.hp <= 0)
-            {
-                player.Die();
-            }
         }
-    }
-
-    void Update()
-    {
-
     }
 }

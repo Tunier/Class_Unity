@@ -19,37 +19,26 @@ public class PlayerWeaponCtrl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MONSTER"))
+        if (other.CompareTag("MONSTER")) //몬스터가 맞으면
         {
             hitmob = other.gameObject;
 
-            player.hitmob = hitmob.GetComponent<MonsterCtrl>();
+            player.hitmob = hitmob.GetComponent<MonsterCtrl>(); // 맞은 몬스터 정보를 플레이어에게 전달
 
-            if (!mobList.Contains(other.gameObject))
+            if (!mobList.Contains(other.gameObject)) // 맞은 몬스터가 리스트에 없으면
             {
-                mobList.Add(other.gameObject);
-            }
-            else { return; }
+                mobList.Add(other.gameObject); // 맞은 몬스터를 리스트에 저장하고
 
-            foreach (GameObject obj in mobList)
-            {
-                if (player.CritCal())
+                if (player.CritCal()) // 크리티컬이 떴는지 계산해서 Hit를 호출
                 {
-                    obj.GetComponent<MonsterCtrl>().Hit(player.resultDamage * 1.5f);
-                    UIManager.instance.PrintDamageText(player.resultDamage * 1.5f, true);
+                    hitmob.GetComponent<MonsterCtrl>().Hit(player.resultDamage * 1.5f, true);
                 }
                 else
                 {
-                    obj.GetComponent<MonsterCtrl>().Hit(player.resultDamage);
-                    UIManager.instance.PrintDamageText(player.resultDamage, false);
-                }
-
-                if (obj.GetComponent<MonsterCtrl>().hp <= 0)
-                {
-                    obj.GetComponent<MonsterCtrl>().Die();
-                    player.exp += obj.GetComponent<MonsterCtrl>().exp;
+                    hitmob.GetComponent<MonsterCtrl>().Hit(player.resultDamage, false);
                 }
             }
+            else { return; }
         }
     }
 }
