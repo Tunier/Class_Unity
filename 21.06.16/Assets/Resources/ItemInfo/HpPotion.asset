@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efff0110e0064044a1e6f1aaa085cb2, type: 3}
   m_Name: HpPotion
   m_EditorClassIdentifier: 
-  id: 1
   itemName: HpPotion
   itemDescription: "Hp\uD3EC\uC158\nhp\uB97C 20 \uD68C\uBCF5\uC2DC\uCF1C\uC900\uB2E4."
   itemType: 1
   itemRarelity: 0
+  buyCost: 5
+  sellCost: 1
   itemImage: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}
   itemPrefab: {fileID: 8998276756215291238, guid: 85562ded60178ed4196742c2483afd2b, type: 3}
   EquipmentType: 

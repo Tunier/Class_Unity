@@ -35,9 +35,10 @@ public class MonsterCtrl : MonoBehaviour
     Rigidbody rb;
     Animator ani;
     NavMeshAgent nav;
+    public Collider[] weapon;
 
     PlayerCtrl player;
-    public Collider[] weapon;
+    MonsterSpawnerCtrl mobSpawner;
 
     readonly int hashMove = Animator.StringToHash("IsMove"); // bool 움직이는중
     readonly int hashAttack = Animator.StringToHash("IsAttack"); // bool 공격중
@@ -51,6 +52,7 @@ public class MonsterCtrl : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+        mobSpawner = GameObject.Find("MonsterSpawner").GetComponent<MonsterSpawnerCtrl>();
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -120,7 +122,7 @@ public class MonsterCtrl : MonoBehaviour
         }
     }
 
-
+    // 에니메이션 이벤트에 붙어있다.
     public virtual void ChangeAttackType()
     {
         if (attackType == 0)
@@ -195,7 +197,7 @@ public class MonsterCtrl : MonoBehaviour
         for (int i = 0; i < 2; i++)
             weapon[i].enabled = false;
 
-        GameManager.instance.mobList.Remove(gameObject);
+        mobSpawner.mobList.Remove(gameObject);
 
         DropItem();
     }

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7958638113243551248}
   - component: {fileID: 6336448181860412134}
   - component: {fileID: 3039181100713486061}
-  - component: {fileID: 1833671049391301051}
   - component: {fileID: 1833671049391301050}
+  - component: {fileID: 7675391786698093129}
   m_Layer: 0
   m_Name: ShockWave
   m_TagString: Untagged
@@ -97,22 +97,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1833671049391301051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833671049391301048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da9c88c4b6d9ea4a8a72d3195a33321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mobList: []
-  moveSpeed: 3
-  damageFactor: 0
-  attackTimes: 0
 --- !u!54 &1833671049391301050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +113,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7675391786698093129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833671049391301048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da9c88c4b6d9ea4a8a72d3195a33321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobList: []
+  moveSpeed: 0
+  damageFactor: 0
+  attackTimes: 0

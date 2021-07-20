@@ -11,6 +11,16 @@ public class PlayerWeaponCtrl : MonoBehaviour
 
     public float weaponDamage = 0;
 
+    enum Elimental
+    { 
+        None,
+        Fire,
+        Ice,
+        Lightning,
+    }
+
+    Elimental eli = Elimental.None;
+
     void Start()
     {
         mobList = new List<GameObject>();

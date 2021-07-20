@@ -44,6 +44,9 @@ public class MonsterHpBarCtrl : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// hp바의 value값을 Lerp시켜주고, 몬스터가 죽으면 hp바 슬라이더 이미지를 꺼줌.
+    /// </summary>
     void UpdateHpSlider()
     {
         hpBarSlider.value = Mathf.Lerp(hpBarSlider.value, mob.hp / mob.hpMax * 100, Time.deltaTime * 2);

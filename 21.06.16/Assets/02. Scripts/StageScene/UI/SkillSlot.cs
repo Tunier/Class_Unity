@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     public Skill skill;
     public float skillCooltime;
@@ -29,6 +29,11 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         skillImage.color = color;
     }
 
+    /// <summary>
+    /// 스킬 슬롯에 스킬을 넣어주고, 이미지를 스킬 이미지로 바꿔주고, 해당 스킬쿨타임과 현재 쿨타임을 넘겨줌.
+    /// </summary>
+    /// <param name="_skill"></param>
+    /// <param name="curCooltime"></param>
     public void AddSkillIcon(Skill _skill, float curCooltime)
     {
         skill = _skill;
@@ -68,18 +73,16 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         cooldownImage.GetComponent<Image>().fillAmount = currentSkillCoolTime / skillCooltime;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log("클릭");
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (skill != null)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            DragSlot.instance.dragSkillSlot = this;
-            DragSlot.instance.DragSetImage(skillImage);
-            DragSlot.instance.transform.position = eventData.position;
+            if (skill != null)
+            {
+                DragSlot.instance.dragSkillSlot = this;
+                DragSlot.instance.DragSetImage(skillImage);
+                DragSlot.instance.transform.position = eventData.position;
+            }
         }
     }
 
@@ -91,6 +94,11 @@ public class SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!RectTransformUtility.RectangleContainsScreenPoint(QuickSkillSlotBase, Input.mousePosition))
+        {
+            ClearSlot();
+        }
+
         DragSlot.instance.SetColorAlpha(0);
         DragSlot.instance.dragSkillSlot = null;
     }

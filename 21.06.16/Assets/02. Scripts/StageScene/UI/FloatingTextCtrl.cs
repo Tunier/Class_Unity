@@ -56,11 +56,19 @@ public class FloatingTextCtrl : MonoBehaviour
         floatingText.color = alpha;
     }
 
+    /// <summary>
+    /// 플롯값을 받아서 반올림해서 텍스트를 변경해줌.
+    /// </summary>
+    /// <param name="_damage"></param>
     public void SetDamageText(float _damage)
     {
         floatingText.text = Mathf.RoundToInt(_damage) + "";
     }
 
+    /// <summary>
+    /// 색을 받아서 텍스트 색을 변경해줌.
+    /// </summary>
+    /// <param name="_color"></param>
     public void SetTextColor(Color _color)
     {
         alpha = _color;

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
-    ItemEffectDatebase itemdatebase;
-
-    [SerializeField]
     GameObject slotsParent;
 
     public List<Slot> slots;
@@ -19,7 +16,7 @@ public class Inventory : MonoBehaviour
     {
         slots = new List<Slot>();
 
-        slots.AddRange(slotsParent.GetComponentsInChildren<Slot>());
+        slots.AddRange(slotsParent.GetComponentsInChildren<Slot>()); // 칠드런으로 받아오는 이유는 비활성화 되면 못받아오기때문에 비활성화 되도 찾아올수있는 함수로 받아온다.
     }
 
     private void Update()

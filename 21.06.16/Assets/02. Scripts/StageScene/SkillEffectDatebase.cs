@@ -34,10 +34,10 @@ public class SkillEffectDatebase : MonoBehaviour
             case ShockWave:
                 var obj = Instantiate(_skill.skillPrefab, player.transform.position, Quaternion.identity);
                 obj.transform.forward = player.transform.forward;
-                Debug.Log(skillEffects[0].skillName + " 사용");
+                //Debug.Log(skillEffects[0].skillName + " 사용");
                 break;
             case LightningBolt:
-                Debug.Log(skillEffects[1].skillName + " 사용");
+                //Debug.Log(skillEffects[1].skillName + " 사용");
                 break;
             default:
                 Debug.Log("스킬 데이터가 없습니다.");

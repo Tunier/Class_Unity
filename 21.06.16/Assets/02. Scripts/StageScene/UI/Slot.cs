@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
-    public int itemId;
     public Item item;
     public int itemCount;
     public Image itemImage;
@@ -20,6 +19,9 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     ItemEffectDatebase database;
     InputNumberUI inputNumber;
     Inventory inven;
+    Shop shop;
+
+    PlayerCtrl player;
 
     [SerializeField]
     RectTransform invenBase;
@@ -27,6 +29,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     RectTransform statusBase;
     [SerializeField]
     RectTransform quickSlotBase;
+    [SerializeField]
+    RectTransform shopBase;
 
     private void Start()
     {
@@ -34,6 +38,8 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         database = FindObjectOfType<ItemEffectDatebase>();
         inputNumber = FindObjectOfType<InputNumberUI>();
         inven = FindObjectOfType<Inventory>();
+        shop = FindObjectOfType<Shop>();
+        player = FindObjectOfType<PlayerCtrl>();
     }
 
     void SetColorAlpha(float alpha)
@@ -74,7 +80,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     void ClearSlot()
     {
-        itemId = 0;
         item = null;
         itemCount = 0;
         itemImage.sprite = null;
@@ -82,8 +87,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         countText.text = "0";
         countImage.SetActive(false);
-
-        inven.isFull = false;
     }
 
     // 슬롯 우클릭시 슬롯에 있는 아이템 타입을 보고 소모품이면 아이템 사용
@@ -92,58 +95,85 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (transform.CompareTag("INVENTORY")) // 인벤토리에 있는 슬롯.
-                if (item != null)
-                {
-                    if (item.itemType == Item.ItemType.Equipment)
-                    {
-                        if (item.EquipmentType == "Weapon")
-                        {
-                            if (status.weaponSlot.item == null)
-                            {
-                                EquipItem(item);
-                                return;
-                            }
-                            else
-                                return;
-                        }
-                    }
-
-                    database.UseItem(item);
-
-                    if (item.itemType == Item.ItemType.Used)
-                        SetSlotCount(-1);
-
-                }
-
-            if (transform.CompareTag("STATUS")) // 스테이터스 창에 있는 슬롯.
-                if (item != null)
-                {
-                    UnEquipItem(item);
-                }
-
-            if (transform.CompareTag("QUICKSLOT"))
+            if (shopBase.gameObject.activeSelf)
             {
-                if (item != null)
-                {
-                    if (item.itemType == Item.ItemType.Equipment)
+                if (transform.CompareTag("INVENTORY")) // 인벤토리에 있는 슬롯.
+                    if (item != null)
                     {
-                        if (item.EquipmentType == "Weapon")
+                        SellItem(item);
+                    }
+            }
+            else
+            {
+                if (transform.CompareTag("INVENTORY")) // 인벤토리에 있는 슬롯.
+                    if (item != null)
+                    {
+                        if (item.itemType == Item.ItemType.Equipment)
                         {
-                            if (status.weaponSlot.item == null)
+                            if (item.EquipmentType == "Weapon")
                             {
-                                EquipItem(item);
-                                return;
+                                if (status.weaponSlot.item == null)
+                                {
+                                    EquipItem(item);
+                                    return;
+                                }
+                                else
+                                    return;
                             }
-                            else
-                                return;
                         }
+
+                        database.UseItem(item);
+
+                        if (item.itemType == Item.ItemType.Used)
+                            SetSlotCount(-1);
+
                     }
 
-                    database.UseItem(item);
+                if (transform.CompareTag("STATUS")) // 스테이터스 창에 있는 슬롯.
+                    if (item != null)
+                    {
+                        UnEquipItem(item);
+                    }
 
-                    if (item.itemType == Item.ItemType.Used)
-                        SetSlotCount(-1);
+                if (transform.CompareTag("QUICKSLOT"))
+                {
+                    if (item != null)
+                    {
+                        if (item.itemType == Item.ItemType.Equipment)
+                        {
+                            if (item.EquipmentType == "Weapon")
+                            {
+                                if (status.weaponSlot.item == null)
+                                {
+                                    EquipItem(item);
+                                    return;
+                                }
+                                else
+                                    return;
+                            }
+                        }
+
+                        database.UseItem(item);
+                        
+                        if (item.itemType == Item.ItemType.Used)
+                            SetSlotCount(-1);
+                    }
+                }
+            }
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (shopBase.gameObject.activeSelf)
+            {
+                if (shop.isSelling)
+                {
+                    if (transform.CompareTag("INVENTORY")) // 인벤토리에 있는 슬롯.
+                    {
+                        if (item != null)
+                        {
+                            SellItem(item);
+                        }
+                    }
                 }
             }
         }
@@ -156,6 +186,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         SetSlotCount(-1);
     }
 
+    /// <summary>
+    /// 인벤창에 아이템이 생성되고, 스텟창에 있는 장비슬롯의 아이템 겟수를 -1 (0이되서 ClearSlot함수실행됨)
+    /// </summary>
+    /// <param name="_item"></param>
     public void UnEquipItem(Item _item)
     {
         inven.GetItem(_item);
@@ -165,14 +199,28 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         SetSlotCount(-1);
     }
 
+    /// <summary>
+    /// 슬롯을 비우고, 상점칸에 아이템이 추가되고, 플레이어의 골드가 아이템의 판매가만큼 증가함.
+    /// </summary>
+    /// <param name="_item"></param>
+    void SellItem(Item _item)
+    {
+        ClearSlot();
+        shop.GetItem(_item);
+        player.gold += _item.sellCost;
+    }
+
     // 드레그 시작시 드레그 시작한 슬롯에 있는 아이템 드레그 슬롯에 복제
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (item != null)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            DragSlot.instance.dragSlot = this;
-            DragSlot.instance.DragSetImage(itemImage);
-            DragSlot.instance.transform.position = eventData.position;
+            if (item != null)
+            {
+                DragSlot.instance.dragSlot = this;
+                DragSlot.instance.DragSetImage(itemImage);
+                DragSlot.instance.transform.position = eventData.position;
+            }
         }
     }
 
@@ -188,10 +236,53 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnEndDrag(PointerEventData eventData)
     {
         // 활성화된 창만 계산되게 if문 넣어줌.
-        if (invenBase.gameObject.activeSelf && statusBase.gameObject.activeSelf)
+        if (invenBase.gameObject.activeSelf && statusBase.gameObject.activeSelf && status.gameObject.activeSelf)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position)
+               || RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position)
+               || RectTransformUtility.RectangleContainsScreenPoint(shopBase, DragSlot.instance.transform.position)
+               || RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
+            {
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
+            else
+            {
+                if (DragSlot.instance.dragSlot != null)
+                    if (DragSlot.instance.dragSlot.itemCount <= 1)
+                    {
+                        DragSlot.instance.SetColorAlpha(0);
+                        StartCoroutine(inputNumber.DropItemCoruntine(1));
+                    }
+                    else
+                        inputNumber.Call();
+            }
+        }
+        else if (invenBase.gameObject.activeSelf && statusBase.gameObject.activeSelf)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position)
                 || RectTransformUtility.RectangleContainsScreenPoint(statusBase, DragSlot.instance.transform.position)
+                || RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
+            {
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
+            else
+            {
+                if (DragSlot.instance.dragSlot != null)
+                    if (DragSlot.instance.dragSlot.itemCount <= 1)
+                    {
+                        DragSlot.instance.SetColorAlpha(0);
+                        StartCoroutine(inputNumber.DropItemCoruntine(1));
+                    }
+                    else
+                        inputNumber.Call();
+            }
+        }
+        else if (invenBase.gameObject.activeSelf && shopBase.gameObject.activeSelf)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(invenBase, DragSlot.instance.transform.position)
+                || RectTransformUtility.RectangleContainsScreenPoint(shopBase, DragSlot.instance.transform.position)
                 || RectTransformUtility.RectangleContainsScreenPoint(quickSlotBase, DragSlot.instance.transform.position))
             {
                 DragSlot.instance.SetColorAlpha(0);

@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public List<GameObject> mobList;
     public GameObject mobSpawn;
 
     public GameObject pauseCanvas;
@@ -17,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject inventoryUI;
 
     ItemEffectDatebase database;
+    Shop shop;
 
     [SerializeField]
     RectTransform invenBase;
@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     public bool isPause = false;
 
+    public Texture2D[] cursorImg;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,11 +55,13 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
 
-        mobList = new List<GameObject>();
         database = FindObjectOfType<ItemEffectDatebase>();
         quickSlots = quickSlotParent.GetComponentsInChildren<Slot>();
+        shop = FindObjectOfType<Shop>();
 
         isPause = false;
+
+        Cursor.SetCursor(cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
     }
 
     private void Update()
@@ -65,7 +69,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         UIHotKey();
-        OnOffMonsterSpawn();
 
         if (isPause)
         {
@@ -90,8 +93,24 @@ public class GameManager : MonoBehaviour
         {
             dieText.SetActive(false);
         }
+
+        if (shop.isBuying)
+        {
+            Cursor.SetCursor(GameManager.instance.cursorImg[1], Vector2.zero, CursorMode.ForceSoftware);
+        }
+        else if (shop.isSelling)
+        {
+            Cursor.SetCursor(GameManager.instance.cursorImg[2], Vector2.zero, CursorMode.ForceSoftware);
+        }
+        else
+        {
+            Cursor.SetCursor(GameManager.instance.cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
+        }
     }
 
+    /// <summary>
+    /// 인벤토리, 스텟창, 퀵슬롯 아이템 사용 등의 키보드 입력을 처리함.
+    /// </summary>
     void UIHotKey()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -107,10 +126,6 @@ public class GameManager : MonoBehaviour
 
             if (!statusUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, Input.mousePosition))
                 toolTip.HideToolTip();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            isPause = !isPause;
         }
         else if (Input.GetKeyDown(KeyCode.F10))
         {
@@ -135,18 +150,6 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             QuickSlotUseItem(4);
-        }
-    }
-
-    public void OnOffMonsterSpawn()
-    {
-        if (mobList.Count >= 4)
-        {
-            mobSpawn.SetActive(false);
-        }
-        else
-        {
-            mobSpawn.SetActive(true);
         }
     }
 

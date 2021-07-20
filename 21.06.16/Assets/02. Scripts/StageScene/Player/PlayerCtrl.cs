@@ -35,6 +35,10 @@ public class PlayerCtrl : MonoBehaviour
     public bool hitable;
 
     [SerializeField]
+    public int gold;
+    public int maxGold;
+
+    [SerializeField]
     Toggle infinityMpToggle; // 옵션에서 마나 무한 켜져있는지 받아오는데 사용함.
 
     public MonsterCtrl hitmob = null;
@@ -80,7 +84,7 @@ public class PlayerCtrl : MonoBehaviour
         level = 1;//PlayerPrefs.GetInt("PlayerLevel");
         hp = 50;
         hpMax = 50;
-        hpRegen = 0.5f;
+        hpRegen = 0.2f;
         mp = 20;
         mpMax = 20;
         mpRegen = 1f;
@@ -168,9 +172,10 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    ///<summary>
-    ///마우스 커서가 있는 방향으로 플레이어를 회전시킴.
-    ///</summary>
+    /// <summary>
+    /// 마우스 커서가 있는 방향으로 플레이어를 회전시킴.<br/>
+    /// 마우스에서 레이를 쏴서 레이케스트 타깃(레이어로 구분)에 부딛힌 위치의 x,z축만 받아서 그쪽으로 플레이어의 앞쪽을 돌림.
+    /// </summary>
     void SetPlayerRotate()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);

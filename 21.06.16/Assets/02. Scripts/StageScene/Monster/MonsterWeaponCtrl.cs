@@ -11,6 +11,7 @@ public class MonsterWeaponCtrl : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
+        
         damage = 10f;
     }
 
