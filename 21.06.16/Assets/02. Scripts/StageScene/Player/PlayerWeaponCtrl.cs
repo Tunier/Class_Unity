@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerWeaponCtrl : MonoBehaviour
 {
     public PlayerCtrl player;
-    public GameObject playerWeapon;
     public GameObject hitmob;
     public List<GameObject> mobList;
 

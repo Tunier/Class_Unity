@@ -69,6 +69,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         SetColorAlpha(1);
     }
 
+    /// <summary>
+    /// 해당슬롯의 아이템 카운트를 인수값 만큼 더해줌. 아이템 카운트가 0이되면 ClearSlot 발동.
+    /// </summary>
+    /// <param name="count"></param>
     public void SetSlotCount(int count)
     {
         itemCount += count;
@@ -78,6 +82,9 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             ClearSlot();
     }
 
+    /// <summary>
+    /// 해당칸을 비워줌. (item = null, itemCount = 0, 스프라이트 = null, 알파값 0으로)
+    /// </summary>
     void ClearSlot()
     {
         item = null;
@@ -154,7 +161,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                         }
 
                         database.UseItem(item);
-                        
+
                         if (item.itemType == Item.ItemType.Used)
                             SetSlotCount(-1);
                     }
@@ -179,6 +186,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
+    /// <summary>
+    /// 아이템이 제거되고, 스텟창에 아이템이 종류에 맞게 장착됨.
+    /// </summary>
+    /// <param name="_item"></param>
     public void EquipItem(Item _item)
     {
         database.EquipItem(_item);
@@ -361,24 +372,68 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
     }
 
-    // 드레그해서 드롭했을경우 슬롯두개 내용물을 바꿔줌, 비어있으면 넣어만줌.
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.parent.CompareTag("INVENTORY"))
             if (DragSlot.instance.dragSlot != null)
-                ChangeSlot();
+                if (DragSlot.instance.dragSlot.transform.parent.CompareTag("STATUS"))
+                {   // 스텟창에서 인벤창으로 넘어올경우 같은 종류의 장비면 교체해주고, 아니면 아이템 획득.
+                    Item _item = DragSlot.instance.dragSlot.item;
+
+                    database.UnEquipItem(DragSlot.instance.dragSlot.item);
+                    DragSlot.instance.dragSlot.SetSlotCount(-1);
+
+                    if (item != null)
+                    {
+                        if (item.EquipmentType == _item.EquipmentType)
+                        {
+                            EquipItem(item);
+                        }
+                    }
+
+                    inven.GetItem(_item);
+                }
+                else // 인벤 내에서는 교환해줌.
+                {
+                    ChangeSlot();
+                }
 
         if (transform.parent.CompareTag("STATUS"))
             if (DragSlot.instance.dragSlot != null)
-                if (DragSlot.instance.dragSlot.item.itemType == Item.ItemType.Equipment)
-                    ChangeSlot();
+                if (DragSlot.instance.dragSlot.transform.parent.CompareTag("INVENTORY"))
+                {   // 인벤창에서 스텟창으로 넘어갈경우 장비칸이 비어있으면 맞는 장비타입칸에 장착, 장비가 있으면 같은 장비타입일경우 교체.
+                    if (DragSlot.instance.dragSlot.item.itemType == Item.ItemType.Equipment)
+                    {
+                        Item _item = item;
+
+                        if (item != null)
+                        {
+                            if (item.EquipmentType == DragSlot.instance.dragSlot.item.EquipmentType)
+                            {
+                                database.UnEquipItem(_item);
+                                SetSlotCount(-1);
+                                database.EquipItem(DragSlot.instance.dragSlot.item);
+                                DragSlot.instance.dragSlot.SetSlotCount(-1);
+                                inven.GetItem(_item);
+                            }
+                        }
+                        else if (item == null)
+                        {
+                            database.EquipItem(DragSlot.instance.dragSlot.item);
+                            DragSlot.instance.dragSlot.SetSlotCount(-1);
+                        }
+                    }
+                }
 
         if (transform.parent.CompareTag("QUICKSLOT"))
             if (DragSlot.instance.dragSlot != null)
                 ChangeSlot();
 
         if (item != null)
+        {
             database.ShowToolTip(item);
+            database.SetItemCostText(item.sellCost);
+        }
     }
 
     private void ChangeSlot()
@@ -415,7 +470,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (item != null)
+        {
             database.ShowToolTip(item);
+            database.SetItemCostText(item.sellCost);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

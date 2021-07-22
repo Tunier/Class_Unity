@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseCanvas;
     public GameObject statusUI;
     public GameObject inventoryUI;
+    public GameObject shopUI;
 
     ItemEffectDatebase database;
     Shop shop;
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         isPause = false;
 
-        Cursor.SetCursor(cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
+        //Cursor.SetCursor(cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
     }
 
     private void Update()
@@ -94,18 +95,18 @@ public class GameManager : MonoBehaviour
             dieText.SetActive(false);
         }
 
-        if (shop.isBuying)
-        {
-            Cursor.SetCursor(GameManager.instance.cursorImg[1], Vector2.zero, CursorMode.ForceSoftware);
-        }
-        else if (shop.isSelling)
-        {
-            Cursor.SetCursor(GameManager.instance.cursorImg[2], Vector2.zero, CursorMode.ForceSoftware);
-        }
-        else
-        {
-            Cursor.SetCursor(GameManager.instance.cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
-        }
+        //if (shop.isBuying)
+        //{
+        //    Cursor.SetCursor(GameManager.instance.cursorImg[1], Vector2.zero, CursorMode.ForceSoftware);
+        //}
+        //else if (shop.isSelling)
+        //{
+        //    Cursor.SetCursor(GameManager.instance.cursorImg[2], Vector2.zero, CursorMode.ForceSoftware);
+        //}
+        //else
+        //{
+        //    Cursor.SetCursor(GameManager.instance.cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
+        //}
     }
 
     /// <summary>
@@ -126,6 +127,16 @@ public class GameManager : MonoBehaviour
 
             if (!statusUI.activeSelf && RectTransformUtility.RectangleContainsScreenPoint(statusBase, Input.mousePosition))
                 toolTip.HideToolTip();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            inventoryUI.SetActive(false);
+            statusUI.SetActive(false);
+            shopUI.SetActive(false);
+
+            toolTip.HideToolTip();
+            DragSlot.instance.SetColorAlpha(0);
+            DragSlot.instance.dragSlot = null;
         }
         else if (Input.GetKeyDown(KeyCode.F10))
         {

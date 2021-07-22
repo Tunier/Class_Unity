@@ -26,7 +26,7 @@ public class ItemEffectDatebase : MonoBehaviour
 
     [SerializeField]
     Status status;
-    
+
     private const string HP = "HP", MP = "MP", HPMAX = "HPMAX", MPMAX = "MPMAX", STR = "STR", DEX = "DEX", ATK = "ATK";
 
     public void UseItem(Item _item)
@@ -59,6 +59,10 @@ public class ItemEffectDatebase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 장비를 해당하는 장비칸에 추가시키고, 스텟을 증가시킴.
+    /// </summary>
+    /// <param name="_item"></param>
     public void EquipItem(Item _item)
     {
         if (_item.EquipmentType == "Weapon")
@@ -104,7 +108,11 @@ public class ItemEffectDatebase : MonoBehaviour
             }
         }
     }
-
+    
+    /// <summary>
+    /// 장비의 스텟이 오르는 효과만 제거함. 슬롯을 비워주지는 않음.
+    /// </summary>
+    /// <param name="_item"></param>
     public void UnEquipItem(Item _item)
     {
         for (int i = 0; i < itemEffects.Length; i++)
@@ -147,5 +155,10 @@ public class ItemEffectDatebase : MonoBehaviour
     public void HideToolTip()
     {
         toolTip.HideToolTip();
+    }
+
+    public void SetItemCostText(int cost)
+    {
+        toolTip.SetItemCostText(cost);
     }
 }

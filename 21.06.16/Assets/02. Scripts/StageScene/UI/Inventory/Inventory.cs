@@ -8,6 +8,12 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     GameObject slotsParent;
 
+    [SerializeField]
+    Text goldText;
+
+    [SerializeField]
+    PlayerCtrl player;
+
     public List<Slot> slots;
 
     public bool isFull = false;
@@ -16,7 +22,7 @@ public class Inventory : MonoBehaviour
     {
         slots = new List<Slot>();
 
-        slots.AddRange(slotsParent.GetComponentsInChildren<Slot>()); // 칠드런으로 받아오는 이유는 비활성화 되면 못받아오기때문에 비활성화 되도 찾아올수있는 함수로 받아온다.
+        slots.AddRange(slotsParent.GetComponentsInChildren<Slot>()); // 칠드런으로 받아오는 이유는 비활성화 되면 못받아오기때문에 비활성화된 상태도 찾아올수있는 칠드런으로 받아온다.
     }
 
     private void Update()
@@ -32,8 +38,15 @@ public class Inventory : MonoBehaviour
                 if (slots[i].item != null)
                     isFull = true;
         }
+
+        goldText.text = string.Format("{0:N0}", player.gold);
     }
 
+    /// <summary>
+    /// 인벤토리에 아이템을 추가시킴. 겹칠수 있는 아이템은 겹쳐줌.
+    /// </summary>
+    /// <param name="_item"></param>
+    /// <param name="count"></param>
     public void GetItem(Item _item, int count = 1)
     {
         if (_item.itemType != Item.ItemType.Equipment) // 장비가 아닌종류일때 (소비, 재료 등)
@@ -62,6 +75,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 게임도중에 슬롯갯수가 바뀌면 없는 슬롯을 리스트에서 제거해줌
+    /// </summary>
     void DeleteNullSlot()
     {
         for (int i = 0; i < slots.Count; ++i)

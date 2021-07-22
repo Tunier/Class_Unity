@@ -28,18 +28,21 @@ public class PlayerCtrl : MonoBehaviour
     public float dex;
     public float def;
 
+    public int statPoint;
+
     public float attackSpeed;
     public float critcalChance;
     public float resultDamage;
 
     public bool hitable;
 
-    [SerializeField]
     public int gold;
     public int maxGold;
 
     [SerializeField]
     Toggle infinityMpToggle; // 옵션에서 마나 무한 켜져있는지 받아오는데 사용함.
+    [SerializeField]
+    Toggle infinityGoldToggle; // 옵션에서 돈 무한 켜져있는지 받아오는데 사용함.
 
     public MonsterCtrl hitmob = null;
 
@@ -93,8 +96,13 @@ public class PlayerCtrl : MonoBehaviour
         str = (level - 1) * 5 + 10;
         dex = (level - 1) * 2.5f + 5;
         def = 0;
-        attackSpeed = 1f;
 
+        gold = 0;
+        maxGold = 100000000;
+
+        statPoint = 0;
+
+        attackSpeed = 1f;
         moveSpeed = 4f;
         AttackingMoveLeagth = moveSpeed * 0.02f;
 
@@ -216,19 +224,23 @@ public class PlayerCtrl : MonoBehaviour
 
         if (hp > hpMax)
             hp = hpMax;
+        else if (hp < hpMax && hp > 0)
+            hp += hpRegen * Time.deltaTime;
         else if (hp < 0)
             hp = 0;
 
         if (mp > mpMax)
             mp = mpMax;
+        else if (mp < mpMax && mp > 0)
+            mp += mpRegen * Time.deltaTime;
         else if (mp < 0)
             mp = 0;
 
         if (infinityMpToggle.isOn)
             mp = mpMax;
 
-        hp += hpRegen * Time.deltaTime;
-        mp += mpRegen * Time.deltaTime;
+        if (infinityGoldToggle.isOn)
+            gold = maxGold;
     }
 
     ///<summary>
@@ -297,6 +309,8 @@ public class PlayerCtrl : MonoBehaviour
         hp = hpMax;
         mpMax += 5;
         mp = mpMax;
+
+        statPoint += 3;
 #if UNITY_EDITOR
 
 #else

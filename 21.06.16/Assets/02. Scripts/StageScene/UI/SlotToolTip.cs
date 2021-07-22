@@ -12,6 +12,8 @@ public class SlotToolTip : MonoBehaviour
     [SerializeField]
     Text itemDescText;
     [SerializeField]
+    Text itemCostText;
+    [SerializeField]
     Text itemHouToUseText;
 
     [SerializeField]
@@ -118,12 +120,18 @@ public class SlotToolTip : MonoBehaviour
         }
     }
 
-    public void SetitemDescColor(Color _color)
+    public void SetItemDescColor(Color _color)
     {
         itemDescText.color = _color;
     }
-    public void SetitemHouToUseColor(Color _color)
+
+    public void SetItemHouToUseColor(Color _color)
     {
         itemHouToUseText.color = _color;
+    }
+
+    public void SetItemCostText(int cost)
+    {
+        itemCostText.text = "АЁАн : " + string.Format("{0:N0}", cost);
     }
 }
