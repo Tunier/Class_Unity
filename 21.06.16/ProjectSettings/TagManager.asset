@@ -15,6 +15,7 @@ TagManager:
   - BASEIMAGE
   - QUICKSLOT
   - MERCHANT
+  - WAYPOINT
   layers:
   - Default
   - TransparentFX

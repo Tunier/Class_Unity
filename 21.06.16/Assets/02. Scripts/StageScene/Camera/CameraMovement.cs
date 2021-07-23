@@ -27,7 +27,7 @@ public class CameraMovement : MonoBehaviour
         cameraPosition.x = player.transform.position.x;
         cameraPosition.y = player.transform.position.y + offsetY;
 
-        if (player.transform.position.z + offsetZ <= 5f && player.transform.position.z + offsetZ >= 0)
+        if (player.transform.position.z + offsetZ <= 7f && player.transform.position.z + offsetZ >= -3)
             cameraPosition.z = player.transform.position.z + offsetZ;
 
         transform.position = cameraPosition;

@@ -26,6 +26,8 @@ public class ItemEffectDatebase : MonoBehaviour
 
     [SerializeField]
     Status status;
+    [SerializeField]
+    Inventory inven;
 
     private const string HP = "HP", MP = "MP", HPMAX = "HPMAX", MPMAX = "MPMAX", STR = "STR", DEX = "DEX", ATK = "ATK";
 
@@ -73,7 +75,12 @@ public class ItemEffectDatebase : MonoBehaviour
             }
             else
             {
-                return;
+                Item item = status.weaponSlot.item;
+
+                UnEquipItem(item);
+                status.weaponSlot.SetSlotCount(-1);
+                status.weaponSlot.AddItem(_item);
+                inven.GetItem(item);
             }
         }
 

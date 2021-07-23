@@ -32,6 +32,8 @@ public class PlayerCtrl : MonoBehaviour
 
     public float attackSpeed;
     public float critcalChance;
+    public float maxDamage;
+    public float minDamage;
     public float resultDamage;
 
     public bool hitable;
@@ -146,7 +148,9 @@ public class PlayerCtrl : MonoBehaviour
                 LevelUp();
             }
             critcalChance = Mathf.Round(dex + 10f); // 나중에 아이템 효과로 추가되는 값 더해주게 수정
-            resultDamage = Mathf.Round(str) + playerWeapon.GetComponent<PlayerWeaponCtrl>().weaponDamage;
+            minDamage = Mathf.Round(str) + playerWeapon.GetComponent<PlayerWeaponCtrl>().weaponDamage;
+            maxDamage = Mathf.Round(str) + playerWeapon.GetComponent<PlayerWeaponCtrl>().weaponDamage + 2f;
+            resultDamage = Random.Range(minDamage, maxDamage);
         }
 
         switch (state)

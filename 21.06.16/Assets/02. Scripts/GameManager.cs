@@ -9,15 +9,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public GameObject mobSpawn;
-
     public GameObject pauseCanvas;
     public GameObject statusUI;
     public GameObject inventoryUI;
     public GameObject shopUI;
+    public GameObject wayPointUI;
 
     ItemEffectDatebase database;
-    Shop shop;
 
     [SerializeField]
     RectTransform invenBase;
@@ -58,9 +56,11 @@ public class GameManager : MonoBehaviour
 
         database = FindObjectOfType<ItemEffectDatebase>();
         quickSlots = quickSlotParent.GetComponentsInChildren<Slot>();
-        shop = FindObjectOfType<Shop>();
 
         isPause = false;
+
+        inventoryUI.SetActive(false);
+        statusUI.SetActive(false);
 
         //Cursor.SetCursor(cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
     }
@@ -130,13 +130,21 @@ public class GameManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            inventoryUI.SetActive(false);
-            statusUI.SetActive(false);
-            shopUI.SetActive(false);
+            if (!inventoryUI.activeSelf && !statusUI.activeSelf && !shopUI.activeSelf && !wayPointUI.activeSelf)
+            {
+                isPause = !isPause;
+            }
+            else
+            {
+                inventoryUI.SetActive(false);
+                statusUI.SetActive(false);
+                shopUI.SetActive(false);
+                wayPointUI.SetActive(false);
 
-            toolTip.HideToolTip();
-            DragSlot.instance.SetColorAlpha(0);
-            DragSlot.instance.dragSlot = null;
+                toolTip.HideToolTip();
+                DragSlot.instance.SetColorAlpha(0);
+                DragSlot.instance.dragSlot = null;
+            }
         }
         else if (Input.GetKeyDown(KeyCode.F10))
         {

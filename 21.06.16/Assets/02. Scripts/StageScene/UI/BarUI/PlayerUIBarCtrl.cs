@@ -34,9 +34,9 @@ public class PlayerUIBarCtrl : MonoBehaviour
         UpdateMpSlider();
         UpdateExpSlider();
 
-        hpText.text = Mathf.RoundToInt(player.hp) + " / " + player.hpMax;
-        mpText.text = Mathf.RoundToInt(player.mp) + " / " + player.mpMax;
-        expText.text = Mathf.RoundToInt(player.exp) + " / " + player.expMax;
+        hpText.text = Mathf.FloorToInt(player.hp) + " / " + player.hpMax;
+        mpText.text = Mathf.FloorToInt(player.mp) + " / " + player.mpMax;
+        expText.text = Mathf.FloorToInt(player.exp) + " / " + player.expMax;
     }
 
     void UpdateHpSlider()

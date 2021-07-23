@@ -25,8 +25,12 @@ public class PlayerActionCtrl : MonoBehaviour
 
     [SerializeField]
     GameObject shopPanel;
+    [SerializeField]
+    GameObject wayPointPanel;
 
-    GameObject merchant;
+    List<GameObject> merchants = new List<GameObject>();
+    List<GameObject> wayPoints = new List<GameObject>();
+
     float recognitionRange; // 상점창 킬수있는 거리
 
     private void Awake()
@@ -34,12 +38,13 @@ public class PlayerActionCtrl : MonoBehaviour
         items = new List<GameObject>();
 
         range = 5f;
-        recognitionRange = 2f;
+        recognitionRange = 2.5f;
     }
 
     void Start()
     {
-        merchant = GameObject.FindGameObjectWithTag("MERCHANT");
+        merchants.AddRange(GameObject.FindGameObjectsWithTag("MERCHANT"));
+        wayPoints.AddRange(GameObject.FindGameObjectsWithTag("WAYPOINT"));
     }
 
     void Update()
@@ -59,6 +64,35 @@ public class PlayerActionCtrl : MonoBehaviour
         pickupActivated = neareastItem == null ? false : true;
 
         TryAction();
+
+        foreach (GameObject _merchant in merchants)
+        {
+            if (Vector3.Distance(transform.position, _merchant.transform.position) <= recognitionRange)
+            {
+                UIManager.instance.hotKeyGuid.SetActive(true);
+                UIManager.instance.hotKeyGuidTarget = _merchant;
+                return;
+            }
+            else
+            {
+                UIManager.instance.hotKeyGuid.SetActive(false);
+            }
+        }
+
+        foreach (GameObject _wayPoint in wayPoints)
+        {
+            if (Vector3.Distance(transform.position, _wayPoint.transform.position) <= recognitionRange)
+            {
+                UIManager.instance.hotKeyGuid.SetActive(true);
+                UIManager.instance.hotKeyGuidTarget = _wayPoint;
+                return;
+            }
+            else
+            {
+                UIManager.instance.hotKeyGuid.SetActive(false);
+            }
+        }
+
     }
 
     /// <summary>
@@ -66,11 +100,16 @@ public class PlayerActionCtrl : MonoBehaviour
     /// </summary>
     private void TryAction()
     {
-        if (Vector3.Distance(transform.position, merchant.transform.position) <= recognitionRange)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (UIManager.instance.hotKeyGuid.activeSelf && merchants.Contains(UIManager.instance.hotKeyGuidTarget))
             {
                 shopPanel.SetActive(true);
+                GameManager.instance.inventoryUI.SetActive(true);
+            }
+            else if (UIManager.instance.hotKeyGuid.activeSelf && wayPoints.Contains(UIManager.instance.hotKeyGuidTarget))
+            {
+                wayPointPanel.SetActive(true);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Space))

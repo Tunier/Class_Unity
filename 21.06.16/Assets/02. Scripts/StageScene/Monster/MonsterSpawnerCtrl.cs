@@ -9,6 +9,9 @@ public class MonsterSpawnerCtrl : MonoBehaviour
     public GameObject mob;
     public PlayerCtrl player;
 
+    [SerializeField]
+    Map map;
+
     float spawnDelay;
     float spawnAfterTime;
 
@@ -19,8 +22,8 @@ public class MonsterSpawnerCtrl : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
-        spawnAfterTime = 7f;
-        spawnDelay = 8f;
+        spawnAfterTime = 5f;
+        spawnDelay = 6f;
         spawnMobLevel = 1;
     }
 
@@ -39,30 +42,48 @@ public class MonsterSpawnerCtrl : MonoBehaviour
     /// </summary>
     public void OnOffMonsterSpawn()
     {
-        if (mobList.Count <= 4)
+        DeleteNullObj();
+
+        if (map.isHere)
         {
-            if (player.level > spawnMobLevel + 1)
+            if (mobList.Count <= 4)
             {
-                spawnMobLevel += 1;
-            }
+                if (player.level > spawnMobLevel + 1)
+                {
+                    spawnMobLevel += 1;
+                }
 
-            spawnAfterTime += Time.deltaTime;
-            if (spawnAfterTime >= spawnDelay)
-            {
-                spawnAfterTime = 0;
-                GameObject obj = Instantiate(mob, mobPos, Quaternion.Euler(new Vector3(0, 180, 0)));
+                spawnAfterTime += Time.deltaTime;
+                if (spawnAfterTime >= spawnDelay)
+                {
+                    spawnAfterTime = 0;
+                    GameObject obj = Instantiate(mob, transform.parent);
 
-                MonsterCtrl MobCtrl = obj.GetComponent<MonsterCtrl>();
-                MobCtrl.level = spawnMobLevel;
-                MobCtrl.hpMax = (MobCtrl.level - 1) * 25f + 30;
-                MobCtrl.hp = MobCtrl.hpMax;
+                    obj.transform.position = transform.position + mobPos;
+                    MonsterCtrl MobCtrl = obj.GetComponent<MonsterCtrl>();
+                    MobCtrl.level = spawnMobLevel;
+                    MobCtrl.hpMax = (MobCtrl.level - 1) * 25f + 30;
+                    MobCtrl.hp = MobCtrl.hpMax;
 
-                mobList.Add(obj);
+                    mobList.Add(obj);
+                }
             }
         }
         else
         {
-            return;
+            foreach (GameObject mob in mobList)
+            {
+                Destroy(mob);
+            }
+        }
+    }
+
+    void DeleteNullObj()
+    {
+        for (int i = 0; i < mobList.Count; ++i)
+        {
+            if (mobList[i] == null)
+                mobList.RemoveAt(i);
         }
     }
 }

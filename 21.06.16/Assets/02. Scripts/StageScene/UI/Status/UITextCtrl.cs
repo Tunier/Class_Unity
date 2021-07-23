@@ -24,11 +24,11 @@ public class UITextCtrl : MonoBehaviour
     void LateUpdate()
     {
         lvtext.text = "Lv : " + player.level;
-        
+
         levelText.text = "Level : " + player.level;
         strText.text = "Str : " + Mathf.Round(player.str);
         dexText.text = "Dex : " + Mathf.Round(player.dex);
-        atkText.text = "Atk : " + Mathf.Round(player.resultDamage);
+        atkText.text = "Atk : " + Mathf.Round(player.minDamage) + " ~ " + Mathf.Round(player.maxDamage);
         defText.text = "Def : " + Mathf.Round(player.def);
         critText.text = "Crit : " + player.critcalChance + " %";
     }

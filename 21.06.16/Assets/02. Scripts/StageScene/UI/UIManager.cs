@@ -12,6 +12,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject floatingText;
 
+    public GameObject hotKeyGuid;
+
+    public GameObject hotKeyGuidTarget;
+
     public Text actionText;
 
     private void Awake()
@@ -25,6 +29,14 @@ public class UIManager : MonoBehaviour
             if (instance != this)
                 Destroy(gameObject);
         }
+
+        hotKeyGuid.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (hotKeyGuid.activeSelf)
+            hotKeyGuid.transform.position = Camera.main.WorldToScreenPoint(hotKeyGuidTarget.transform.position) + new Vector3(17f, 40f);
     }
 
     /// <summary>
