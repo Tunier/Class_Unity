@@ -4,8 +4,30 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class PlayerData
+{
+    public string name;
+    public int level;
+    public float hp;
+    public float hpMax;
+    public float hpRegen;
+    public float mp;
+    public float mpMax;
+    public float mpRegen;
+    public float exp;
+    public float expMax;
+    public float str;
+    public float dex;
+    public float def;
+
+    public int statPoint;
+}
+
 public class PlayerCtrl : MonoBehaviour
 {
+    PlayerData playerdata;
+
     public enum State
     {
         IDLE,
@@ -15,7 +37,8 @@ public class PlayerCtrl : MonoBehaviour
         DIE
     }
 
-    public int level = 1;
+    public string name;
+    public int level;
     public float hp;
     public float hpMax;
     public float hpRegen;
@@ -30,7 +53,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public int statPoint;
 
-    public float attackSpeed;
+    public float attackSpeed = 1f;
     public float critcalChance;
     public float maxDamage;
     public float minDamage;
@@ -86,7 +109,12 @@ public class PlayerCtrl : MonoBehaviour
 
         layerMask = 1 << LayerMask.NameToLayer("RAYTARGET");
 
-        level = 1;//PlayerPrefs.GetInt("PlayerLevel");
+#if UNITY_EDITOR
+        level = 1;
+#else
+        level = PlayerPrefs.GetInt("PlayerLevel");
+#endif
+
         hp = 50;
         hpMax = 50;
         hpRegen = 0.2f;

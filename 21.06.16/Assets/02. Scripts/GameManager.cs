@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject wayPointUI;
 
     ItemEffectDatebase database;
+    Shop shop;
 
     [SerializeField]
     RectTransform invenBase;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindWithTag("PLAYER").GetComponent<PlayerCtrl>();
 
         database = FindObjectOfType<ItemEffectDatebase>();
+        shop = FindObjectOfType<Shop>();
         quickSlots = quickSlotParent.GetComponentsInChildren<Slot>();
 
         isPause = false;
@@ -62,7 +64,11 @@ public class GameManager : MonoBehaviour
         inventoryUI.SetActive(false);
         statusUI.SetActive(false);
 
-        //Cursor.SetCursor(cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
+#if UNITY_EDITOR
+
+#else
+        Cursor.SetCursor(cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
+#endif
     }
 
     private void Update()
@@ -95,18 +101,22 @@ public class GameManager : MonoBehaviour
             dieText.SetActive(false);
         }
 
-        //if (shop.isBuying)
-        //{
-        //    Cursor.SetCursor(GameManager.instance.cursorImg[1], Vector2.zero, CursorMode.ForceSoftware);
-        //}
-        //else if (shop.isSelling)
-        //{
-        //    Cursor.SetCursor(GameManager.instance.cursorImg[2], Vector2.zero, CursorMode.ForceSoftware);
-        //}
-        //else
-        //{
-        //    Cursor.SetCursor(GameManager.instance.cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
-        //}
+#if UNITY_EDITOR
+
+#else
+        if (shop.isBuying)
+        {
+            Cursor.SetCursor(GameManager.instance.cursorImg[1], Vector2.zero, CursorMode.ForceSoftware);
+        }
+        else if (shop.isSelling)
+        {
+            Cursor.SetCursor(GameManager.instance.cursorImg[2], Vector2.zero, CursorMode.ForceSoftware);
+        }
+        else
+        {
+            Cursor.SetCursor(GameManager.instance.cursorImg[0], Vector2.zero, CursorMode.ForceSoftware);
+        }
+#endif
     }
 
     /// <summary>

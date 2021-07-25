@@ -93,6 +93,7 @@ public class Shop : MonoBehaviour
         }
         else
         {   // 상점 슬롯이 꽉차면 첫칸을 없에고 빈 새로운 칸을 만들어서 한칸씩 땡겨진것처럼 보이게함.
+            // 추후에 게임을 껐다가 키거나, 일정 조건을 만족하면 상점창 초기화(기본적으로 파는 아이템만 있게) 할것.
             Destroy(slots[0].gameObject);
             var obj = Instantiate(shopSlot, slotsGroup.transform);
             slots.Add(obj.GetComponent<ShopSlot>());

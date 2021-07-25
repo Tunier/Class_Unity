@@ -6,27 +6,27 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public enum ItemType
-    { 
+    {
         Equipment,
         Used,
         Resources,
     }
 
     public enum ItemRarelity
-    { 
+    {
         Common,
         Rare,
         Epic,
     }
 
+    public ItemType itemType;
     public string itemName;
+    public ItemRarelity itemRarelity;
     [TextArea]
     public string itemDescription;
-    public ItemType itemType;
-    public ItemRarelity itemRarelity;
     public int buyCost;
     public int sellCost;
-    
+
     public Sprite itemImage;
     public GameObject itemPrefab;
 

@@ -22,7 +22,7 @@ public class MonsterSpawnerCtrl : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
-        spawnAfterTime = 5f;
+        spawnAfterTime = 2f;
         spawnDelay = 6f;
         spawnMobLevel = 1;
     }
