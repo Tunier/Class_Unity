@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,11 @@ public class GameManager : MonoBehaviour
     int maxPool = 10;
     public List<GameObject> bulletpool = new List<GameObject>();
 
+    [Header("UI°ü·Ã")]
+    public Image weaponButtonImg;
     bool isPaused;
+
+    public CanvasGroup inventoryCG;
 
     public void OnPauseClick()
     {
@@ -34,6 +39,18 @@ public class GameManager : MonoBehaviour
 
         var canvasGroup = GameObject.Find("Panel-Weapon").GetComponent<CanvasGroup>();
         canvasGroup.blocksRaycasts = !isPaused;
+    }
+
+    public void OnInventoryOpen(bool _isOpened)
+    {
+        inventoryCG.alpha = _isOpened ? 1f : 0f;
+        inventoryCG.interactable = _isOpened;
+        inventoryCG.blocksRaycasts = _isOpened;
+    }
+
+    public void OnCloseButtonClick()
+    {
+        inventoryCG.alpha = 0;
     }
 
     private void Awake()

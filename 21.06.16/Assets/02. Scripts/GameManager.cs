@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
             dieText.SetActive(true);
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene("Stage");
+                SceneManager.LoadScene("01. Stage");
             }
         }
         else

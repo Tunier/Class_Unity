@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour//, IPointerClickHandler
+public class Slot : MonoBehaviour, IPointerClickHandler
 {
     public int index;
     public Item item;
@@ -73,9 +73,9 @@ public class Slot : MonoBehaviour//, IPointerClickHandler
         countImage.SetActive(false);
     }
 
-    //public void OnPointerClick(PointerEventData eventData)
-    //{
-    //    if (eventData.button == PointerEventData.InputButton.Right)
-    //        SetSlotCount(-1);
-    //}
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            SetSlotCount(-1);
+    }
 }

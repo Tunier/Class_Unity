@@ -14,15 +14,24 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     PlayerCtrl player;
 
+    RectTransform rect;
+
     public List<Slot> slots;
 
     public bool isFull = false;
 
     private void Awake()
     {
+        rect = GetComponent<RectTransform>();
+        
         slots = new List<Slot>();
 
         slots.AddRange(slotsParent.GetComponentsInChildren<Slot>()); // 칠드런으로 받아오는 이유는 비활성화 되면 못받아오기때문에 비활성화된 상태도 찾아올수있는 칠드런으로 받아온다.
+    }
+
+    private void Start()
+    {
+        rect.localPosition = new Vector3(190, -12);
     }
 
     private void Update()

@@ -30,7 +30,9 @@ public class Inventory : MonoBehaviour
             slots[i].index = i;
 
             if (slots[i].item == null)
+            {
                 isFull = false;
+            }
 
             if (i == (slots.Count - 1))
                 if (slots[i].item != null)
@@ -45,20 +47,20 @@ public class Inventory : MonoBehaviour
     /// <param name="count"></param>
     public void GetItem(Item _item, int count = 1)
     {
-        if (_item.Type == Item.ItemType.Used) // 소비탬일때
-        {
-            foreach (Slot slot in slots) // 모든 슬롯중
-            {
-                if (slot.haveItem) // 아이템이 있는 슬롯에
-                {
-                    if (slot.item.Name == _item.Name) // 같은 이름을 가진 item이 있으면
-                    {
-                        slot.SetSlotCount(count); // 갯수를 증가시킴
-                        return;
-                    }
-                }
-            }
-        }
+        //if (_item.Type == Item.ItemType.Used) // 소비탬일때
+        //{
+        //    foreach (Slot slot in slots) // 모든 슬롯중
+        //    {
+        //        if (slot.haveItem) // 아이템이 있는 슬롯에
+        //        {
+        //            if (slot.item.Name == _item.Name) // 같은 이름을 가진 item이 있으면
+        //            {
+        //                slot.SetSlotCount(count); // 갯수를 증가시킴
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
 
         // 장비 종류에 상관없이
         for (int i = 0; i < slots.Count; i++) // 모든 슬롯중
@@ -75,9 +77,12 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Count; i++)
         {
-            if (!myItems.Contains(slots[i].item))
+            if (slots[i].haveItem)
             {
-                myItems.Add(slots[i].item);
+                if (!myItems.Contains(slots[i].item))
+                {
+                    myItems.Add(slots[i].item);
+                }
             }
         }
 
@@ -94,7 +99,14 @@ public class Inventory : MonoBehaviour
             if (itemList[i].Count != 0)
             {
                 slots[itemList[i].SlotIndex].AddItem(itemList[i]);
-                Debug.Log(itemList[i].Name + "을 " + itemList[i].SlotIndex + "에 로드했음");
+                if (itemList[i].Type == Item.ItemType.Weapon)
+                {
+                    Debug.Log(itemList[i].Name + "을 " + itemList[i].SlotIndex + "에 로드했음");
+                }
+                else
+                {
+                    Debug.Log(itemList[i].Name + "을 " + itemList[i].Count + "개 " + itemList[i].SlotIndex + "에 로드했음");
+                }
             }
             else
             {

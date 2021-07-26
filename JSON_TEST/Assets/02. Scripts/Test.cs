@@ -9,6 +9,8 @@ public class Test : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     Inventory inven;
 
+    public int i;
+
     void Start()
     {
 
@@ -23,14 +25,19 @@ public class Test : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            var item = new Item(Database.instance.AllItemList[0].Index,
-                                Database.instance.AllItemList[0].Type,
-                                Database.instance.AllItemList[0].Name,
-                                Database.instance.AllItemList[0].Rarity,
-                                Database.instance.AllItemList[0].SellCost,
-                                Database.instance.AllItemList[0].BuyCost,
-                                Database.instance.AllItemList[0].ItemImagePath);
-            inven.GetItem(item);
+            GetItem(i);
         }
+    }
+
+    void GetItem(int i)
+    {
+        var item = new Item(Database.instance.AllItemList[i].Index,
+                            Database.instance.AllItemList[i].Type,
+                            Database.instance.AllItemList[i].Name,
+                            Database.instance.AllItemList[i].Rarity,
+                            Database.instance.AllItemList[i].SellCost,
+                            Database.instance.AllItemList[i].BuyCost,
+                            Database.instance.AllItemList[i].ItemImagePath);
+        inven.GetItem(item);
     }
 }

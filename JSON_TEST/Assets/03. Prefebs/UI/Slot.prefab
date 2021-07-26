@@ -33,11 +33,11 @@ RectTransform:
   m_Father: {fileID: 294213232853095440}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: 17}
-  m_SizeDelta: {x: 15, y: 15}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 11, y: 11}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &294213232459144642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294213232666857366}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -165,15 +165,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd73d19198408e41b31d5e198dac99c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   item:
+    Index: 0
     Type: 0
     Name: 
     Rarity: 0
     SellCost: 0
     BuyCost: 0
+    Count: 0
+    SlotIndex: 0
     ItemImagePath: 
-  itemCount: 0
   itemImage: {fileID: 294213232853095454}
+  haveItem: 0
   countImage: {fileID: 294213232459144645}
   countText: {fileID: 294213232790597350}
 --- !u!1 &294213232790597336
@@ -242,9 +246,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 044a1547c78677f4d82a3c18cf4b7812, type: 3}
-    m_FontSize: 12
-    m_FontStyle: 0
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 18
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40

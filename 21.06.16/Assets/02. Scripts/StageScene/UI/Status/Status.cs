@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Status : MonoBehaviour
 {
+    RectTransform rect;
+
     [SerializeField]
     GameObject slotsParent;
 
@@ -18,8 +20,15 @@ public class Status : MonoBehaviour
     [SerializeField]
     Item baseWeapon;
 
+    private void Awake()
+    {
+        rect = GetComponent<RectTransform>();
+    }
+
     void Start()
     {
+        rect.localPosition = new Vector3(-198, -12);
+
         slots = slotsParent.GetComponentsInChildren<Slot>();
 
         foreach (Slot slot in slots)

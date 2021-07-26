@@ -59,6 +59,9 @@ public class Database : MonoBehaviour
     [SerializeField]
     Inventory inven;
 
+    const string itemDataPath = "Data/ItemData";
+    const string invenSavePath = "/Resources/Data/MyInvenItems.text";
+
     private void Awake()
     {
         if (instance == null)
@@ -71,7 +74,7 @@ public class Database : MonoBehaviour
                 Destroy(gameObject);
         }
 
-        ItemData = Resources.Load<TextAsset>("Data/ItemData");
+        ItemData = Resources.Load<TextAsset>(itemDataPath);
 
         string[] line = ItemData.text.Substring(0, ItemData.text.Length - 1).Split('\n');
         for (int i = 0; i < line.Length; i++)
@@ -104,17 +107,15 @@ public class Database : MonoBehaviour
 
     public void Load()
     {
-        if (File.Exists(Application.dataPath + "/Resources/Data/MyInvenItems.text"))
+        if (File.Exists(Application.dataPath + invenSavePath))
         {
-            string Jdata = File.ReadAllText(Application.dataPath + "/Resources/Data/MyInvenItems.text");
+            string Jdata = File.ReadAllText(Application.dataPath + invenSavePath);
             LoadItemList = JsonConvert.DeserializeObject<List<Item>>(Jdata);
             inven.LoadInven(LoadItemList);
 
             Debug.Log("로드성공");
         }
         else
-        {
             Debug.Log("세이브파일없음");
-        }
     }
 }
