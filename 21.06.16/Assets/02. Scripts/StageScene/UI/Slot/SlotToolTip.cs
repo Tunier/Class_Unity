@@ -28,8 +28,8 @@ public class SlotToolTip : MonoBehaviour
 
     private void Awake()
     {
-        RD_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, -baseImage.GetComponent<RectTransform>().rect.height * 0.5f, 0); // 오른쪽 아래로 띄우는 오프셋
-        RU_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, baseImage.GetComponent<RectTransform>().rect.height * 0.5f, 0); // 오른쪽 위로 띄우는 오프셋
+        RD_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, -baseImage.GetComponent<RectTransform>().rect.height * 0.5f); // 오른쪽 아래로 띄우는 오프셋
+        RU_Offset = new Vector3(baseImage.GetComponent<RectTransform>().rect.width * 0.5f, baseImage.GetComponent<RectTransform>().rect.height * 0.5f); // 오른쪽 위로 띄우는 오프셋
     }
 
     private void Update()

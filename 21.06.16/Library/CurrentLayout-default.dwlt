@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 37
+  controlID: 177
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 169
+  controlID: 178
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -484,9 +484,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.1986732, y: -4.7115707, z: 34.727535}
+    m_Target: {x: -7.821052, y: 0.7992351, z: 9.565104}
     speed: 2
-    m_Value: {x: 5.1986732, y: -4.7115707, z: 34.727535}
+    m_Value: {x: 158, y: -66.425, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,13 +533,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.23100287, y: -0.72100776, z: 0.28281596, w: -0.588909}
+    m_Target: {x: -0.29420397, y: 0.033534642, z: -0.010332451, w: -0.95510644}
     speed: 2
-    m_Value: {x: -0.232767, y: -0.7201513, z: 0.28497586, w: -0.58820945}
+    m_Value: {x: -0.2942017, y: 0.03353438, z: -0.010332371, w: -0.95509905}
   m_Size:
-    m_Target: 24.481699
+    m_Target: 1.6765698
     speed: 2
-    m_Value: 25.635286
+    m_Value: 171.39511
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 19794
+  m_LastSelectedObjectID: 21080
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -698,9 +698,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d40e0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 52fbffff
+      m_ExpandedIDs: bedeffffc8deffff9ee0ffffa8e0ffffcee1ffffe6e4fffff0e4ffff34e6ffffc2eaffff52fbffffbc4200000644000088440000ba47000060520000ce520000ec520000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -762,22 +762,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/02. Scripts/StageScene/UI/Inventory
+    - Assets/01. Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/02. Scripts/StageScene/UI/Inventory
+  - Assets/01. Scenes
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\admin\source\repos\Tunier\Class_Unity\21.06.16
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 40}
-    m_SelectedIDs: f04d0000
-    m_LastClickedID: 19952
-    m_ExpandedIDs: 00000000a44d0000a64d0000a84d0000aa4d0000ac4d0000ae4d0000b04d0000b24d0000b44d0000b64d0000b84d0000ba4d0000bc4d0000be4d0000c04d0000c24d0000c44d0000c64d0000c84d0000ca4d0000cc4d0000ce4d0000d04d0000d24d000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: e24d0000
+    m_LastClickedID: 19938
+    m_ExpandedIDs: 00000000a44d0000a64d0000a84d0000aa4d0000ac4d0000ae4d0000b04d0000b24d0000b44d0000b64d0000b84d0000ba4d0000bc4d0000be4d0000c04d0000c24d0000c44d0000c64d0000c84d0000ca4d0000cc4d0000ce4d0000d04d0000d24d0000d6510000d851000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -836,18 +836,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 6e530000483f000034780000987900007e7900009a79000096790000704b0000324200002e420000d0400000ea3c0000d2450000c03c000042420000f442000016400000aaa90000dad400005ed400006ad9000004480000245c0000205c0000f84f0000aa44000072130000b815000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: SimpleTooltip
+      m_OriginalName: SimpleTooltip
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 21062
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:

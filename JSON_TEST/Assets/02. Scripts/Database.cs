@@ -26,7 +26,7 @@ public class Item
     {
         Index = _Index;
         Type = _Type;
-        Name = _Name;
+        Name = String.Format(_Name, Type);
         Rarity = _Rarity;
         SellCost = _SellCost;
         BuyCost = _BuyCost;
