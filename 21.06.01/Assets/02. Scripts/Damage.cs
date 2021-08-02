@@ -38,8 +38,8 @@ public class Damage : MonoBehaviour
             currHp -= 5; // hp 5 감소
             //print("현재 체력 : " + currHp);
             // Debug.Log(currHp); <-- 동일한 방법.
-            if (!isOnBloodScreen)
-                StartCoroutine(BloodScreen());
+            //if (!isOnBloodScreen)
+                //StartCoroutine(BloodScreen());
 
             if (currHp <= 0f)
             {

@@ -171,10 +171,6 @@ public class PlayerCtrl : MonoBehaviour
             {
                 Playing();
             }
-            if (exp >= expMax)
-            {
-                LevelUp();
-            }
             critcalChance = Mathf.Round(dex + 10f); // 나중에 아이템 효과로 추가되는 값 더해주게 수정
             minDamage = Mathf.Round(str) + playerWeapon.GetComponent<PlayerWeaponCtrl>().weaponDamage;
             maxDamage = Mathf.Round(str) + playerWeapon.GetComponent<PlayerWeaponCtrl>().weaponDamage + 2f;
@@ -330,7 +326,7 @@ public class PlayerCtrl : MonoBehaviour
     ///경험치를 레벨업에 필요한 경험치만큼 빼고, 레벨업에 필요한 경험치량 증가시킨후 레벨업 시킴.<br/>
     ///그후 여러가지 스텟들 증가.
     ///</summary>
-    void LevelUp()
+    public void LevelUp()
     {
         exp -= expMax;
         expMax = level * 100 + 100;

@@ -35,6 +35,8 @@ public class EnemyAI : MonoBehaviour
     readonly int hashWalkSpeed = Animator.StringToHash("WalkSpeed");
     readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
 
+    EnemyFOV enemyFOV;
+
     void Awake()
     {
         var player = GameObject.FindGameObjectWithTag("PLAYER");
@@ -55,6 +57,8 @@ public class EnemyAI : MonoBehaviour
         // 속도도 조금씩 다르게 만들어줌.
         animator.SetFloat(hashOffset, Random.Range(0f, 1f));
         animator.SetFloat(hashWalkSpeed, Random.Range(1f, 1.2f));
+
+        enemyFOV = FindObjectOfType<EnemyFOV>();
     }
 
     private void OnEnable()
@@ -79,6 +83,8 @@ public class EnemyAI : MonoBehaviour
     // 코루틴 = 독자적인 시간축을 가짐.
     IEnumerator CheckState() // 상태체크 코루틴 함수.
     {
+        yield return new WaitForSeconds(1f);
+
         while (!isDie) // 적이 살아있는동안 계속 실행되도록 while사용.
         {
             if (state == State.DIE)
@@ -88,9 +94,12 @@ public class EnemyAI : MonoBehaviour
 
             if (dist <= attackDist) // 공격 사거리 이내면 공격으로 변경.
             {
-                state = State.ATTCK;
+                if (enemyFOV.isViewPlayer())
+                    state = State.ATTCK; // 장애물 없으면 공격
+                else
+                    state = State.TRACE; // 장애물 있으면 추적
             }
-            else if (dist <= traceDist) // 추적 사거리 이내면 추적으로 변경.
+            else if (enemyFOV.isTracePlayer()) // 추적 사거리 이내면 추적으로 변경.
             {
                 state = State.TRACE;
             }
@@ -128,7 +137,7 @@ public class EnemyAI : MonoBehaviour
                     break;
                 case State.DIE:
                     gameObject.tag = "Untagged";
-                    
+
                     isDie = true;
                     enemyFire.isFire = false;
 

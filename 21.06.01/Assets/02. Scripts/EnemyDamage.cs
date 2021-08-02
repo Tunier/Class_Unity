@@ -56,6 +56,9 @@ public class EnemyDamage : MonoBehaviour
                 // 상태 변환 해줌.
                 GetComponent<EnemyAI>().state = EnemyAI.State.DIE;
                 hpBarImage.GetComponentInParent<Image>().color = Color.clear;
+
+                GameManager.instance.IncKillCount();
+                GetComponent<CapsuleCollider>().enabled = false;
             }
         }
     }

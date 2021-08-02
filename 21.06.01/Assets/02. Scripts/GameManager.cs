@@ -25,6 +25,16 @@ public class GameManager : MonoBehaviour
 
     public CanvasGroup inventoryCG;
 
+    [Header("데이터 저장")]
+    public Text killConutTxt;
+    int killCount;
+
+    void LoadGameData()
+    {
+        killCount = PlayerPrefs.GetInt("KILL_COUNT", 0);
+        killConutTxt.text = "KILL " + killCount.ToString("0000");
+    }
+
     public void OnPauseClick()
     {
         isPaused = !isPaused;
@@ -66,7 +76,17 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
         }
 
-        CreatePolling();
+        LoadGameData();
+
+        CreatePooling();
+    }
+
+    public void IncKillCount()
+    {
+        killCount++;
+        killConutTxt.text = "KILL " + killCount.ToString("0000");
+        PlayerPrefs.SetInt("KILL_COUNT", killCount);
+        PlayerPrefs.Save();
     }
 
     void Start()
@@ -91,7 +111,7 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
-    public void CreatePolling()
+    public void CreatePooling()
     {
         GameObject ObjectPools = new GameObject("ObjectPools");
 

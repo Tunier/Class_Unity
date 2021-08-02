@@ -28,8 +28,8 @@ public class PlayerCtrl : MonoBehaviour
 
     Transform tr; // 트랜스폼 컴포넌트 접근 변수
     // Public으로 선언된 변수는 Inspector 창에 노출됨.    
-    public float moveSpeed = 10f;
-    public float rotSpeed = 500f;
+    public float moveSpeed = 8f;
+    public float rotSpeed = 400f;
 
     public PlayerAnim playerAnim;
     public Animation anim;

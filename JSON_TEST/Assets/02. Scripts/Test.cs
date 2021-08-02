@@ -31,13 +31,17 @@ public class Test : MonoBehaviour, IPointerClickHandler
 
     void GetItem(int i)
     {
-        var item = new Item(Database.instance.AllItemList[i].Index,
-                            Database.instance.AllItemList[i].Type,
-                            Database.instance.AllItemList[i].Name,
-                            Database.instance.AllItemList[i].Rarity,
-                            Database.instance.AllItemList[i].SellCost,
-                            Database.instance.AllItemList[i].BuyCost,
-                            Database.instance.AllItemList[i].ItemImagePath);
+        //var item = new Item(Database.instance.AllItemList[i].Index,
+        //                    Database.instance.AllItemList[i].Type,
+        //                    Database.instance.AllItemList[i].Name,
+        //                    Database.instance.AllItemList[i].Rarity,
+        //                    Database.instance.AllItemList[i].BuyCost,
+        //                    Database.instance.AllItemList[i].SellCost,
+        //                    Database.instance.AllItemList[i].ItemImagePath);
+        //inven.GetItem(item);
+
+        var item = ItemDatabase.instance.newItem(i);
+
         inven.GetItem(item);
     }
 }

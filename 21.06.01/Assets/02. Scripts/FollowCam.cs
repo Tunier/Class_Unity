@@ -12,10 +12,29 @@ public class FollowCam : MonoBehaviour
     public float targetOffset = 2f; // 추적 좌표의 오프셋
 
     Transform tr;
-    // Start is called before the first frame update
+
+    [Header("벽 장애물 설정")]
+    public float heightAboveWall = 7f;
+    public float colliderRadius = 1.8f;
+    public float overDamping = 5f;
+    public float originHeight = 0f;
+
     void Start()
     {
         tr = GetComponent<Transform>();
+        originHeight = height;
+    }
+
+    private void Update()
+    {
+        if (Physics.CheckSphere(tr.position, colliderRadius))
+        {
+            height = Mathf.Lerp(height, heightAboveWall, Time.deltaTime * overDamping);
+        }
+        else
+        {
+            height = Mathf.Lerp(height, originHeight, Time.deltaTime * overDamping);
+        }
     }
 
     // 콜백함수 - 호출을 따로 하지 않아도 알아서 작동하는 함수.
