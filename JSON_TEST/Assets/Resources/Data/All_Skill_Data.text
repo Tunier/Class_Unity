@@ -1,2 +1,2 @@
-[{"Index":0,"Type":"TargetingAttack","Name":"파이어볼","costType":"MP","Cost":5,"Value":10,"ValueFactor":2,"SkillDescription":"불덩이를 발사합니다.\n{0}의 데미지를 줍니다.","SkillImagePath":"UI/Icon/Potion/MpPotion"},
-{"Index":1,"Type":"Passive","Name":"Hp증가","costType":"None","Cost":0,"Value":5,"ValueFactor":1,"SkillDescription":"Hp의 최대치가 {0}증가합니다.","SkillImagePath":"UI/Icon/Weapons/Bow"}]
+[{"Index":0,"skillType":"TargetingAttack","Name":"파이어볼","costType":"MP","Cost":5,"Value":10,"ValueFactor":2,"SkillDescription":"불덩이를 발사합니다.\n{0}의 데미지를 줍니다.","SkillImagePath":"UI/Icon/Potion/MpPotion"},
+{"Index":1,"skillType":"Passive","Name":"Hp증가","costType":"None","Cost":0,"Value":5,"ValueFactor":1,"SkillDescription":"Hp의 최대치가 {0}증가합니다.","SkillImagePath":"UI/Icon/Weapons/Bow"}]

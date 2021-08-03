@@ -47,7 +47,8 @@ public class Skill
     public int Cost;
     public int Value;
     public float ValueFactor;
-    public int Skill_Level = 1;
+    public int SkillLv;
+    public int MaxSkillLv;
 
     [TextArea]
     public string SkillDescription;
@@ -91,21 +92,9 @@ public class SkillDatabase : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public Skill newSkill(int i)
     {
-        //int _value;
-
-        //_value = Mathf.RoundToInt(AllSkillDic[i].Value + (AllSkillDic[i].Skill_Level - 1) * AllSkillDic[i].ValueFactor);
+        //벨류 공식 : Mathf.RoundToInt(AllSkillDic[i].Value + (AllSkillDic[i].Skill_Level - 1) * AllSkillDic[i].ValueFactor);
 
         var skill = new Skill(AllSkillDic[i].Index,
                               AllSkillDic[i].skillType,
@@ -117,5 +106,96 @@ public class SkillDatabase : MonoBehaviour
                               AllSkillDic[i].SkillDescription,
                               AllSkillDic[i].SkillImagePath);
         return skill;
+    }
+
+    /// <summary>
+    /// 스킬, 스킬타겟, 스킬사용자(기본은 null)를 받아서 스킬 타입에따라 스킬이 사용되게함.
+    /// </summary>
+    /// <param name="_skill"></param>
+    /// <param name="_user"></param>
+    /// <param name="_target"></param>
+    public void UseSkill(Skill _skill, GameObject _user, GameObject _target = null)
+    {
+        if (_skill.SkillLv == 0)
+        {
+            Debug.Log("아직 배우지 않은 스킬입니다.");
+            return;
+        }
+
+        switch (_skill.skillType)
+        {
+            case Skill.SkillType.Passive:
+                if (_user.CompareTag("Player"))
+                {
+                    var player = _user.GetComponent<PlayerTest>();
+                    switch (_skill.Index)
+                    {
+                        case 1://"Hp증가"
+                            if (_skill.SkillLv > 1)
+                            {
+                                player.SkillEffectMaxHp += _skill.ValueFactor;
+                                player.RefeshFinalStats();
+                                Debug.Log(_skill.Name + " (패시브)스킬 레벨업");
+                            }
+                            else if (_skill.SkillLv == 1)
+                            {
+                                player.SkillEffectMaxHp += _skill.Value;
+                                player.RefeshFinalStats();
+                                Debug.Log(_skill.Name + " (패시브)스킬 습득");
+                            }
+                            break;
+                    }
+                }
+                // 나중에 사용자가 플레이어 이외일때 작성.
+                //else if (_user.GetComponent<>)
+                //{ 
+                //}
+                break;
+            case Skill.SkillType.TargetingAttack:
+
+                break;
+            case Skill.SkillType.AoEAttack:
+
+                break;
+            case Skill.SkillType.Buff:
+
+                break;
+            case Skill.SkillType.Debuff:
+
+                break;
+            case Skill.SkillType.Heal:
+
+                break;
+            default:
+                Debug.LogError("스킬타입에 없는 스킬입니다.");
+                break;
+        }
+    }
+
+    public void UsePassiveSkillOnLoad(Skill _skill, GameObject _user)
+    {
+        if (_user.CompareTag("Player"))
+        {
+            var player = _user.GetComponent<PlayerTest>();
+            switch (_skill.Index)
+            {
+                case 1://"Hp증가"
+                    if (_skill.SkillLv != 0)
+                    {
+                        player.SkillEffectMaxHp += _skill.Value + (_skill.SkillLv - 1) * _skill.ValueFactor;
+                        player.RefeshFinalStats();
+                        Debug.Log(_skill.Name + " (패시브)스킬 효과 발동");
+                    }
+                    else if (_skill.SkillLv == 0)
+                    {
+                        Debug.Log("아직 배우지 않은 스킬이라 효과발동안됨.");
+                    }
+                    break;
+            }
+        }
+        //else if()
+        //{
+        //  나중에 플레이어 이외 대상이 패시브 스킬을 사용할떄 상황.
+        //}
     }
 }
