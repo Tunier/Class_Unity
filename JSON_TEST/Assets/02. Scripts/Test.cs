@@ -9,11 +9,15 @@ public class Test : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     Inventory inven;
 
+    PlayerTest player;
+    SkillDatabase skillDB;
+
     public int i;
 
     void Start()
     {
-
+        player = FindObjectOfType<PlayerTest>();
+        skillDB = FindObjectOfType<SkillDatabase>();
     }
 
     void Update()
@@ -29,7 +33,7 @@ public class Test : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    void GetItem(int i)
+    public void GetItem(int i)
     {
         //var item = new Item(Database.instance.AllItemList[i].Index,
         //                    Database.instance.AllItemList[i].Type,

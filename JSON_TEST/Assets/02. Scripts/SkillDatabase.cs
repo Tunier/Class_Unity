@@ -56,7 +56,7 @@ public class Skill
 
 public class SkillDatabase : MonoBehaviour
 {
-    SkillDatabase instance;
+    public static SkillDatabase instance;
 
     public List<Skill> AllSkillList = new List<Skill>();
     public Dictionary<int, Skill> AllSkillDic = new Dictionary<int, Skill>();
