@@ -1,3 +1,3 @@
-[{"Index":0,"Type":"Weapon","Name":"Sword1","Rarity":"Common","Damage":5,"BuyCost":10,"SellCost":5,"ItemImagePath":"UI/Icon/Weapons/Sword"},
-{"Index":1,"Type":"Weapon","Name":"Sword2","Rarity":"Rare","Damage":7,"BuyCost":50,"SellCost":10,"ItemImagePath":"UI/Icon/Weapons/Sword"},
-{"Index":2,"Type":"Used","Name":"HpPotion","Rarity":"Common","Damage":20,"BuyCost":2,"SellCost":1,"ItemImagePath":"UI/Icon/Potion/HpPotion"}]
+[{"Index":0,"Type":"Weapon","Name":"Sword1","Rarity":"Common","Value":5,"BuyCost":10,"SellCost":5,"ItemImagePath":"UI/Icon/Weapons/Sword"},
+{"Index":1,"Type":"Weapon","Name":"Sword2","Rarity":"Rare","Value":7,"BuyCost":50,"SellCost":10,"ItemImagePath":"UI/Icon/Weapons/Sword"},
+{"Index":2,"Type":"Used","Name":"HpPotion","Rarity":"Common","Value":20,"BuyCost":2,"SellCost":1,"ItemImagePath":"UI/Icon/Potion/HpPotion"}]
