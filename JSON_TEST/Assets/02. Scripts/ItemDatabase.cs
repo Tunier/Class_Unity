@@ -21,13 +21,13 @@ public class Item
         Epic,
     }
 
-    public Item(int _Index, ItemType _Type, string _Name, ItemRarity _Rarity, int _Damage, int _BuyCost, int _SellCost, string _ItemImagePath)
+    public Item(int _Index, ItemType _Type, string _Name, ItemRarity _Rarity, int _Value, int _BuyCost, int _SellCost, string _ItemImagePath)
     {
         Index = _Index;
         Type = _Type;
         Name = _Name;
         Rarity = _Rarity;
-        Damage = _Damage;
+        Value = _Value;
         BuyCost = _BuyCost;
         SellCost = _SellCost;
         ItemImagePath = _ItemImagePath;
@@ -39,7 +39,7 @@ public class Item
     public string Name;
     [JsonConverter(typeof(StringEnumConverter))]
     public ItemRarity Rarity;
-    public int Damage;
+    public int Value;
     public int SellCost;
     public int BuyCost;
     public int Count;
@@ -141,30 +141,29 @@ public class ItemDatabase : MonoBehaviour
 
     public Item newItem(int i)
     {
-        int damage;
+        int Value;
 
         var randomItemQuality = UnityEngine.Random.Range(1, 1000);
 
         if (AllItemDic[i].Type == Item.ItemType.Weapon)
         {
             if (randomItemQuality > 750)
-                damage = Mathf.RoundToInt(AllItemDic[i].Damage * 1.1f);
+                Value = Mathf.RoundToInt(AllItemDic[i].Value * 1.1f);
             else if (randomItemQuality > 250)
-                damage = AllItemDic[i].Damage;
+                Value = AllItemDic[i].Value;
             else
-                damage = Mathf.RoundToInt(AllItemDic[i].Damage * 0.9f);
+                Value = Mathf.RoundToInt(AllItemDic[i].Value * 0.9f);
         }
         else
         {
-            damage = AllItemDic[i].Damage;
+            Value = AllItemDic[i].Value;
         }
-
 
         var item = new Item(AllItemDic[i].Index,
                             AllItemDic[i].Type,
                             AllItemDic[i].Name,
                             AllItemDic[i].Rarity,
-                            damage,
+                            Value,
                             AllItemDic[i].BuyCost,
                             AllItemDic[i].SellCost,
                             AllItemDic[i].ItemImagePath);
