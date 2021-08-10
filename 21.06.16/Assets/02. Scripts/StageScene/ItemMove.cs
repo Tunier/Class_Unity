@@ -15,7 +15,7 @@ public class ItemMove : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(new Vector3(0, 120) * Time.deltaTime);
-        transform.Translate(new Vector3(0, Mathf.Sin(Time.time * 5)) * Time.deltaTime);
+        tr.Rotate(new Vector3(0, 120) * Time.deltaTime);
+        tr.Translate(new Vector3(0, Mathf.Sin(Time.time * 5)) * Time.deltaTime);
     }
 }
