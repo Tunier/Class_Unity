@@ -15,11 +15,11 @@ C:/Users/admin/source/repos/Tunier/Class_Unity/210803_Shader
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-52183
+57622
 Successfully changed project path to: C:/Users/admin/source/repos/Tunier/Class_Unity/210803_Shader
 C:/Users/admin/source/repos/Tunier/Class_Unity/210803_Shader
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 44.64 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 45.23 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.10f1 (297d780c91bc)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/Resources/UnitySubsystems
@@ -35,235 +35,238 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56256
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56052
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003612 seconds.
+Registered in 0.002034 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 52.81 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 39.65 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  4.827 seconds
+- Completed reload, in  2.318 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.019567 seconds.
+Registered in 0.004450 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 120.24 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 37.64 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.312 seconds
+- Completed reload, in  1.278 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
-Refreshing native plugins compatible for Editor in 0.46 ms, found 2 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2193 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 93.2 MB.
-System memory in use after: 93.2 MB.
+System memory in use before: 93.6 MB.
+System memory in use after: 93.6 MB.
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2625.
-Total: 3.163000 ms (FindLiveObjects: 0.293000 ms CreateObjectMapping: 0.121300 ms MarkObjects: 2.613300 ms  DeleteObjects: 0.134100 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/FX/Materials/eff_aura1_add.mat
-  artifactKey: Guid(55a4448aede1d4539ab28c1c395f8396) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Materials/eff_aura1_add.mat using Guid(55a4448aede1d4539ab28c1c395f8396) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f073a84e3828017ab08c8df37c15895c') in 0.161254 seconds
-  Import took 0.166005 seconds .
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 2628.
+Total: 3.770400 ms (FindLiveObjects: 0.736300 ms CreateObjectMapping: 0.301700 ms MarkObjects: 2.571500 ms  DeleteObjects: 0.159600 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000204 seconds.
-  path: Assets/FX/Prefabs
-  artifactKey: Guid(8bfb02c0834fb4d72bd936d725f6615e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Prefabs using Guid(8bfb02c0834fb4d72bd936d725f6615e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bad855746c7b392ad2e8478c2fa7913b') in 0.009384 seconds
-  Import took 0.013540 seconds .
+  path: Assets/Textures2
+  artifactKey: Guid(f91640506efb3af4fbf0ba2f34e59198) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures2 using Guid(f91640506efb3af4fbf0ba2f34e59198) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4203f4faa1b5b439ac6df84d4853b7e6') in 0.009793 seconds
+  Import took 0.013496 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 17.609606 seconds.
-  path: Assets/FX/Textures/eff_aura1.png
-  artifactKey: Guid(1e9ff56799d6244c8bcb759bcbab8eb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Textures/eff_aura1.png using Guid(1e9ff56799d6244c8bcb759bcbab8eb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98658f30600985739ee8e85b54b52d08') in 0.038448 seconds
-  Import took 0.043905 seconds .
+  Time since last request: 1.186186 seconds.
+  path: Assets/Textures2/ramp.png
+  artifactKey: Guid(eb3ad75cc20cecf4aa1ffb6097dfbfe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures2/ramp.png using Guid(eb3ad75cc20cecf4aa1ffb6097dfbfe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24f6f0dc014d43c985911ee6ce7eb7b1') in 0.081951 seconds
+  Import took 0.085527 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.015728 seconds.
-  path: Assets/FX/Textures/eff_aura1.png
-  artifactKey: Guid(1e9ff56799d6244c8bcb759bcbab8eb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Textures/eff_aura1.png using Guid(1e9ff56799d6244c8bcb759bcbab8eb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98658f30600985739ee8e85b54b52d08') in 0.019308 seconds
-  Import took 0.024665 seconds .
+  Time since last request: 0.001413 seconds.
+  path: Assets/Textures2/ramp.png
+  artifactKey: Guid(eb3ad75cc20cecf4aa1ffb6097dfbfe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures2/ramp.png using Guid(eb3ad75cc20cecf4aa1ffb6097dfbfe8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24f6f0dc014d43c985911ee6ce7eb7b1') in 0.009036 seconds
+  Import took 0.013588 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 244.728375 seconds.
-  path: Assets/FX/Materials/eff_par1_add.mat
-  artifactKey: Guid(56e6f4cb1d27e4442a785c8b9ab80d24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Materials/eff_par1_add.mat using Guid(56e6f4cb1d27e4442a785c8b9ab80d24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '369404cc3a45b188e1db385453469a36') in 0.030391 seconds
-  Import took 0.039628 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.152073 seconds.
-  path: Assets/FX/Materials/eff_smoke1_alpha.mat
-  artifactKey: Guid(5aef12322215546f7901bf94b35bbeb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Materials/eff_smoke1_alpha.mat using Guid(5aef12322215546f7901bf94b35bbeb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aecb0812b26426c298cd93671d6b1f45') in 0.026069 seconds
-  Import took 0.032235 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.009816 seconds.
-  path: Assets/FX/Materials/eff_smoke1_alpha.mat
-  artifactKey: Guid(5aef12322215546f7901bf94b35bbeb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Materials/eff_smoke1_alpha.mat using Guid(5aef12322215546f7901bf94b35bbeb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aecb0812b26426c298cd93671d6b1f45') in 0.011525 seconds
-  Import took 0.016772 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 68.672965 seconds.
-  path: Assets/FX/Textures/eff_par1.png
-  artifactKey: Guid(864b7953ac3884b3aa03265b680a2e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Textures/eff_par1.png using Guid(864b7953ac3884b3aa03265b680a2e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4ea4ff880b7f106c06a4f506ee2373d') in 0.020452 seconds
-  Import took 0.026589 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.232517 seconds.
-  path: Assets/FX/Textures/eff_smoke1.png
-  artifactKey: Guid(2d3f0e7f6295648a7b7d21fd2288950c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Textures/eff_smoke1.png using Guid(2d3f0e7f6295648a7b7d21fd2288950c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7df0d0bda56e49c8ea9c2325972af42') in 0.014387 seconds
-  Import took 0.022006 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001708 seconds.
-  path: Assets/FX/Textures/eff_smoke1.png
-  artifactKey: Guid(2d3f0e7f6295648a7b7d21fd2288950c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Textures/eff_smoke1.png using Guid(2d3f0e7f6295648a7b7d21fd2288950c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7df0d0bda56e49c8ea9c2325972af42') in 0.011732 seconds
-  Import took 0.018251 seconds .
+  Time since last request: 1.514179 seconds.
+  path: Assets/Textures2/smoke.png
+  artifactKey: Guid(6ac8aee98313af542b7308f8f868d51a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures2/smoke.png using Guid(6ac8aee98313af542b7308f8f868d51a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c182c106fc3092f16e7175657853907') in 0.016783 seconds
+  Import took 0.020604 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.016466 seconds.
+Registered in 0.004328 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.40 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.987 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.43 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2178 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 95.5 MB.
-System memory in use after: 95.6 MB.
-
-Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 2670.
-Total: 2.232400 ms (FindLiveObjects: 0.185300 ms CreateObjectMapping: 0.073100 ms MarkObjects: 1.865000 ms  DeleteObjects: 0.108000 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 804.296996 seconds.
-  path: Assets/FX/Materials
-  artifactKey: Guid(f40786e881f87493fb6ad4b622400d48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Materials using Guid(f40786e881f87493fb6ad4b622400d48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f01bd47182b3391aecc1484993822c1') in 0.018732 seconds
-  Import took 0.027400 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004541 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.259 seconds
+- Completed reload, in  1.143 seconds
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.45 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2178 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 95.5 MB.
-System memory in use after: 95.6 MB.
+System memory in use before: 92.7 MB.
+System memory in use after: 92.8 MB.
 
-Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 2672.
-Total: 2.748800 ms (FindLiveObjects: 0.262800 ms CreateObjectMapping: 0.101700 ms MarkObjects: 2.291700 ms  DeleteObjects: 0.091200 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 3711.299390 seconds.
-  path: Assets/FX/Textures
-  artifactKey: Guid(3f311e44116b94eaab5b3e296cf19e95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Textures using Guid(3f311e44116b94eaab5b3e296cf19e95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd15f8dfddbebe4a605fbfafedf53e474') in 0.018367 seconds
-  Import took 0.024173 seconds .
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 2633.
+Total: 2.859800 ms (FindLiveObjects: 0.203700 ms CreateObjectMapping: 0.087100 ms MarkObjects: 2.463300 ms  DeleteObjects: 0.104300 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.714374 seconds.
-  path: Assets/FX/Prefabs/Eff_Waterfall_Fix.prefab
-  artifactKey: Guid(894473a606e0d4eae87090fbf2a9f129) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Prefabs/Eff_Waterfall_Fix.prefab using Guid(894473a606e0d4eae87090fbf2a9f129) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34bc2166719c6541a7b60b053fc734ba') in 0.068288 seconds
-  Import took 0.072783 seconds .
+  Time since last request: 451.836522 seconds.
+  path: Assets/FX/Materials/eff_par1_alpha.mat
+  artifactKey: Guid(4ed428a28ff154697af97bef40812cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_par1_alpha.mat using Guid(4ed428a28ff154697af97bef40812cdd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87ef3081bbfd67609dc504a2ac726bc9') in 0.135136 seconds
+  Import took 0.140008 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 3.996384 seconds.
-  path: Assets/FX/Materials/eff_water1_add.mat
-  artifactKey: Guid(06d31add080b044bcadc575258f22c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX/Materials/eff_water1_add.mat using Guid(06d31add080b044bcadc575258f22c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '680be02fa44d99f48eff5d1da3369957') in 0.080097 seconds
-  Import took 0.084198 seconds .
+  Time since last request: 733.520991 seconds.
+  path: Assets/FX/Textures/eff_par1.png
+  artifactKey: Guid(864b7953ac3884b3aa03265b680a2e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Textures/eff_par1.png using Guid(864b7953ac3884b3aa03265b680a2e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4ea4ff880b7f106c06a4f506ee2373d') in 0.030610 seconds
+  Import took 0.034826 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 2431.104027 seconds.
-  path: Assets/FX
-  artifactKey: Guid(6bb7861d363cd4151bbfff8f202aa7e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FX using Guid(6bb7861d363cd4151bbfff8f202aa7e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcd48819b44c4dc2d7f31211551ad71f') in 0.010106 seconds
-  Import took 0.014830 seconds .
+  Time since last request: 0.007053 seconds.
+  path: Assets/FX/Textures/eff_par1.png
+  artifactKey: Guid(864b7953ac3884b3aa03265b680a2e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Textures/eff_par1.png using Guid(864b7953ac3884b3aa03265b680a2e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4ea4ff880b7f106c06a4f506ee2373d') in 0.020503 seconds
+  Import took 0.026469 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 51.172045 seconds.
-  path: Assets/Material/01_Material.mat
-  artifactKey: Guid(8d8ee855308d66543a2ac51d0e0c6873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Material/01_Material.mat using Guid(8d8ee855308d66543a2ac51d0e0c6873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d142630c4be0eb2213c16f0a9b24edf') in 0.056995 seconds
-  Import took 0.062086 seconds .
+  Time since last request: 2277.471151 seconds.
+  path: Assets/FX/Materials/eff_snow1_alpha.mat
+  artifactKey: Guid(2f92a527455da47d6992cc3cb78af94b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_snow1_alpha.mat using Guid(2f92a527455da47d6992cc3cb78af94b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c65706998f395a82fa6b4cb903ddf3c') in 0.047695 seconds
+  Import took 0.052829 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.015828 seconds.
-  path: Assets/Material/01_Material.mat
-  artifactKey: Guid(8d8ee855308d66543a2ac51d0e0c6873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Material/01_Material.mat using Guid(8d8ee855308d66543a2ac51d0e0c6873) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d142630c4be0eb2213c16f0a9b24edf') in 0.022789 seconds
-  Import took 0.027028 seconds .
+  Time since last request: 0.004614 seconds.
+  path: Assets/FX/Materials/eff_snow1_alpha.mat
+  artifactKey: Guid(2f92a527455da47d6992cc3cb78af94b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_snow1_alpha.mat using Guid(2f92a527455da47d6992cc3cb78af94b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c65706998f395a82fa6b4cb903ddf3c') in 0.020388 seconds
+  Import took 0.027734 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.945233 seconds.
-  path: Assets/Textures2/New Material.mat
-  artifactKey: Guid(2e7e537f318ca934587dc9d32e8f4050) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Textures2/New Material.mat using Guid(2e7e537f318ca934587dc9d32e8f4050) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '989cfccad9b108c4c5886e8842caefeb') in 0.052154 seconds
-  Import took 0.056661 seconds .
+  Time since last request: 376.477506 seconds.
+  path: Assets/FX/Textures/eff_petal1.png
+  artifactKey: Guid(91c9170d3823b4402a71d7f959fa84f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Textures/eff_petal1.png using Guid(91c9170d3823b4402a71d7f959fa84f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0025208bca75ea80218e5e06aaa4eb62') in 0.020679 seconds
+  Import took 0.029081 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.540565 seconds.
-  path: Assets/Material/Tunier_Basic_Normal.mat
-  artifactKey: Guid(aeb87d5ff0a56434597c54f33f34e8f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Material/Tunier_Basic_Normal.mat using Guid(aeb87d5ff0a56434597c54f33f34e8f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '109e1b6965596ebe2526fd1abade2e2e') in 0.051093 seconds
-  Import took 0.055698 seconds .
+  Time since last request: 0.005418 seconds.
+  path: Assets/FX/Textures/eff_petal1.png
+  artifactKey: Guid(91c9170d3823b4402a71d7f959fa84f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Textures/eff_petal1.png using Guid(91c9170d3823b4402a71d7f959fa84f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0025208bca75ea80218e5e06aaa4eb62') in 0.011505 seconds
+  Import took 0.017809 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.003963 seconds.
-  path: Assets/Material/Tunier_Basic_Normal.mat
-  artifactKey: Guid(aeb87d5ff0a56434597c54f33f34e8f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Material/Tunier_Basic_Normal.mat using Guid(aeb87d5ff0a56434597c54f33f34e8f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '109e1b6965596ebe2526fd1abade2e2e') in 0.022719 seconds
-  Import took 0.026815 seconds .
+  Time since last request: 17.052360 seconds.
+  path: Assets/FX/Materials/eff_petal1_alpha.mat
+  artifactKey: Guid(0e287276d5896420ebb9b2a7471a73d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_petal1_alpha.mat using Guid(0e287276d5896420ebb9b2a7471a73d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cdbe25c1a1ae3b7f9d89519e4c9fa4f8') in 0.023331 seconds
+  Import took 0.027583 seconds .
 
-AssetImportWorkerClient::OnTransportError - code=2 error=End of file
+========================================================================
+Received Import Request.
+  Time since last request: 194.625960 seconds.
+  path: Assets/FX/Textures/eff_parline1.png
+  artifactKey: Guid(9b3ce67d3c76c4db3b168ccee36be1a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Textures/eff_parline1.png using Guid(9b3ce67d3c76c4db3b168ccee36be1a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37db608ce58d004e125c69ea28ee0deb') in 0.018058 seconds
+  Import took 0.023653 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 67.886918 seconds.
+  path: Assets/FX/Materials/eff_parline1_alpha.mat
+  artifactKey: Guid(5d3e84962d77e4aa0a44ea27475b0804) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_parline1_alpha.mat using Guid(5d3e84962d77e4aa0a44ea27475b0804) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '122c51ff2d09f48a07cb052cd26ac851') in 0.023461 seconds
+  Import took 0.028689 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3077.005227 seconds.
+  path: Assets/FX/Materials/eff_windline1_add.mat
+  artifactKey: Guid(cdf91b60c0a4f463d9079ca1bb2924cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_windline1_add.mat using Guid(cdf91b60c0a4f463d9079ca1bb2924cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9d6937d7ba6028801943707c49d9481') in 0.054384 seconds
+  Import took 0.067667 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004758 seconds.
+  path: Assets/FX/Materials/eff_windline1_add.mat
+  artifactKey: Guid(cdf91b60c0a4f463d9079ca1bb2924cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_windline1_add.mat using Guid(cdf91b60c0a4f463d9079ca1bb2924cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9d6937d7ba6028801943707c49d9481') in 0.024490 seconds
+  Import took 0.029320 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.003543 seconds.
+  path: Assets/FX/Models/Spring_Line_00.FBX
+  artifactKey: Guid(bf5abfe3d091542819cbb016d788d4b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Models/Spring_Line_00.FBX using Guid(bf5abfe3d091542819cbb016d788d4b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19fb575528de964970aaf9f73fc042a8') in 0.220952 seconds
+  Import took 0.227507 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 342.385935 seconds.
+  path: Assets/FX/Materials/eff_par1_add.mat
+  artifactKey: Guid(56e6f4cb1d27e4442a785c8b9ab80d24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/FX/Materials/eff_par1_add.mat using Guid(56e6f4cb1d27e4442a785c8b9ab80d24) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '369404cc3a45b188e1db385453469a36') in 0.023695 seconds
+  Import took 0.029226 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.102302 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.44 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.709 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.60 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2178 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 96.0 MB.
+System memory in use after: 96.1 MB.
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 2677.
+Total: 3.045900 ms (FindLiveObjects: 0.397700 ms CreateObjectMapping: 0.172500 ms MarkObjects: 2.354400 ms  DeleteObjects: 0.119900 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006588 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.90 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.450 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.66 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2178 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 96.0 MB.
+System memory in use after: 96.1 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 2679.
+Total: 7.284800 ms (FindLiveObjects: 0.254500 ms CreateObjectMapping: 0.142000 ms MarkObjects: 6.795300 ms  DeleteObjects: 0.091400 ms)
+
