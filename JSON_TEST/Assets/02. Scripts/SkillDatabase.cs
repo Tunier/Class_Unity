@@ -184,11 +184,11 @@ public class SkillDatabase : MonoBehaviour
                     {
                         player.SkillEffectMaxHp += _skill.Value + (_skill.SkillLv - 1) * _skill.ValueFactor;
                         player.RefeshFinalStats();
-                        Debug.Log(_skill.Name + " (패시브)스킬 효과 발동");
+                        //Debug.Log(_skill.Name + " (패시브)스킬 효과 발동");
                     }
                     else if (_skill.SkillLv == 0)
                     {
-                        Debug.Log("아직 배우지 않은 스킬이라 효과발동안됨.");
+                        //Debug.Log("아직 배우지 않은 스킬이라 효과발동안됨.");
                     }
                     break;
             }

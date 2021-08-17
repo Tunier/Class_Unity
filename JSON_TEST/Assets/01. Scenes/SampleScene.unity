@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inven: {fileID: 3307016292498843911}
-  i: 0
+  _s: 0000000
 --- !u!114 &695377931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllItemList: []
   LoadItemList: []
+  AllItemEffectList: []
   inven: {fileID: 3307016292498843911}
 --- !u!4 &1314179996
 Transform:
@@ -786,7 +787,7 @@ GameObject:
   - component: {fileID: 1342726065}
   - component: {fileID: 1342726064}
   m_Layer: 5
-  m_Name: SkillDiscText
+  m_Name: DiscText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,9 +824,9 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Skill_Discription
+  m_Text: Discription
 --- !u!222 &1342726065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -865,7 +866,7 @@ GameObject:
   - component: {fileID: 1354839575}
   - component: {fileID: 1354839576}
   m_Layer: 5
-  m_Name: SkillNameText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +933,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Skill_Name
+  m_Text: Name
 --- !u!1 &1407555411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,7 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inven: {fileID: 3307016292498843911}
-  i: 2
+  _s: 0000008
 --- !u!114 &1750497446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,7 +1643,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\uC778\uBCA4 \uC2AC\uB86F\uC5D0\nSword \uC544\uC774\uD15C \uCD94\uAC00 "
+  m_Text: "\uC778\uBCA4 \uC2AC\uB86F\uC5D0\n\uB179\uC2A8\uAC80 \uC544\uC774\uD15C
+    \uCD94\uAC00"
 --- !u!222 &1765557239
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1668,7 +1670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1867990586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1995,9 +1997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0680a4a722f5a184bb9e56b617c33551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillNameText: {fileID: 1354839576}
+  NameText: {fileID: 1354839576}
   skillLvText: {fileID: 1867990588}
-  skillDiscText: {fileID: 1342726064}
+  DiscText: {fileID: 1342726064}
 --- !u!4 &1920397251
 Transform:
   m_ObjectHideFlags: 0

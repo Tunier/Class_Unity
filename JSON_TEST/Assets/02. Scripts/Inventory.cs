@@ -96,21 +96,14 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < itemList.Count; i++)
         {
-            if (itemList[i].Count != 0)
+            slots[itemList[i].SlotIndex].AddItem(itemList[i]);
+            if (itemList[i].Type != 0)
             {
-                slots[itemList[i].SlotIndex].AddItem(itemList[i]);
-                if (itemList[i].Type == Item.ItemType.Weapon)
-                {
-                    Debug.Log(itemList[i].Name + "을 " + itemList[i].SlotIndex + "에 로드했음");
-                }
-                else
-                {
-                    Debug.Log(itemList[i].Name + "을 " + itemList[i].Count + "개 " + itemList[i].SlotIndex + "에 로드했음");
-                }
+                Debug.Log(itemList[i].Name + "을 " + itemList[i].SlotIndex + "에 로드했음");
             }
             else
             {
-                Debug.Log(i + "번째 아이템 리스트의 아이템은 비어있어서 로드안함");
+                Debug.Log(itemList[i].Name + "을 " + itemList[i].Count + "개 " + itemList[i].SlotIndex + "에 로드했음");
             }
         }
     }

@@ -1,3 +1,14 @@
-[{"Index":0,"Type":"Weapon","Name":"Sword1","Rarity":"Common","Value":5,"BuyCost":10,"SellCost":5,"ItemImagePath":"UI/Icon/Weapons/Sword"},
-{"Index":1,"Type":"Weapon","Name":"Sword2","Rarity":"Rare","Value":7,"BuyCost":50,"SellCost":10,"ItemImagePath":"UI/Icon/Weapons/Sword"},
-{"Index":2,"Type":"Used","Name":"HpPotion","Rarity":"Common","Value":20,"BuyCost":2,"SellCost":1,"ItemImagePath":"UI/Icon/Potion/HpPotion"}]
+[{"UIDCODE":"0000000","Name":"녹슨한손검","Type":0,"Rarity":0,"BuyCost":10,"SellCost":2,"ItemImagePath":"UI/Icon/Weapons/Sword"},
+{"UIDCODE":"0000001","Name":"한손검","Type":0,"Rarity":1,"BuyCost":50,"SellCost":10,"ItemImagePath":"UI/Icon/Weapons/Sword"},
+{"UIDCODE":"0000002","Name":"빛나는 한손검","Type":0,"Rarity":2,"BuyCost":200,"SellCost":40,"ItemImagePath":"UI/Icon/Weapons/Sword"},
+{"UIDCODE":"0000003","Name":"화려한 한손검","Type":0,"Rarity":3,"BuyCost":0,"SellCost":100,"ItemImagePath":"UI/Icon/Weapons/Sword"},
+{"UIDCODE":"0000004","Name":"녹슨갑옷","Type":2,"Rarity":0,"BuyCost":20,"SellCost":4,"ItemImagePath":""},
+{"UIDCODE":"0000005","Name":"갑옷","Type":2,"Rarity":1,"BuyCost":100,"SellCost":20,"ItemImagePath":""},
+{"UIDCODE":"0000006","Name":"빛나는 갑옷","Type":2,"Rarity":2,"BuyCost":200,"SellCost":40,"ItemImagePath":""},
+{"UIDCODE":"0000007","Name":"화려한 갑옷","Type":2,"Rarity":3,"BuyCost":0,"SellCost":100,"ItemImagePath":""},
+{"UIDCODE":"0000008","Name":"소형 Hp포션","Type":9,"Rarity":0,"BuyCost":2,"SellCost":1,"ItemImagePath":"UI/Icon/Potion/HpPotion"},
+{"UIDCODE":"0000009","Name":"중형 Hp포션","Type":9,"Rarity":1,"BuyCost":5,"SellCost":2,"ItemImagePath":"UI/Icon/Potion/HpPotion"},
+{"UIDCODE":"0000010","Name":"대형 Hp포션","Type":9,"Rarity":2,"BuyCost":10,"SellCost":3,"ItemImagePath":"UI/Icon/Potion/HpPotion"},
+{"UIDCODE":"0000011","Name":"소형 Mp포션","Type":9,"Rarity":0,"BuyCost":2,"SellCost":1,"ItemImagePath":"UI/Icon/Potion/MpPotion"},
+{"UIDCODE":"0000012","Name":"중형 Mp포션","Type":9,"Rarity":1,"BuyCost":5,"SellCost":2,"ItemImagePath":"UI/Icon/Potion/MpPotion"},
+{"UIDCODE":"0000013","Name":"대형 Mp포션","Type":9,"Rarity":2,"BuyCost":10,"SellCost":3,"ItemImagePath":"UI/Icon/Potion/MpPotion"}]

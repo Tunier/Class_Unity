@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour, IPointerClickHandler
+public class Slot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
+    UIManager UIMgr;
+
     public int index;
     public Item item;
     public Image itemImage;
@@ -15,6 +17,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     GameObject countImage;
     [SerializeField]
     Text countText;
+
+    private void Awake()
+    {
+        UIMgr = FindObjectOfType<UIManager>();
+    }
 
     public void SetColorAlpha(float alpha)
     {
@@ -32,7 +39,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         SetColorAlpha(1);
         haveItem = true;
 
-        if (item.Type != Item.ItemType.Weapon)
+        if (item.Type == 9 || item.Type == 10)
         {
             countImage.SetActive(true);
             countText.text = item.Count.ToString();
@@ -77,5 +84,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
             SetSlotCount(-1);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item.Count != 0)
+            UIMgr.UpdateToolTip(item);
     }
 }

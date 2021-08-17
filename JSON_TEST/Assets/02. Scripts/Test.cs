@@ -12,7 +12,7 @@ public class Test : MonoBehaviour, IPointerClickHandler
     PlayerTest player;
     SkillDatabase skillDB;
 
-    public int i;
+    public string _s;
 
     void Start()
     {
@@ -29,22 +29,13 @@ public class Test : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            GetItem(i);
+            GetItem(_s);
         }
     }
 
-    public void GetItem(int i)
+    public void GetItem(string _s)
     {
-        //var item = new Item(Database.instance.AllItemList[i].Index,
-        //                    Database.instance.AllItemList[i].Type,
-        //                    Database.instance.AllItemList[i].Name,
-        //                    Database.instance.AllItemList[i].Rarity,
-        //                    Database.instance.AllItemList[i].BuyCost,
-        //                    Database.instance.AllItemList[i].SellCost,
-        //                    Database.instance.AllItemList[i].ItemImagePath);
-        //inven.GetItem(item);
-
-        var item = ItemDatabase.instance.newItem(i);
+        var item = ItemDatabase.instance.newItem(_s);
 
         inven.GetItem(item);
     }
