@@ -250,6 +250,11 @@ public class PlayerCtrl : MonoBehaviour
         SetPlayerMovement();
         SetPlayerRotate();
 
+        if (exp >= expMax)
+        {
+            LevelUp();
+        }
+
         if (hp > hpMax)
             hp = hpMax;
         else if (hp < hpMax && hp > 0)

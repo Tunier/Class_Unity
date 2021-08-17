@@ -37,6 +37,7 @@ public class MonsterCtrl : MonoBehaviour
     NavMeshAgent nav;
     public Collider[] weapon;
 
+    [SerializeField]
     PlayerCtrl player;
     MonsterSpawnerCtrl mobSpawner;
 
@@ -72,10 +73,10 @@ public class MonsterCtrl : MonoBehaviour
             {
                 if (player.state != PlayerCtrl.State.DIE)
                 {
-                    if (!(ani.GetBool(hashAttack)) && (Vector3.Distance(tr.position, player.transform.position) <= 7f))
-                        state = State.CHASE;
-                    else if (Vector3.Distance(tr.position, player.transform.position) <= 2.7f)
+                    if (Vector3.Distance(tr.position, player.transform.position) <= 2.7f)
                         state = State.ATTACK;
+                    else if (!(ani.GetBool(hashAttack)) && (Vector3.Distance(tr.position, player.transform.position) <= 7f))
+                        state = State.CHASE;
                     else
                         state = State.IDLE;
                 }
@@ -200,11 +201,6 @@ public class MonsterCtrl : MonoBehaviour
         mobSpawner.mobList.Remove(gameObject);
 
         DropItem();
-
-        if (player.exp >= player.expMax)
-        {
-            player.LevelUp();
-        }
     }
 
 
