@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using Cinemachine;
 
-public class Movement : MonoBehaviour
+public class Movement : MonoBehaviourPunCallbacks
 {
     CharacterController controller;
     Transform transform;
@@ -15,6 +18,9 @@ public class Movement : MonoBehaviour
 
     public float moveSpeed = 10f;
 
+    PhotonView pv;
+    CinemachineVirtualCamera virtualCamera;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -22,8 +28,16 @@ public class Movement : MonoBehaviour
         animator = GetComponent<Animator>();
         camera = Camera.main;
 
+        pv = GetComponent<PhotonView>();
+        virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         // 가상의 바닥을 플레이어의 위치를 기준으로 생성.
         plane = new Plane(transform.up, transform.position);
+
+        if (pv.IsMine) // 내것인지 남것인지 판단.
+        {
+            virtualCamera.Follow = transform;
+            virtualCamera.LookAt = transform;
+        }
     }
 
     // 람다식은 표현을 간결하게 > 생산성을 증대시키는 구문
@@ -64,7 +78,10 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        Move();
-        Turn();
+        if (pv.IsMine)
+        {
+            Move();
+            Turn();
+        }
     }
 }
