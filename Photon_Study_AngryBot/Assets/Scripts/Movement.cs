@@ -4,8 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Cinemachine;
+using System;
 
-public class Movement : MonoBehaviourPunCallbacks
+public class Movement : MonoBehaviourPunCallbacks, IPunObservable
 {
     CharacterController controller;
     Transform transform;
@@ -20,6 +21,12 @@ public class Movement : MonoBehaviourPunCallbacks
 
     PhotonView pv;
     CinemachineVirtualCamera virtualCamera;
+
+    // 수신된 데이터.
+    Vector3 receivePos;
+    Quaternion receiveRot;
+    // 수신된 좌표로 이동 및 회전할 속도.
+    public float damping = 10f;
 
     void Start()
     {
@@ -82,6 +89,43 @@ public class Movement : MonoBehaviourPunCallbacks
         {
             Move();
             Turn();
+        }
+        else // 남의 것의 경우 수신된 데이터로 조작해줘야됨.
+        {
+            transform.position = Vector3.Lerp(transform.position, receivePos, Time.deltaTime * damping);
+            transform.rotation = Quaternion.Slerp(transform.rotation, receiveRot, Time.deltaTime * damping);
+        }
+    }
+
+    // 데이터 송/수신에 쓰이는 콜백 함수.
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //try
+        //{
+        //    int x = 5;
+        //    int y = 0;
+        //    print(x / y);
+        //}
+        //catch (ArithmeticException e)
+        //{
+        //    // Exception 클래스는 가장 대장.
+        //    // 모든 문제점을 포함하고 있는 카테고리.
+        //    // 하위에 세세한 문제들이 개별 명시되어있음.
+        //}
+        //finally
+        //{
+        //    // 예외가 발생하더라도 실행함.
+        //}
+
+        if (stream.IsWriting) // 로컬 캐릭터(본인)인경우 자신의 데이터를 다른 유저에게 송신.
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else // 수신
+        {
+            receivePos = (Vector3)stream.ReceiveNext();
+            receiveRot = (Quaternion)stream.ReceiveNext();
         }
     }
 }
