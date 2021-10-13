@@ -1,0 +1,7 @@
+[
+{"UIDCODE":"0300000","Type":1,"Name":"파이어볼","CostType":2,"Cost":10,"Value":10,"ValueFactor":2,"Cooltime":5,"MaxSkillLv":5,"NeedLv":1,"SkillDescription":"불덩이를 발사합니다.\n{0}의 데미지를 줍니다.","SkillImagePath":"Skill/Skill_Icon/Fire_Bolt"},
+{"UIDCODE":"0300001","Type":0,"Name":"Hp증가","CostType":0,"Cost":0,"Value":5,"ValueFactor":1,"Cooltime":0,"MaxSkillLv":10,"NeedLv":1,"SkillDescription":"Hp의 최대치가 {0}증가합니다.","SkillImagePath":"Skill/Skill_Icon/Increase_Power"},
+{"UIDCODE":"0300002","Type":4,"Name":"발도","CostType":2,"Cost":20,"Value":40,"ValueFactor":10,"Cooltime":10,"MaxSkillLv":5,"NeedLv":5,"SkillDescription":"발도.\n{0}의 데미지를 줍니다.","SkillImagePath":"Skill/Skill_Icon/Slice_Attack"},
+{"UIDCODE":"0300003","Type":2,"Name":"강타","CostType":2,"Cost":10,"Value":25,"ValueFactor":5,"Cooltime":5,"MaxSkillLv":5,"NeedLv":5,"SkillDescription":"강한공격.\n{0}의 데미지를 줍니다.","SkillImagePath":"Skill/Skill_Icon/Smite"},
+{"UIDCODE":"0300004","Type":4,"Name":"방패막기","CostType":2,"Cost":5,"Value":40,"ValueFactor":5,"Cooltime":3,"MaxSkillLv":7,"NeedLv":10,"SkillDescription":"방패를 듭니다.\n{0}%의 데미지를 방어합니다.","SkillImagePath":"Skill/Skill_Icon/Shield_Block"},
+{"UIDCODE":"0300005","Type":4,"Name":"휠윈드","CostType":2,"Cost":30,"Value":20,"ValueFactor":2,"Cooltime":25,"MaxSkillLv":5,"NeedLv":15,"SkillDescription":"회전하면서 주위의 적에게 5초간\n초당 {0}의 데미지를 줍니다.","SkillImagePath":"Skill/Skill_Icon/Whirl_Wind"}]

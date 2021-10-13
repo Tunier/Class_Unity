@@ -1,0 +1,122 @@
+[
+  {
+    "UIDCODE": "0000000",
+    "Name": "녹슨 한손검",
+    "ValueType": "7",
+    "Value": "2",
+    "RequireValueType": "1",
+    "RequireValue": "1"
+  },
+  {
+    "UIDCODE": "0000001",
+    "Name": "한손검",
+    "ValueType": "7/11",
+    "Value": "3/1",
+    "RequireValueType": "1",
+    "RequireValue": "2"
+  },
+  {
+    "UIDCODE": "0000002",
+    "Name": "빛나는 한손검",
+    "ValueType": "7/11",
+    "Value": "4/2",
+    "RequireValueType": "1",
+    "RequireValue": "3"
+  },
+  {
+    "UIDCODE": "0000003",
+    "Name": "화려한 한손검",
+    "ValueType": "7/11/16",
+    "Value": "5/3/5",
+    "RequireValueType": "1",
+    "RequireValue": "4"
+  },
+  {
+    "UIDCODE": "0000004",
+    "Name": "녹슨 갑옷",
+    "ValueType": "9",
+    "Value": "1",
+    "RequireValueType": "1",
+    "RequireValue": "1"
+  },
+  {
+    "UIDCODE": "0000005",
+    "Name": "갑옷",
+    "ValueType": "9/3",
+    "Value": "2/5",
+    "RequireValueType": "1",
+    "RequireValue": "2"
+  },
+  {
+    "UIDCODE": "0000006",
+    "Name": "빛나는 갑옷",
+    "ValueType": "9/3",
+    "Value": "2/10",
+    "RequireValueType": "1",
+    "RequireValue": "3"
+  },
+  {
+    "UIDCODE": "0000007",
+    "Name": "화려한 갑옷",
+    "ValueType": "9/3/4",
+    "Value": "2/10/5",
+    "RequireValueType": "1",
+    "RequireValue": "4"
+  },
+  {
+    "UIDCODE": "0000008",
+    "Name": "소형 Hp포션",
+    "ValueType": "1",
+    "Value": "50",
+    "RequireValueType": "0",
+    "RequireValue": "0"
+  },
+  {
+    "UIDCODE": "0000009",
+    "Name": "중형 Hp포션",
+    "ValueType": "1",
+    "Value": "100",
+    "RequireValueType": "0",
+    "RequireValue": "0"
+  },
+  {
+    "UIDCODE": "0000010",
+    "Name": "대형 Hp포션",
+    "ValueType": "1",
+    "Value": "200",
+    "RequireValueType": "0",
+    "RequireValue": "0"
+  },
+  {
+    "UIDCODE": "0000011",
+    "Name": "소형 Mp포션",
+    "ValueType": "2",
+    "Value": "25",
+    "RequireValueType": "0",
+    "RequireValue": "0"
+  },
+  {
+    "UIDCODE": "0000012",
+    "Name": "중형 Mp포션",
+    "ValueType": "2",
+    "Value": "50",
+    "RequireValueType": "0",
+    "RequireValue": "0"
+  },
+  {
+    "UIDCODE": "0000013",
+    "Name": "대형 Mp포션",
+    "ValueType": "2",
+    "Value": "100",
+    "RequireValueType": "0",
+    "RequireValue": "0"
+  },
+  {
+    "UIDCODE": "0000014",
+    "Name": "녹슨 목걸이",
+    "ValueType": "3",
+    "Value": "15",
+    "RequireValueType": "1",
+    "RequireValue": "1"
+  }
+]
