@@ -23,7 +23,6 @@ public class LookPointEditor : Editor
         EditorGUILayout.PropertyField(lookPos);
         //EditorGUILayout.HelpBox("hi", MessageType.Info);
         //EditorGUILayout.LabelField("타겟포지션", lookAt.lookPos.ToString());
-        serializedObject.ApplyModifiedProperties();
 
         if (lookAt.lookPos.y > (target as LookAt).transform.position.y)
             EditorGUILayout.LabelField("타겟포지션이 위쪽임.");

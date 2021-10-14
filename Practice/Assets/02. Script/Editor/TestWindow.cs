@@ -7,6 +7,8 @@ public class TestWindow : EditorWindow
 {
     bool toggleValue;
 
+    Object obj = null;
+
     AnimFloat animFloat = new AnimFloat(0.0001f);
     Texture tex;
 
@@ -70,7 +72,7 @@ public class TestWindow : EditorWindow
         //Display();
         //EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.ObjectField(null, typeof(Object), false);
+        obj = EditorGUILayout.ObjectField(obj, typeof(Object), true);
         EditorGUI.MultiFloatField(new Rect(4, 24, 200, EditorGUIUtility.singleLineHeight), new GUIContent("Label"), contents, numbers);
     }
 

@@ -6,8 +6,8 @@ public class GameManager : MonoSingletone<GameManager>
 {
     [HideInInspector]
     public float limitTime = 30f;
-
-    bool isGameover = false;
+    [HideInInspector]
+    public bool isGameover = false;
 
     [HideInInspector]
     public bool isClear = false;
@@ -20,6 +20,8 @@ public class GameManager : MonoSingletone<GameManager>
 
         if (limitTime <= 0)
             isGameover = true;
+
+        isPause = isGameover || isPause;
 
         Time.timeScale = isPause ? 0 : 1;
     }

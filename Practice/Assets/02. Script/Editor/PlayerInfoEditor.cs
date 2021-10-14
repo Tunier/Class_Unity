@@ -34,6 +34,8 @@ public class PlayerInfoEditor : Editor
     {
         //base.OnInspectorGUI();
 
+        //EditorGUILayout.Space();
+
         GUI.enabled = false;
         EditorGUILayout.ObjectField("스크립트", playerInfo, typeof(Object), false);
         GUI.enabled = true;
@@ -42,10 +44,13 @@ public class PlayerInfoEditor : Editor
 
         EditorGUILayout.LabelField("플레이어 스텟", EditorStyles.boldLabel);
         GUI.enabled = false;
+        EditorGUILayout.IntField("플레이어 레벨", playerInfo.stats.Level);
         EditorGUILayout.FloatField("최대 Hp", playerInfo.finalMaxHp);
         EditorGUILayout.PropertyField(curHp, new GUIContent("현재 Hp"));
+        EditorGUILayout.FloatField("초당 Hp 리젠", playerInfo.finalHpRegen);
         EditorGUILayout.FloatField("최대 Mp", playerInfo.finalMaxMp);
         EditorGUILayout.PropertyField(curMp, new GUIContent("현재 Mp"));
+        EditorGUILayout.FloatField("초당 Mp 리젠", playerInfo.finalMpRegen);
         EditorGUILayout.FloatField("최대 경험치", playerInfo.stats.MaxExp);
         EditorGUILayout.FloatField("현재 경험치", playerInfo.stats.CurExp);
         //playerInfo.state = (STATE)EditorGUILayout.EnumPopup("플레이어 상태", playerInfo.state);

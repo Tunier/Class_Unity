@@ -13,6 +13,8 @@ public class UIManager : MonoSingletone<UIManager>
     TextMeshProUGUI timeText;
     [SerializeField]
     Text scoreText;
+    [SerializeField]
+    Text curScoreText;
 
     [SerializeField]
     Toggle minimapToggle;
@@ -23,6 +25,8 @@ public class UIManager : MonoSingletone<UIManager>
     GameObject pauseCanvas;
     [SerializeField]
     GameObject clearCanvas;
+    [SerializeField]
+    GameObject gameOverCanvas;
 
     [SerializeField]
     InputField infld;
@@ -40,7 +44,7 @@ public class UIManager : MonoSingletone<UIManager>
             highScoreText.text = $"{PlayerPrefs.GetFloat("HighScore"):0}";
         }
         else
-        { 
+        {
             highScoreUserNameText.text = "Tunier";
             highScoreText.text = "15";
         }
@@ -51,16 +55,19 @@ public class UIManager : MonoSingletone<UIManager>
         timeImage.fillAmount = GameManager.Instance.limitTime / 30;
         timeText.text = $"{GameManager.Instance.limitTime:0.00}";
         scoreText.text = $"Score : {GameManager.Instance.limitTime:0}";
+        curScoreText.text = $"{GameManager.Instance.limitTime:0}";
 
         minimap.gameObject.SetActive(minimapToggle.isOn);
 
-        if (!GameManager.Instance.isClear)
+        if (!GameManager.Instance.isClear && !GameManager.Instance.isGameover)
             pauseCanvas.SetActive(GameManager.Instance.isPause);
         else
         {
             clearCanvas.SetActive(GameManager.Instance.isClear);
             pauseCanvas.SetActive(false);
         }
+
+        gameOverCanvas.SetActive(GameManager.Instance.isGameover);
     }
 
     public void PauseBtnClick()
