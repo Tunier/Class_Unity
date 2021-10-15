@@ -17,8 +17,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField]
     Text countText;
 
-    ItemDatabase ItemDB;
-    InputNumberUI inputNumber;
     public Inventory inven;
     Tooltip tooltip;
     ShopMessage shopMessage;
@@ -33,7 +31,6 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField]
     RectTransform shopBase;
 
-    GameObject cameraArm;
 
     const string defalt_EquipmentSlotBG_Path = "UI/Tooltip/TooltipBackground";
     const string defalt_SlotBG_Path = "UI/Inventory/Slot_Frame/itemFrame_alphaFront";
@@ -43,14 +40,11 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     const string epic_SlotBG_Path = "UI/Inventory/Slot_Frame/itemFrame_yellow";
     const string set_SlotBG_Path = "UI/Inventory/Slot_Frame/itemFrame_green";
 
-    private void Awake()
+    void Awake()
     {
-        ItemDB = FindObjectOfType<ItemDatabase>();
-        inputNumber = FindObjectOfType<InputNumberUI>();
         tooltip = FindObjectOfType<Tooltip>();
         shopMessage = FindObjectOfType<ShopMessage>();
         shop = FindObjectOfType<Shop_Test>();
-        cameraArm = GameObject.Find("CameraArm");
     }
 
     void SetColorAlpha(float alpha)
@@ -908,6 +902,10 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         player.RefeshFinalStats();
     }
 
+    /// <summary>
+    /// 사용(소비)가능한 아이템을 매개변수로 받아서 효과가 적용되게함.
+    /// </summary>
+    /// <param name="_item"></param>
     public void UseItem(Item _item)
     {
         List<int> keys = new List<int>();
@@ -965,7 +963,7 @@ public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     /// <summary>
-    /// 
+    /// 플레이어가 상점에 아이템을 파는 함수.
     /// </summary>
     /// <param name="_item"></param>
     public void SellItem(Item _item)
