@@ -23,10 +23,7 @@ public class Enemy_Orange : Enemy
     {
         base.Update();
 
-        if (patternType != 0)
-            isArrive = Vector3.Distance(transform.position, destinationPos) < 2f;
-        else
-            isArrive = true;
+        isArrive = Vector3.Distance(transform.position, destinationPos) < 2f;
     }
 
     protected override void Move(eState _state)
@@ -144,7 +141,7 @@ public class Enemy_Orange : Enemy
         state = eState.Attack;
 
         if (patternType == 1)
-        { 
+        {
             destinationPos = GetDestinationPos(1);
             nav.SetDestination(destinationPos);
         }

@@ -16,10 +16,11 @@ public class LookPointEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        GUI.enabled = false;
         serializedObject.Update();
-        EditorGUILayout.PropertyField(lookPos);
-        GUI.enabled = true;
+
+        //GUI.enabled = false;
+        //EditorGUILayout.PropertyField(lookPos);
+        //GUI.enabled = true;
         EditorGUILayout.PropertyField(lookPos);
         //EditorGUILayout.HelpBox("hi", MessageType.Info);
         //EditorGUILayout.LabelField("Å¸°ÙÆ÷Áö¼Ç", lookAt.lookPos.ToString());

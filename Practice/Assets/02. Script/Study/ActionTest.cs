@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ActionTest : MonoBehaviour
 {
+    public UnityEvent event_0 = new UnityEvent();
+    public UnityAction act_0 = delegate () { print("act_0"); };
+
     Action<string> act_1 = Print;
 
     Action<string> act_2 = delegate (string _text)
@@ -22,7 +26,9 @@ public class ActionTest : MonoBehaviour
 
         act_1("hi");
 
-        print(func_1(15,2));
+        act_2($"{func_1(7, 2)}");
+
+        //print(func_1(15, 2));
     }
 
     public static void Print(string _text)
